@@ -1,0 +1,8 @@
+{
+  "name": "stdlib-mini",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "bsc-flags": ["-nostdlib", "-nopervasives"]
+}

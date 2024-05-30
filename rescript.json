@@ -1,0 +1,11 @@
+{
+  "name": "rescript-stdlib",
+  "sources": [],
+  "package-specs": {
+    "module": "esmodule",
+    "in-source": true
+  },
+  "suffix": ".js",
+  "bs-dependencies": ["stdlib-mini", "belt", "runtime"],
+  "bsc-flags": ["-nostdlib", "-nopervasives"]
+}
