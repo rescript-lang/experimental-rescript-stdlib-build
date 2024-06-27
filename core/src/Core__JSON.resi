@@ -6,12 +6,12 @@ Functions for interacting with JSON.
 A type representing a JSON object.
 */
 @unboxed
-type rec t = Js.Json.t =
+type rec t = Js_types.json =
   | Boolean(bool)
   | @as(null) Null
   | String(string)
   | Number(float)
-  | Object(Core__Dict.t<t>)
+  | Object(dict<t>)
   | Array(array<t>)
 
 @unboxed

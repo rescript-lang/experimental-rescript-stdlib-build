@@ -31,6 +31,7 @@ external lxor: (int, int) => int = "%xorint"
 external asr: (int, int) => int = "%asrint"
 type ref<'a> = {mutable contents: 'a}
 external ref: 'a => ref<'a> = "%makemutable"
+external \":=": (ref<'a>, 'a) => unit = "%bs_ref_setfield0"
 
 external \"||": (bool, bool) => bool = "%sequor"
 external \"&&": (bool, bool) => bool = "%sequand"
@@ -72,6 +73,12 @@ module String = {
 }
 
 module Js = {
+  // for async
+  module Promise = {
+    external unsafe_async: 'a => promise<'a> = "%identity"
+    external unsafe_await: promise<'a> => 'a = "?await"
+  }
+
   /** JS object type */
   type t<'a> = {..} as 'a
 
@@ -81,7 +88,7 @@ module Js = {
     external opaqueFullApply: 'a => 'a = "%uncurried_apply"
 
     /* Use opaque instead of [._n] to prevent some optimizations happening */
-    external run: ((. unit) => 'a) => 'a = "#run"
+    external run: (unit => 'a) => 'a = "#run"
     external opaque: 'a => 'a = "%opaque"
   }
 

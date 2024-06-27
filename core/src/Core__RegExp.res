@@ -1,4 +1,4 @@
-type t = Js.Re.t
+type t = Js_types.regExp
 
 module Result = {
   type t = array<option<string>>

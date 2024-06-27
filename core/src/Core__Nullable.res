@@ -1,5 +1,5 @@
 @unboxed
-type t<'a> = Js.Nullable.t<'a> =
+type t<'a> = Js_types.nullable<'a> =
   | Value('a)
   | @as(null) Null
   | @as(undefined) Undefined

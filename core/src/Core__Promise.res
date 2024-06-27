@@ -97,9 +97,11 @@ external allSettled6: (
 @send
 external _catch: (t<'a>, exn => t<'a>) => t<'a> = "catch"
 
+external anyToExnInternal: 'a => exn = "#wrap_exn"
+
 let catch = (promise: promise<'a>, callback: exn => promise<'a>): promise<'a> => {
   _catch(promise, err => {
-    callback(Js.Exn.anyToExnInternal(err))
+    callback(anyToExnInternal(err))
   })
 }
 

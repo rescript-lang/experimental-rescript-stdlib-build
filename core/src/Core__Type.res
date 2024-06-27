@@ -3,8 +3,8 @@ type t = [#undefined | #object | #boolean | #number | #bigint | #string | #symbo
 external typeof: 'a => t = "#typeof"
 
 module Classify = {
-  type function = Js.Types.function_val
-  type object = Js.Types.obj_val
+  type function // TODO keep here? = Js.Types.function_val
+  type object // = Js.Types.obj_val
 
   type t =
     | Bool(bool)

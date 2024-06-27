@@ -7,11 +7,14 @@ var Pervasives = {};
 
 var $$String = {};
 
+var $$Promise = {};
+
 var Internal = {};
 
 var Undefined = {};
 
 var Js = {
+  $$Promise: $$Promise,
   Internal: Internal,
   Undefined: Undefined
 };

@@ -5,7 +5,7 @@ See [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 */
 
 /** Represents a JavaScript exception. */
-type t = Js.Exn.t
+type t = Js_types.jsExn
 
 external fromException: exn => option<t> = "?as_js_exn"
 

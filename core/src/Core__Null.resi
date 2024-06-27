@@ -8,7 +8,7 @@ If you also need to cover `undefined`, check out `Nullable` instead.
 A type representing a value that can be either `'a` or `null`.
 */
 @unboxed
-type t<'a> = Js.Null.t<'a> =
+type t<'a> = Js_types.null<'a> =
   | Value('a)
   | @as(null) Null
 

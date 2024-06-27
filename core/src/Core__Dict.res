@@ -1,4 +1,4 @@
-type t<'a> = Js.Dict.t<'a>
+type t<'a> = dict<'a>
 
 @get_index external getUnsafe: (t<'a>, string) => 'a = ""
 @get_index external get: (t<'a>, string) => option<'a> = ""

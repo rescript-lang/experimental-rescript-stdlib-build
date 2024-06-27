@@ -1,10 +1,10 @@
 @unboxed
-type rec t = Js.Json.t =
+type rec t = Js_types.json =
   | Boolean(bool)
   | @as(null) Null
   | String(string)
   | Number(float)
-  | Object(Core__Dict.t<t>)
+  | Object(dict<t>)
   | Array(array<t>)
 
 @unboxed
@@ -54,8 +54,8 @@ module Classify = {
   external _asBool: 'a => bool = "%identity"
   external _asString: 'a => string = "%identity"
   external _asFloat: 'a => float = "%identity"
-  external _asArray: 'a => array<Js.Json.t> = "%identity"
-  external _asDict: 'a => Core__Dict.t<Js.Json.t> = "%identity"
+  external _asArray: 'a => array<Js_types.json> = "%identity"
+  external _asDict: 'a => Core__Dict.t<Js_types.json> = "%identity"
 
   let classify = value => {
     switch _internalClass(value) {

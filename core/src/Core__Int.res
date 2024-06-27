@@ -55,6 +55,9 @@ let abs = x =>
     -x
   }
 
+external ceil: float => float = "Math.ceil"
+external float: int => float = "%floatofint"
+
 let range = (start, end, ~options: rangeOptions={}) => {
   let isInverted = start > end
 

@@ -1,4 +1,4 @@
-type t<'a> = Js.WeakSet.t<'a>
+type t<'a> = Js_types.weakSet<'a>
 
 @new external make: unit => t<'a> = "WeakSet"
 

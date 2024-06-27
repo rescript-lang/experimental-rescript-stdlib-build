@@ -6,7 +6,7 @@ Compiles to a regular JavaScript object.*/
 /**
 Type representing a dictionary of value `'a`.
 */
-type t<'a> = Js.Dict.t<'a>
+type t<'a> = dict<'a>
 
 /**
 `getUnsafe(dict, key)` Returns the `value` at the provided `key`.

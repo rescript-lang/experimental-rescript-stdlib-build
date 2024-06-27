@@ -7,7 +7,7 @@ An `id` representing a timeout started via `setTimeout`.
 
 See [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) on MDN.
 */
-type timeoutId = Js.Global.timeoutId
+type timeoutId = Js_types.timeoutId
 
 /**
 `setTimeout(callback, durationInMilliseconds)` starts a timer that will execute `callback` after `durationInMilliseconds`.
@@ -66,7 +66,7 @@ An `id` representing an interval started via `setInterval`.
 
 See [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) on MDN.
 */
-type intervalId = Js.Global.intervalId
+type intervalId = Js_types.intervalId
 
 /**
 `setInterval(callback, intervalInMilliseconds)` starts an interval that will execute `callback` every `durationInMilliseconds` milliseconds.

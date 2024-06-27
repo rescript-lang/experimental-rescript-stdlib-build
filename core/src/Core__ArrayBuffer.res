@@ -1,4 +1,4 @@
-type t = Js.TypedArray2.ArrayBuffer.t
+type t = Js_types.arrayBuffer
 
 @new external make: int => t = "ArrayBuffer"
 @get external byteLength: t => int = "byteLength"

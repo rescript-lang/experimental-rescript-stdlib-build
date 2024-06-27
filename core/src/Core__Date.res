@@ -1,4 +1,4 @@
-type t = Js.Date.t
+type t = Js_types.date
 
 type msSinceEpoch = float
 
