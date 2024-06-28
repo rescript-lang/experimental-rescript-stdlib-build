@@ -43,3 +43,7 @@ type weakSet<'a>
 type weakMap<'k, 'v>
 
 type arrayBuffer
+
+type window
+
+type document
