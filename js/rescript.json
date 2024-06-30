@@ -1,0 +1,9 @@
+{
+  "name": "js",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "bs-dependencies": ["stdlib-mini"],
+  "bsc-flags": ["-nostdlib", "-nopervasives", "-open Stdlib_mini"]
+}
