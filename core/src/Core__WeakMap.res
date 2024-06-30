@@ -1,4 +1,4 @@
-type t<'k, 'v> = Js_types.weakMap<'k, 'v>
+type t<'k, 'v> = Runtime_types.weakMap<'k, 'v>
 
 @new external make: unit => t<'k, 'v> = "WeakMap"
 

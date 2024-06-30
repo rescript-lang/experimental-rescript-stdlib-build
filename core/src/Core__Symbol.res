@@ -1,4 +1,4 @@
-type t = Js_types.symbol
+type t = Runtime_types.symbol
 
 @val external make: string => t = "Symbol"
 @val external getFor: string => t = "Symbol.for"

@@ -1,4 +1,4 @@
-type t = Js_types.regExp
+type t = Runtime_types.regExp
 
 module Result = {
   type t = array<option<string>>

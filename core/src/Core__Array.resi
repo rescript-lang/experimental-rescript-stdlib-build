@@ -13,11 +13,11 @@
 external fromIterator: Core__Iterator.t<'a> => array<'a> = "Array.from"
 
 // TODO: Docs
-@val external fromArrayLike: Js_types.arrayLike<'a> => array<'a> = "Array.from"
+@val external fromArrayLike: Runtime_types.arrayLike<'a> => array<'a> = "Array.from"
 
 // TODO: Docs
 @val
-external fromArrayLikeWithMap: (Js_types.arrayLike<'a>, 'a => 'b) => array<'b> = "Array.from"
+external fromArrayLikeWithMap: (Runtime_types.arrayLike<'a>, 'a => 'b) => array<'b> = "Array.from"
 
 /**
   `make(~length, init)`

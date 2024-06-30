@@ -7,7 +7,7 @@ See [`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 /**
 Type representing an instantiated `RegExp`.
 */
-type t = Js_types.regExp
+type t = Runtime_types.regExp
 
 module Result: {
   /**

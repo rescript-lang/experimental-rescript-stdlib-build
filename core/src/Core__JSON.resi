@@ -6,7 +6,7 @@ Functions for interacting with JSON.
 A type representing a JSON object.
 */
 @unboxed
-type rec t = Js_types.json =
+type rec t = Runtime_types.json =
   | Boolean(bool)
   | @as(null) Null
   | String(string)

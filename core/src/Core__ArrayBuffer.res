@@ -1,4 +1,4 @@
-type t = Js_types.arrayBuffer
+type t = Runtime_types.arrayBuffer
 
 @new external make: int => t = "ArrayBuffer"
 @get external byteLength: t => int = "byteLength"
