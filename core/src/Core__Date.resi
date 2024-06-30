@@ -5,7 +5,7 @@
 /**
 A type representing a JavaScript date.
 */
-type t = Js_types.date
+type t = Runtime_types.date
 
 /**
 Time, in milliseconds, since / until the UNIX epoch (January 1, 1970 00:00:00 UTC).

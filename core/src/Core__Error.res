@@ -1,4 +1,4 @@
-type t = Js_types.jsExn
+type t = Runtime_types.jsExn
 
 external fromException: exn => option<t> = "?as_js_exn"
 external toException: t => exn = "%identity"

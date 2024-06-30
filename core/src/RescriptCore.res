@@ -44,8 +44,8 @@ module BigUint64Array = Core__BigUint64Array
 
 module Intl = Core__Intl
 
-@val external window: Js_types.window = "window"
-@val external document: Js_types.document = "document"
+@val external window: Runtime_types.window = "window"
+@val external document: Runtime_types.document = "document"
 @val external globalThis: {..} = "globalThis"
 
 external null: Core__Nullable.t<'a> = "#null"
@@ -105,10 +105,10 @@ module Option = Core__Option
 module List = Core__List
 module Result = Core__Result
 
-type null<+'a> = Js_types.null<'a>
+type null<+'a> = Runtime_types.null<'a>
 
-type undefined<+'a> = Js_types.undefined<'a>
+type undefined<+'a> = Runtime_types.undefined<'a>
 
-type nullable<+'a> = Js_types.nullable<'a>
+type nullable<+'a> = Runtime_types.nullable<'a>
 
 let panic = Core__Error.panic

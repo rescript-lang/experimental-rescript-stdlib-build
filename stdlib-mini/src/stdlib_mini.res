@@ -95,14 +95,14 @@ module Js = {
   /**
   Nullable value of this type can be either null or 'a. This type is equivalent to Js.Null.t.
 */
-  type null<+'a> = Js_types.null<'a>
+  type null<+'a> = Runtime_types.null<'a>
 
   /**
   A value of this type can be either undefined or 'a. This type is equivalent to Js.Undefined.t.
 */
-  type undefined<+'a> = Js_types.undefined<'a>
+  type undefined<+'a> = Runtime_types.undefined<'a>
 
-  type nullable<+'a> = Js_types.nullable<'a>
+  type nullable<+'a> = Runtime_types.nullable<'a>
 
   module Undefined = {
     external empty: undefined<'a> = "#undefined"

@@ -1,4 +1,4 @@
-type t<'a> = Js_types.set<'a>
+type t<'a> = Runtime_types.set<'a>
 
 @new external make: unit => t<'a> = "Set"
 @new external fromArray: array<'a> => t<'a> = "Set"

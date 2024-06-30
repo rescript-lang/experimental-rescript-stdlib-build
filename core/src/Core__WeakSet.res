@@ -1,4 +1,4 @@
-type t<'a> = Js_types.weakSet<'a>
+type t<'a> = Runtime_types.weakSet<'a>
 
 @new external make: unit => t<'a> = "WeakSet"
 

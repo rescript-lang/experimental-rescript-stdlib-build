@@ -1,5 +1,5 @@
 @unboxed
-type rec t = Js_types.json =
+type rec t = Runtime_types.json =
   | Boolean(bool)
   | @as(null) Null
   | String(string)
@@ -54,8 +54,8 @@ module Classify = {
   external _asBool: 'a => bool = "%identity"
   external _asString: 'a => string = "%identity"
   external _asFloat: 'a => float = "%identity"
-  external _asArray: 'a => array<Js_types.json> = "%identity"
-  external _asDict: 'a => Core__Dict.t<Js_types.json> = "%identity"
+  external _asArray: 'a => array<Runtime_types.json> = "%identity"
+  external _asDict: 'a => Core__Dict.t<Runtime_types.json> = "%identity"
 
   let classify = value => {
     switch _internalClass(value) {

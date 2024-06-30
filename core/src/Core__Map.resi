@@ -7,7 +7,7 @@ See [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Gl
 /**
 Type representing an instance of `Map`.
 */
-type t<'k, 'v> = Js_types.map<'k, 'v>
+type t<'k, 'v> = Runtime_types.map<'k, 'v>
 
 /**
 Creates a new, mutable JavaScript `Map`. A `Map` can have any values as both keys and values.

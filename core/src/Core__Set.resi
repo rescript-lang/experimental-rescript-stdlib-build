@@ -7,7 +7,7 @@ See [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Gl
 /**
 Type representing an instance of `Set`.
 */
-type t<'a> = Js_types.set<'a>
+type t<'a> = Runtime_types.set<'a>
 
 /**
 Creates a new, mutable JavaScript `Set`. A `Set` is a collection of unique values.

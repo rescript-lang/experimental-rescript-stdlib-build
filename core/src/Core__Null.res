@@ -1,5 +1,5 @@
 @unboxed
-type t<'a> = Js_types.null<'a> =
+type t<'a> = Runtime_types.null<'a> =
   | Value('a)
   | @as(null) Null
 
