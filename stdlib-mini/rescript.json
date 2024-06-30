@@ -4,5 +4,5 @@
     "dir": "src",
     "subdirs": true
   },
-  "bsc-flags": ["-nostdlib", "-nopervasives"]
+  "bsc-flags": ["-nostdlib", "-nopervasives", "-bs-no-version-header"]
 }
