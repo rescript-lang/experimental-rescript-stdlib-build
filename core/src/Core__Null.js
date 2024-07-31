@@ -31,11 +31,12 @@ function getExn(value) {
   if (value !== null) {
     return value;
   }
-  throw {
-        RE_EXN_ID: "Invalid_argument",
-        _1: "Null.getExn: value is null",
-        Error: new Error()
-      };
+  throw new Error("Invalid_argument", {
+        cause: {
+          RE_EXN_ID: "Invalid_argument",
+          _1: "Null.getExn: value is null"
+        }
+      });
 }
 
 function forEach(value, f) {
@@ -69,21 +70,21 @@ function flatMap(value, f) {
   }
 }
 
-var getWithDefault = getOr;
+let getWithDefault = getOr;
 
-var mapWithDefault = mapOr;
+let mapWithDefault = mapOr;
 
 export {
-  equal ,
-  compare ,
-  fromOption ,
-  getOr ,
-  getWithDefault ,
-  getExn ,
-  forEach ,
-  map ,
-  mapOr ,
-  mapWithDefault ,
-  flatMap ,
+  equal,
+  compare,
+  fromOption,
+  getOr,
+  getWithDefault,
+  getExn,
+  forEach,
+  map,
+  mapOr,
+  mapWithDefault,
+  flatMap,
 }
 /* No side effect */

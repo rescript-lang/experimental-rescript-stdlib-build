@@ -11,8 +11,8 @@ function keepU(opt, p) {
 
 function keep(opt, p) {
   return keepU(opt, (function (x) {
-                return p(x);
-              }));
+    return p(x);
+  }));
 }
 
 function forEachU(opt, f) {
@@ -24,18 +24,19 @@ function forEachU(opt, f) {
 
 function forEach(opt, f) {
   forEachU(opt, (function (x) {
-          f(x);
-        }));
+    f(x);
+  }));
 }
 
 function getExn(x) {
   if (x !== undefined) {
     return Caml_option.valFromOption(x);
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
 function mapWithDefaultU(opt, $$default, f) {
@@ -48,8 +49,8 @@ function mapWithDefaultU(opt, $$default, f) {
 
 function mapWithDefault(opt, $$default, f) {
   return mapWithDefaultU(opt, $$default, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function mapU(opt, f) {
@@ -61,8 +62,8 @@ function mapU(opt, f) {
 
 function map(opt, f) {
   return mapU(opt, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function flatMapU(opt, f) {
@@ -74,8 +75,8 @@ function flatMapU(opt, f) {
 
 function flatMap(opt, f) {
   return flatMapU(opt, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function getWithDefault(opt, $$default) {
@@ -116,8 +117,8 @@ function eqU(a, b, f) {
 
 function eq(a, b, f) {
   return eqU(a, b, (function (x, y) {
-                return f(x, y);
-              }));
+    return f(x, y);
+  }));
 }
 
 function cmpU(a, b, f) {
@@ -136,29 +137,29 @@ function cmpU(a, b, f) {
 
 function cmp(a, b, f) {
   return cmpU(a, b, (function (x, y) {
-                return f(x, y);
-              }));
+    return f(x, y);
+  }));
 }
 
 export {
-  keepU ,
-  keep ,
-  forEachU ,
-  forEach ,
-  getExn ,
-  mapWithDefaultU ,
-  mapWithDefault ,
-  mapU ,
-  map ,
-  flatMapU ,
-  flatMap ,
-  getWithDefault ,
-  orElse ,
-  isSome ,
-  isNone ,
-  eqU ,
-  eq ,
-  cmpU ,
-  cmp ,
+  keepU,
+  keep,
+  forEachU,
+  forEach,
+  getExn,
+  mapWithDefaultU,
+  mapWithDefault,
+  mapU,
+  map,
+  flatMapU,
+  flatMap,
+  getWithDefault,
+  orElse,
+  isSome,
+  isNone,
+  eqU,
+  eq,
+  cmpU,
+  cmp,
 }
 /* No side effect */

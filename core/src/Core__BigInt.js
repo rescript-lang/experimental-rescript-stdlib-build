@@ -10,7 +10,7 @@ function lnot(x) {
 }
 
 export {
-  toInt ,
-  lnot ,
+  toInt,
+  lnot,
 }
 /* No side effect */

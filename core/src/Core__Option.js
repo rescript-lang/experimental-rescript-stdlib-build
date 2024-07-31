@@ -97,24 +97,24 @@ function compare(a, b, cmp) {
   }
 }
 
-var mapWithDefault = mapOr;
+let mapWithDefault = mapOr;
 
-var getWithDefault = getOr;
+let getWithDefault = getOr;
 
 export {
-  filter ,
-  forEach ,
-  getExn ,
-  mapOr ,
-  mapWithDefault ,
-  map ,
-  flatMap ,
-  getOr ,
-  getWithDefault ,
-  orElse ,
-  isSome ,
-  isNone ,
-  equal ,
-  compare ,
+  filter,
+  forEach,
+  getExn,
+  mapOr,
+  mapWithDefault,
+  map,
+  flatMap,
+  getOr,
+  getWithDefault,
+  orElse,
+  isSome,
+  isNone,
+  equal,
+  compare,
 }
 /* No side effect */

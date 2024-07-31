@@ -2,43 +2,43 @@
 
 
 function classify(value) {
-  var match = Object.prototype.toString.call(value);
+  let match = Object.prototype.toString.call(value);
   switch (match) {
     case "[object Array]" :
         return {
-                TAG: "Array",
-                _0: value
-              };
+          TAG: "Array",
+          _0: value
+        };
     case "[object Boolean]" :
         return {
-                TAG: "Bool",
-                _0: value
-              };
+          TAG: "Bool",
+          _0: value
+        };
     case "[object Null]" :
         return "Null";
     case "[object Number]" :
         return {
-                TAG: "Number",
-                _0: value
-              };
+          TAG: "Number",
+          _0: value
+        };
     case "[object String]" :
         return {
-                TAG: "String",
-                _0: value
-              };
+          TAG: "String",
+          _0: value
+        };
     default:
       return {
-              TAG: "Object",
-              _0: value
-            };
+        TAG: "Object",
+        _0: value
+      };
   }
 }
 
-var Classify = {
+let Classify = {
   classify: classify
 };
 
-var Encode = {};
+let Encode = {};
 
 function bool(json) {
   if (typeof json === "boolean") {
@@ -61,7 +61,7 @@ function string(json) {
   
 }
 
-function $$float(json) {
+function float(json) {
   if (typeof json === "number") {
     return json;
   }
@@ -82,18 +82,18 @@ function array(json) {
   
 }
 
-var Decode = {
+let Decode = {
   bool: bool,
   $$null: $$null,
   string: string,
-  $$float: $$float,
+  float: float,
   object: object,
   array: array
 };
 
 export {
-  Classify ,
-  Encode ,
-  Decode ,
+  Classify,
+  Encode,
+  Decode,
 }
 /* No side effect */

@@ -4,8 +4,8 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 function make() {
   return {
-          root: undefined
-        };
+    root: undefined
+  };
 }
 
 function clear(s) {
@@ -14,8 +14,8 @@ function clear(s) {
 
 function copy(s) {
   return {
-          root: s.root
-        };
+    root: s.root
+  };
 }
 
 function push(s, x) {
@@ -26,7 +26,7 @@ function push(s, x) {
 }
 
 function topUndefined(s) {
-  var x = s.root;
+  let x = s.root;
   if (x !== undefined) {
     return x.head;
   }
@@ -34,7 +34,7 @@ function topUndefined(s) {
 }
 
 function top(s) {
-  var x = s.root;
+  let x = s.root;
   if (x !== undefined) {
     return Caml_option.some(x.head);
   }
@@ -46,7 +46,7 @@ function isEmpty(s) {
 }
 
 function popUndefined(s) {
-  var x = s.root;
+  let x = s.root;
   if (x !== undefined) {
     s.root = x.tail;
     return x.head;
@@ -55,7 +55,7 @@ function popUndefined(s) {
 }
 
 function pop(s) {
-  var x = s.root;
+  let x = s.root;
   if (x !== undefined) {
     s.root = x.tail;
     return Caml_option.some(x.head);
@@ -64,20 +64,20 @@ function pop(s) {
 }
 
 function size(s) {
-  var x = s.root;
+  let x = s.root;
   if (x !== undefined) {
-    var _x = x;
-    var _acc = 0;
+    let _x = x;
+    let _acc = 0;
     while(true) {
-      var acc = _acc;
-      var x$1 = _x;
-      var x$2 = x$1.tail;
+      let acc = _acc;
+      let x$1 = _x;
+      let x$2 = x$1.tail;
       if (x$2 === undefined) {
         return acc + 1 | 0;
       }
       _acc = acc + 1 | 0;
       _x = x$2;
-      continue ;
+      continue;
     };
   } else {
     return 0;
@@ -85,56 +85,56 @@ function size(s) {
 }
 
 function forEachU(s, f) {
-  var _s = s.root;
+  let _s = s.root;
   while(true) {
-    var s$1 = _s;
+    let s$1 = _s;
     if (s$1 === undefined) {
-      return ;
+      return;
     }
     f(s$1.head);
     _s = s$1.tail;
-    continue ;
+    continue;
   };
 }
 
 function forEach(s, f) {
   forEachU(s, (function (x) {
-          f(x);
-        }));
+    f(x);
+  }));
 }
 
 function dynamicPopIterU(s, f) {
   while(true) {
-    var match = s.root;
+    let match = s.root;
     if (match === undefined) {
-      return ;
+      return;
     }
     s.root = match.tail;
     f(match.head);
-    continue ;
+    continue;
   };
 }
 
 function dynamicPopIter(s, f) {
   dynamicPopIterU(s, (function (x) {
-          f(x);
-        }));
+    f(x);
+  }));
 }
 
 export {
-  make ,
-  clear ,
-  copy ,
-  push ,
-  popUndefined ,
-  pop ,
-  topUndefined ,
-  top ,
-  isEmpty ,
-  size ,
-  forEachU ,
-  forEach ,
-  dynamicPopIterU ,
-  dynamicPopIter ,
+  make,
+  clear,
+  copy,
+  push,
+  popUndefined,
+  pop,
+  topUndefined,
+  top,
+  isEmpty,
+  size,
+  forEachU,
+  forEach,
+  dynamicPopIterU,
+  dynamicPopIter,
 }
 /* No side effect */

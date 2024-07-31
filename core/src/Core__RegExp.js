@@ -1,9 +1,9 @@
 
 
 
-var Result = {};
+let Result = {};
 
 export {
-  Result ,
+  Result,
 }
 /* No side effect */

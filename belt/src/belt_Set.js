@@ -3,110 +3,110 @@
 import * as Belt_SetDict from "./belt_SetDict.js";
 
 function fromArray(data, id) {
-  var cmp = id.cmp;
+  let cmp = id.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.fromArray(data, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.fromArray(data, cmp)
+  };
 }
 
 function remove(m, e) {
-  var data = m.data;
-  var cmp = m.cmp;
-  var newData = Belt_SetDict.remove(data, e, cmp);
+  let data = m.data;
+  let cmp = m.cmp;
+  let newData = Belt_SetDict.remove(data, e, cmp);
   if (newData === data) {
     return m;
   } else {
     return {
-            cmp: cmp,
-            data: newData
-          };
+      cmp: cmp,
+      data: newData
+    };
   }
 }
 
 function add(m, e) {
-  var data = m.data;
-  var cmp = m.cmp;
-  var newData = Belt_SetDict.add(data, e, cmp);
+  let data = m.data;
+  let cmp = m.cmp;
+  let newData = Belt_SetDict.add(data, e, cmp);
   if (newData === data) {
     return m;
   } else {
     return {
-            cmp: cmp,
-            data: newData
-          };
+      cmp: cmp,
+      data: newData
+    };
   }
 }
 
 function mergeMany(m, e) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.mergeMany(m.data, e, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.mergeMany(m.data, e, cmp)
+  };
 }
 
 function removeMany(m, e) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.removeMany(m.data, e, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.removeMany(m.data, e, cmp)
+  };
 }
 
 function union(m, n) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.union(m.data, n.data, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.union(m.data, n.data, cmp)
+  };
 }
 
 function intersect(m, n) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.intersect(m.data, n.data, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.intersect(m.data, n.data, cmp)
+  };
 }
 
 function diff(m, n) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_SetDict.diff(m.data, n.data, cmp)
-        };
+    cmp: cmp,
+    data: Belt_SetDict.diff(m.data, n.data, cmp)
+  };
 }
 
 function subset(m, n) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return Belt_SetDict.subset(m.data, n.data, cmp);
 }
 
 function split(m, e) {
-  var cmp = m.cmp;
-  var match = Belt_SetDict.split(m.data, e, cmp);
-  var match$1 = match[0];
+  let cmp = m.cmp;
+  let match = Belt_SetDict.split(m.data, e, cmp);
+  let match$1 = match[0];
   return [
-          [
-            {
-              cmp: cmp,
-              data: match$1[0]
-            },
-            {
-              cmp: cmp,
-              data: match$1[1]
-            }
-          ],
-          match[1]
-        ];
+    [
+      {
+        cmp: cmp,
+        data: match$1[0]
+      },
+      {
+        cmp: cmp,
+        data: match$1[1]
+      }
+    ],
+    match[1]
+  ];
 }
 
 function make(id) {
   return {
-          cmp: id.cmp,
-          data: undefined
-        };
+    cmp: id.cmp,
+    data: undefined
+  };
 }
 
 function isEmpty(m) {
@@ -114,7 +114,7 @@ function isEmpty(m) {
 }
 
 function cmp(m, n) {
-  var cmp$1 = m.cmp;
+  let cmp$1 = m.cmp;
   return Belt_SetDict.cmp(m.data, n.data, cmp$1);
 }
 
@@ -127,9 +127,9 @@ function forEachU(m, f) {
 }
 
 function forEach(m, f) {
-  forEachU(m, (function (a) {
-          f(a);
-        }));
+  Belt_SetDict.forEachU(m.data, (function (a) {
+    f(a);
+  }));
 }
 
 function reduceU(m, acc, f) {
@@ -138,8 +138,8 @@ function reduceU(m, acc, f) {
 
 function reduce(m, acc, f) {
   return reduceU(m, acc, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function everyU(m, f) {
@@ -147,9 +147,9 @@ function everyU(m, f) {
 }
 
 function every(m, f) {
-  return everyU(m, (function (a) {
-                return f(a);
-              }));
+  return Belt_SetDict.everyU(m.data, (function (a) {
+    return f(a);
+  }));
 }
 
 function someU(m, f) {
@@ -157,43 +157,43 @@ function someU(m, f) {
 }
 
 function some(m, f) {
-  return someU(m, (function (a) {
-                return f(a);
-              }));
+  return Belt_SetDict.someU(m.data, (function (a) {
+    return f(a);
+  }));
 }
 
 function keepU(m, f) {
   return {
-          cmp: m.cmp,
-          data: Belt_SetDict.keepU(m.data, f)
-        };
+    cmp: m.cmp,
+    data: Belt_SetDict.keepU(m.data, f)
+  };
 }
 
 function keep(m, f) {
   return keepU(m, (function (a) {
-                return f(a);
-              }));
+    return f(a);
+  }));
 }
 
 function partitionU(m, f) {
-  var match = Belt_SetDict.partitionU(m.data, f);
-  var cmp = m.cmp;
+  let match = Belt_SetDict.partitionU(m.data, f);
+  let cmp = m.cmp;
   return [
-          {
-            cmp: cmp,
-            data: match[0]
-          },
-          {
-            cmp: cmp,
-            data: match[1]
-          }
-        ];
+    {
+      cmp: cmp,
+      data: match[0]
+    },
+    {
+      cmp: cmp,
+      data: match[1]
+    }
+  ];
 }
 
 function partition(m, f) {
   return partitionU(m, (function (a) {
-                return f(a);
-              }));
+    return f(a);
+  }));
 }
 
 function size(m) {
@@ -242,9 +242,9 @@ function has(m, e) {
 
 function fromSortedArrayUnsafe(xs, id) {
   return {
-          cmp: id.cmp,
-          data: Belt_SetDict.fromSortedArrayUnsafe(xs)
-        };
+    cmp: id.cmp,
+    data: Belt_SetDict.fromSortedArrayUnsafe(xs)
+  };
 }
 
 function getData(m) {
@@ -252,74 +252,74 @@ function getData(m) {
 }
 
 function getId(m) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp
-        };
+    cmp: cmp
+  };
 }
 
 function packIdData(id, data) {
   return {
-          cmp: id.cmp,
-          data: data
-        };
+    cmp: id.cmp,
+    data: data
+  };
 }
 
 function checkInvariantInternal(d) {
   Belt_SetDict.checkInvariantInternal(d.data);
 }
 
-var Int;
+let Int;
 
-var $$String;
+let $$String;
 
-var Dict;
+let Dict;
 
 export {
-  Int ,
-  $$String ,
-  Dict ,
-  make ,
-  fromArray ,
-  fromSortedArrayUnsafe ,
-  isEmpty ,
-  has ,
-  add ,
-  mergeMany ,
-  remove ,
-  removeMany ,
-  union ,
-  intersect ,
-  diff ,
-  subset ,
-  cmp ,
-  eq ,
-  forEachU ,
-  forEach ,
-  reduceU ,
-  reduce ,
-  everyU ,
-  every ,
-  someU ,
-  some ,
-  keepU ,
-  keep ,
-  partitionU ,
-  partition ,
-  size ,
-  toArray ,
-  toList ,
-  minimum ,
-  minUndefined ,
-  maximum ,
-  maxUndefined ,
-  get ,
-  getUndefined ,
-  getExn ,
-  split ,
-  checkInvariantInternal ,
-  getData ,
-  getId ,
-  packIdData ,
+  Int,
+  $$String,
+  Dict,
+  make,
+  fromArray,
+  fromSortedArrayUnsafe,
+  isEmpty,
+  has,
+  add,
+  mergeMany,
+  remove,
+  removeMany,
+  union,
+  intersect,
+  diff,
+  subset,
+  cmp,
+  eq,
+  forEachU,
+  forEach,
+  reduceU,
+  reduce,
+  everyU,
+  every,
+  someU,
+  some,
+  keepU,
+  keep,
+  partitionU,
+  partition,
+  size,
+  toArray,
+  toList,
+  minimum,
+  minUndefined,
+  maximum,
+  maxUndefined,
+  get,
+  getUndefined,
+  getExn,
+  split,
+  checkInvariantInternal,
+  getData,
+  getId,
+  packIdData,
 }
 /* No side effect */

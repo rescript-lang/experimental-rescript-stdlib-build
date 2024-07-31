@@ -1,28 +1,28 @@
 
 
 
-var Obj = {};
+let Obj = {};
 
-var Pervasives = {};
+let Pervasives = {};
 
-var $$String = {};
+let $$String = {};
 
-var $$Promise = {};
+let $$Promise = {};
 
-var Internal = {};
+let Internal = {};
 
-var Undefined = {};
+let Undefined = {};
 
-var Js = {
+let Js = {
   $$Promise: $$Promise,
   Internal: Internal,
   Undefined: Undefined
 };
 
 export {
-  Obj ,
-  Pervasives ,
-  $$String ,
-  Js ,
+  Obj,
+  Pervasives,
+  $$String,
+  Js,
 }
 /* No side effect */

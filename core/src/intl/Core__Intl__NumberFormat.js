@@ -1,9 +1,9 @@
 
 
 
-var Grouping;
+let Grouping;
 
 export {
-  Grouping ,
+  Grouping,
 }
 /* No side effect */

@@ -6,8 +6,8 @@ import * as Belt_internalMapString from "./belt_internalMapString.js";
 
 function make() {
   return {
-          data: undefined
-        };
+    data: undefined
+  };
 }
 
 function isEmpty(m) {
@@ -51,11 +51,11 @@ function maxUndefined(m) {
 }
 
 function set(m, k, v) {
-  var old_data = m.data;
-  var v$1 = Belt_internalMapString.addMutate(old_data, k, v);
+  let old_data = m.data;
+  let v$1 = Belt_internalMapString.addMutate(old_data, k, v);
   if (v$1 !== old_data) {
     m.data = v$1;
-    return ;
+    return;
   }
   
 }
@@ -65,33 +65,33 @@ function forEachU(d, f) {
 }
 
 function forEach(d, f) {
-  forEachU(d, (function (a, b) {
-          f(a, b);
-        }));
+  Belt_internalAVLtree.forEachU(d.data, (function (a, b) {
+    f(a, b);
+  }));
 }
 
 function mapU(d, f) {
   return {
-          data: Belt_internalAVLtree.mapU(d.data, f)
-        };
+    data: Belt_internalAVLtree.mapU(d.data, f)
+  };
 }
 
 function map(d, f) {
   return mapU(d, (function (a) {
-                return f(a);
-              }));
+    return f(a);
+  }));
 }
 
 function mapWithKeyU(d, f) {
   return {
-          data: Belt_internalAVLtree.mapWithKeyU(d.data, f)
-        };
+    data: Belt_internalAVLtree.mapWithKeyU(d.data, f)
+  };
 }
 
 function mapWithKey(d, f) {
   return mapWithKeyU(d, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function reduceU(d, acc, f) {
@@ -100,8 +100,8 @@ function reduceU(d, acc, f) {
 
 function reduce(d, acc, f) {
   return reduceU(d, acc, (function (a, b, c) {
-                return f(a, b, c);
-              }));
+    return f(a, b, c);
+  }));
 }
 
 function everyU(d, f) {
@@ -109,9 +109,9 @@ function everyU(d, f) {
 }
 
 function every(d, f) {
-  return everyU(d, (function (a, b) {
-                return f(a, b);
-              }));
+  return Belt_internalAVLtree.everyU(d.data, (function (a, b) {
+    return f(a, b);
+  }));
 }
 
 function someU(d, f) {
@@ -119,9 +119,9 @@ function someU(d, f) {
 }
 
 function some(d, f) {
-  return someU(d, (function (a, b) {
-                return f(a, b);
-              }));
+  return Belt_internalAVLtree.someU(d.data, (function (a, b) {
+    return f(a, b);
+  }));
 }
 
 function size(d) {
@@ -153,10 +153,10 @@ function has(d, v) {
 }
 
 function removeMutateAux(nt, x) {
-  var k = nt.k;
+  let k = nt.k;
   if (x === k) {
-    var l = nt.l;
-    var r = nt.r;
+    let l = nt.l;
+    let r = nt.r;
     if (l !== undefined) {
       if (r !== undefined) {
         nt.r = Belt_internalAVLtree.removeMinAuxWithRootMutate(nt, r);
@@ -169,7 +169,7 @@ function removeMutateAux(nt, x) {
     }
   }
   if (x < k) {
-    var l$1 = nt.l;
+    let l$1 = nt.l;
     if (l$1 !== undefined) {
       nt.l = removeMutateAux(l$1, x);
       return Belt_internalAVLtree.balMutate(nt);
@@ -177,7 +177,7 @@ function removeMutateAux(nt, x) {
       return nt;
     }
   }
-  var r$1 = nt.r;
+  let r$1 = nt.r;
   if (r$1 !== undefined) {
     nt.r = removeMutateAux(r$1, x);
     return Belt_internalAVLtree.balMutate(nt);
@@ -187,29 +187,29 @@ function removeMutateAux(nt, x) {
 }
 
 function remove(d, v) {
-  var oldRoot = d.data;
+  let oldRoot = d.data;
   if (oldRoot === undefined) {
-    return ;
+    return;
   }
-  var newRoot = removeMutateAux(oldRoot, v);
+  let newRoot = removeMutateAux(oldRoot, v);
   if (newRoot !== oldRoot) {
     d.data = newRoot;
-    return ;
+    return;
   }
   
 }
 
 function updateDone(t, x, f) {
   if (t !== undefined) {
-    var k = t.k;
+    let k = t.k;
     if (k === x) {
-      var data = f(Caml_option.some(t.v));
+      let data = f(Caml_option.some(t.v));
       if (data !== undefined) {
         t.v = Caml_option.valFromOption(data);
         return t;
       }
-      var l = t.l;
-      var r = t.r;
+      let l = t.l;
+      let r = t.r;
       if (l !== undefined) {
         if (r !== undefined) {
           t.r = Belt_internalAVLtree.removeMinAuxWithRootMutate(t, r);
@@ -221,17 +221,17 @@ function updateDone(t, x, f) {
         return r;
       }
     }
-    var l$1 = t.l;
-    var r$1 = t.r;
+    let l$1 = t.l;
+    let r$1 = t.r;
     if (x < k) {
-      var ll = updateDone(l$1, x, f);
+      let ll = updateDone(l$1, x, f);
       t.l = ll;
     } else {
       t.r = updateDone(r$1, x, f);
     }
     return Belt_internalAVLtree.balMutate(t);
   }
-  var data$1 = f(undefined);
+  let data$1 = f(undefined);
   if (data$1 !== undefined) {
     return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(data$1));
   } else {
@@ -240,57 +240,57 @@ function updateDone(t, x, f) {
 }
 
 function updateU(t, x, f) {
-  var oldRoot = t.data;
-  var newRoot = updateDone(oldRoot, x, f);
+  let oldRoot = t.data;
+  let newRoot = updateDone(oldRoot, x, f);
   if (newRoot !== oldRoot) {
     t.data = newRoot;
-    return ;
+    return;
   }
   
 }
 
 function update(t, x, f) {
   updateU(t, x, (function (a) {
-          return f(a);
-        }));
+    return f(a);
+  }));
 }
 
 function removeArrayMutateAux(_t, xs, _i, len) {
   while(true) {
-    var i = _i;
-    var t = _t;
+    let i = _i;
+    let t = _t;
     if (i >= len) {
       return t;
     }
-    var ele = xs[i];
-    var u = removeMutateAux(t, ele);
+    let ele = xs[i];
+    let u = removeMutateAux(t, ele);
     if (u === undefined) {
-      return ;
+      return;
     }
     _i = i + 1 | 0;
     _t = u;
-    continue ;
+    continue;
   };
 }
 
 function removeMany(d, xs) {
-  var oldRoot = d.data;
+  let oldRoot = d.data;
   if (oldRoot === undefined) {
-    return ;
+    return;
   }
-  var len = xs.length;
-  var newRoot = removeArrayMutateAux(oldRoot, xs, 0, len);
+  let len = xs.length;
+  let newRoot = removeArrayMutateAux(oldRoot, xs, 0, len);
   if (newRoot !== oldRoot) {
     d.data = newRoot;
-    return ;
+    return;
   }
   
 }
 
 function fromArray(xs) {
   return {
-          data: Belt_internalMapString.fromArray(xs)
-        };
+    data: Belt_internalMapString.fromArray(xs)
+  };
 }
 
 function cmpU(d0, d1, f) {
@@ -299,8 +299,8 @@ function cmpU(d0, d1, f) {
 
 function cmp(d0, d1, f) {
   return cmpU(d0, d1, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function eqU(d0, d1, f) {
@@ -309,8 +309,8 @@ function eqU(d0, d1, f) {
 
 function eq(d0, d1, f) {
   return eqU(d0, d1, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function get(d, x) {
@@ -330,49 +330,49 @@ function getExn(d, x) {
 }
 
 export {
-  make ,
-  clear ,
-  isEmpty ,
-  has ,
-  cmpU ,
-  cmp ,
-  eqU ,
-  eq ,
-  forEachU ,
-  forEach ,
-  reduceU ,
-  reduce ,
-  everyU ,
-  every ,
-  someU ,
-  some ,
-  size ,
-  toList ,
-  toArray ,
-  fromArray ,
-  keysToArray ,
-  valuesToArray ,
-  minKey ,
-  minKeyUndefined ,
-  maxKey ,
-  maxKeyUndefined ,
-  minimum ,
-  minUndefined ,
-  maximum ,
-  maxUndefined ,
-  get ,
-  getUndefined ,
-  getWithDefault ,
-  getExn ,
-  checkInvariantInternal ,
-  remove ,
-  removeMany ,
-  set ,
-  updateU ,
-  update ,
-  mapU ,
-  map ,
-  mapWithKeyU ,
-  mapWithKey ,
+  make,
+  clear,
+  isEmpty,
+  has,
+  cmpU,
+  cmp,
+  eqU,
+  eq,
+  forEachU,
+  forEach,
+  reduceU,
+  reduce,
+  everyU,
+  every,
+  someU,
+  some,
+  size,
+  toList,
+  toArray,
+  fromArray,
+  keysToArray,
+  valuesToArray,
+  minKey,
+  minKeyUndefined,
+  maxKey,
+  maxKeyUndefined,
+  minimum,
+  minUndefined,
+  maximum,
+  maxUndefined,
+  get,
+  getUndefined,
+  getWithDefault,
+  getExn,
+  checkInvariantInternal,
+  remove,
+  removeMany,
+  set,
+  updateU,
+  update,
+  mapU,
+  map,
+  mapWithKeyU,
+  mapWithKey,
 }
 /* No side effect */

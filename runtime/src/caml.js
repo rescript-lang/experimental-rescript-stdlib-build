@@ -132,8 +132,8 @@ function i64_eq(x, y) {
 }
 
 function i64_ge(param, param$1) {
-  var other_hi = param$1[0];
-  var hi = param[0];
+  let other_hi = param$1[0];
+  let hi = param[0];
   if (hi > other_hi) {
     return true;
   } else if (hi < other_hi) {
@@ -166,10 +166,10 @@ function i64_le(x, y) {
 }
 
 function i64_min(x, y) {
-  if (i64_lt(x, y)) {
-    return x;
-  } else {
+  if (i64_ge(x, y)) {
     return y;
+  } else {
+    return x;
   }
 }
 
@@ -182,26 +182,26 @@ function i64_max(x, y) {
 }
 
 export {
-  int_compare ,
-  bool_compare ,
-  float_compare ,
-  bigint_compare ,
-  string_compare ,
-  bool_min ,
-  int_min ,
-  float_min ,
-  string_min ,
-  bool_max ,
-  int_max ,
-  float_max ,
-  string_max ,
-  i64_eq ,
-  i64_neq ,
-  i64_lt ,
-  i64_gt ,
-  i64_le ,
-  i64_ge ,
-  i64_min ,
-  i64_max ,
+  int_compare,
+  bool_compare,
+  float_compare,
+  bigint_compare,
+  string_compare,
+  bool_min,
+  int_min,
+  float_min,
+  string_min,
+  bool_max,
+  int_max,
+  float_max,
+  string_max,
+  i64_eq,
+  i64_neq,
+  i64_lt,
+  i64_gt,
+  i64_le,
+  i64_ge,
+  i64_min,
+  i64_max,
 }
 /* No side effect */

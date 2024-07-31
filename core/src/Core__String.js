@@ -16,7 +16,7 @@ function compare(a, b) {
 }
 
 function indexOfOpt(s, search) {
-  var index = s.indexOf(search);
+  let index = s.indexOf(search);
   if (index !== -1) {
     return index;
   }
@@ -24,7 +24,7 @@ function indexOfOpt(s, search) {
 }
 
 function lastIndexOfOpt(s, search) {
-  var index = s.lastIndexOf(search);
+  let index = s.lastIndexOf(search);
   if (index !== -1) {
     return index;
   }
@@ -32,7 +32,7 @@ function lastIndexOfOpt(s, search) {
 }
 
 function searchOpt(s, re) {
-  var index = s.search(re);
+  let index = s.search(re);
   if (index !== -1) {
     return index;
   }
@@ -40,10 +40,10 @@ function searchOpt(s, re) {
 }
 
 export {
-  equal ,
-  compare ,
-  indexOfOpt ,
-  lastIndexOfOpt ,
-  searchOpt ,
+  equal,
+  compare,
+  indexOfOpt,
+  lastIndexOfOpt,
+  searchOpt,
 }
 /* No side effect */

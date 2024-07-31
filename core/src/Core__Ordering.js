@@ -28,10 +28,10 @@ function fromInt(n) {
 }
 
 export {
-  isLess ,
-  isEqual ,
-  isGreater ,
-  invert ,
-  fromInt ,
+  isLess,
+  isEqual,
+  isGreater,
+  invert,
+  fromInt,
 }
 /* No side effect */

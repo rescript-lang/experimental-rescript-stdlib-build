@@ -1,7 +1,7 @@
 
 
 
-var Constants = {};
+let Constants = {};
 
 function floor(f) {
   return Math.floor(f) | 0;
@@ -12,18 +12,18 @@ function ceil(f) {
 }
 
 function random(min, max) {
-  var f = Math.random() * (max - min | 0);
+  let f = Math.random() * (max - min | 0);
   return (Math.floor(f) | 0) + min | 0;
 }
 
-var Int = {
+let Int = {
   floor: floor,
   ceil: ceil,
   random: random
 };
 
 export {
-  Constants ,
-  Int ,
+  Constants,
+  Int,
 }
 /* No side effect */

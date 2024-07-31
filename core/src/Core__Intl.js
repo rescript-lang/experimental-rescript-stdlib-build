@@ -1,36 +1,36 @@
 
 
 
-var Common;
+let Common;
 
-var Collator;
+let Collator;
 
-var DateTimeFormat;
+let DateTimeFormat;
 
-var ListFormat;
+let ListFormat;
 
-var Locale;
+let Locale;
 
-var NumberFormat;
+let NumberFormat;
 
-var PluralRules;
+let PluralRules;
 
-var RelativeTimeFormat;
+let RelativeTimeFormat;
 
-var Segmenter;
+let Segmenter;
 
-var Segments;
+let Segments;
 
 export {
-  Common ,
-  Collator ,
-  DateTimeFormat ,
-  ListFormat ,
-  Locale ,
-  NumberFormat ,
-  PluralRules ,
-  RelativeTimeFormat ,
-  Segmenter ,
-  Segments ,
+  Common,
+  Collator,
+  DateTimeFormat,
+  ListFormat,
+  Locale,
+  NumberFormat,
+  PluralRules,
+  RelativeTimeFormat,
+  Segmenter,
+  Segments,
 }
 /* No side effect */

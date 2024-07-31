@@ -1,48 +1,48 @@
 
 
 
-var $$ArrayBuffer = {};
+let $$ArrayBuffer = {};
 
-var $$Int8Array = {};
+let $$Int8Array = {};
 
-var $$Uint8Array = {};
+let $$Uint8Array = {};
 
-var $$Uint8ClampedArray = {};
+let $$Uint8ClampedArray = {};
 
-var $$Int16Array = {};
+let $$Int16Array = {};
 
-var $$Uint16Array = {};
+let $$Uint16Array = {};
 
-var $$Int32Array = {};
+let $$Int32Array = {};
 
-var $$Uint32Array = {};
+let $$Uint32Array = {};
 
-var $$Float32Array = {};
+let $$Float32Array = {};
 
-var $$Float64Array = {};
+let $$Float64Array = {};
 
-var $$DataView = {};
+let $$DataView = {};
 
-var Int32_array;
+let Int32_array;
 
-var Float32_array;
+let Float32_array;
 
-var Float64_array;
+let Float64_array;
 
 export {
-  $$ArrayBuffer ,
-  $$Int8Array ,
-  $$Uint8Array ,
-  $$Uint8ClampedArray ,
-  $$Int16Array ,
-  $$Uint16Array ,
-  $$Int32Array ,
-  Int32_array ,
-  $$Uint32Array ,
-  $$Float32Array ,
-  Float32_array ,
-  $$Float64Array ,
-  Float64_array ,
-  $$DataView ,
+  $$ArrayBuffer,
+  $$Int8Array,
+  $$Uint8Array,
+  $$Uint8ClampedArray,
+  $$Int16Array,
+  $$Uint16Array,
+  $$Int32Array,
+  Int32_array,
+  $$Uint32Array,
+  $$Float32Array,
+  Float32_array,
+  $$Float64Array,
+  Float64_array,
+  $$DataView,
 }
 /* No side effect */

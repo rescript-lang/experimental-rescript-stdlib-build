@@ -3,104 +3,104 @@
 import * as Belt_MapDict from "./belt_MapDict.js";
 
 function fromArray(data, id) {
-  var cmp = id.cmp;
+  let cmp = id.cmp;
   return {
-          cmp: cmp,
-          data: Belt_MapDict.fromArray(data, cmp)
-        };
+    cmp: cmp,
+    data: Belt_MapDict.fromArray(data, cmp)
+  };
 }
 
 function remove(m, x) {
-  var odata = m.data;
-  var cmp = m.cmp;
-  var newData = Belt_MapDict.remove(odata, x, cmp);
+  let odata = m.data;
+  let cmp = m.cmp;
+  let newData = Belt_MapDict.remove(odata, x, cmp);
   if (newData === odata) {
     return m;
   } else {
     return {
-            cmp: cmp,
-            data: newData
-          };
+      cmp: cmp,
+      data: newData
+    };
   }
 }
 
 function removeMany(m, x) {
-  var cmp = m.cmp;
-  var newData = Belt_MapDict.removeMany(m.data, x, cmp);
+  let cmp = m.cmp;
+  let newData = Belt_MapDict.removeMany(m.data, x, cmp);
   return {
-          cmp: cmp,
-          data: newData
-        };
+    cmp: cmp,
+    data: newData
+  };
 }
 
 function set(m, key, d) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_MapDict.set(m.data, key, d, cmp)
-        };
+    cmp: cmp,
+    data: Belt_MapDict.set(m.data, key, d, cmp)
+  };
 }
 
 function mergeMany(m, e) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_MapDict.mergeMany(m.data, e, cmp)
-        };
+    cmp: cmp,
+    data: Belt_MapDict.mergeMany(m.data, e, cmp)
+  };
 }
 
 function updateU(m, key, f) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp,
-          data: Belt_MapDict.updateU(m.data, key, f, cmp)
-        };
+    cmp: cmp,
+    data: Belt_MapDict.updateU(m.data, key, f, cmp)
+  };
 }
 
 function update(m, key, f) {
   return updateU(m, key, (function (a) {
-                return f(a);
-              }));
+    return f(a);
+  }));
 }
 
 function split(m, x) {
-  var cmp = m.cmp;
-  var match = Belt_MapDict.split(m.data, x, cmp);
-  var match$1 = match[0];
+  let cmp = m.cmp;
+  let match = Belt_MapDict.split(m.data, x, cmp);
+  let match$1 = match[0];
   return [
-          [
-            {
-              cmp: cmp,
-              data: match$1[0]
-            },
-            {
-              cmp: cmp,
-              data: match$1[1]
-            }
-          ],
-          match[1]
-        ];
+    [
+      {
+        cmp: cmp,
+        data: match$1[0]
+      },
+      {
+        cmp: cmp,
+        data: match$1[1]
+      }
+    ],
+    match[1]
+  ];
 }
 
 function mergeU(s1, s2, f) {
-  var cmp = s1.cmp;
+  let cmp = s1.cmp;
   return {
-          cmp: cmp,
-          data: Belt_MapDict.mergeU(s1.data, s2.data, f, cmp)
-        };
+    cmp: cmp,
+    data: Belt_MapDict.mergeU(s1.data, s2.data, f, cmp)
+  };
 }
 
 function merge(s1, s2, f) {
   return mergeU(s1, s2, (function (a, b, c) {
-                return f(a, b, c);
-              }));
+    return f(a, b, c);
+  }));
 }
 
 function make(id) {
   return {
-          cmp: id.cmp,
-          data: undefined
-        };
+    cmp: id.cmp,
+    data: undefined
+  };
 }
 
 function isEmpty(map) {
@@ -112,9 +112,9 @@ function findFirstByU(m, f) {
 }
 
 function findFirstBy(m, f) {
-  return findFirstByU(m, (function (a, b) {
-                return f(a, b);
-              }));
+  return Belt_MapDict.findFirstByU(m.data, (function (a, b) {
+    return f(a, b);
+  }));
 }
 
 function forEachU(m, f) {
@@ -122,9 +122,9 @@ function forEachU(m, f) {
 }
 
 function forEach(m, f) {
-  forEachU(m, (function (a, b) {
-          f(a, b);
-        }));
+  Belt_MapDict.forEachU(m.data, (function (a, b) {
+    f(a, b);
+  }));
 }
 
 function reduceU(m, acc, f) {
@@ -133,8 +133,8 @@ function reduceU(m, acc, f) {
 
 function reduce(m, acc, f) {
   return reduceU(m, acc, (function (a, b, c) {
-                return f(a, b, c);
-              }));
+    return f(a, b, c);
+  }));
 }
 
 function everyU(m, f) {
@@ -142,9 +142,9 @@ function everyU(m, f) {
 }
 
 function every(m, f) {
-  return everyU(m, (function (a, b) {
-                return f(a, b);
-              }));
+  return Belt_MapDict.everyU(m.data, (function (a, b) {
+    return f(a, b);
+  }));
 }
 
 function someU(m, f) {
@@ -152,69 +152,69 @@ function someU(m, f) {
 }
 
 function some(m, f) {
-  return someU(m, (function (a, b) {
-                return f(a, b);
-              }));
+  return Belt_MapDict.someU(m.data, (function (a, b) {
+    return f(a, b);
+  }));
 }
 
 function keepU(m, f) {
   return {
-          cmp: m.cmp,
-          data: Belt_MapDict.keepU(m.data, f)
-        };
+    cmp: m.cmp,
+    data: Belt_MapDict.keepU(m.data, f)
+  };
 }
 
 function keep(m, f) {
   return keepU(m, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function partitionU(m, p) {
-  var cmp = m.cmp;
-  var match = Belt_MapDict.partitionU(m.data, p);
+  let cmp = m.cmp;
+  let match = Belt_MapDict.partitionU(m.data, p);
   return [
-          {
-            cmp: cmp,
-            data: match[0]
-          },
-          {
-            cmp: cmp,
-            data: match[1]
-          }
-        ];
+    {
+      cmp: cmp,
+      data: match[0]
+    },
+    {
+      cmp: cmp,
+      data: match[1]
+    }
+  ];
 }
 
 function partition(m, p) {
   return partitionU(m, (function (a, b) {
-                return p(a, b);
-              }));
+    return p(a, b);
+  }));
 }
 
 function mapU(m, f) {
   return {
-          cmp: m.cmp,
-          data: Belt_MapDict.mapU(m.data, f)
-        };
+    cmp: m.cmp,
+    data: Belt_MapDict.mapU(m.data, f)
+  };
 }
 
 function map(m, f) {
   return mapU(m, (function (a) {
-                return f(a);
-              }));
+    return f(a);
+  }));
 }
 
 function mapWithKeyU(m, f) {
   return {
-          cmp: m.cmp,
-          data: Belt_MapDict.mapWithKeyU(m.data, f)
-        };
+    cmp: m.cmp,
+    data: Belt_MapDict.mapWithKeyU(m.data, f)
+  };
 }
 
 function mapWithKey(m, f) {
   return mapWithKeyU(m, (function (a, b) {
-                return f(a, b);
-              }));
+    return f(a, b);
+  }));
 }
 
 function size(map) {
@@ -299,8 +299,8 @@ function eqU(m1, m2, veq) {
 
 function eq(m1, m2, veq) {
   return eqU(m1, m2, (function (a, b) {
-                return veq(a, b);
-              }));
+    return veq(a, b);
+  }));
 }
 
 function cmpU(m1, m2, vcmp) {
@@ -309,8 +309,8 @@ function cmpU(m1, m2, vcmp) {
 
 function cmp(m1, m2, vcmp) {
   return cmpU(m1, m2, (function (a, b) {
-                return vcmp(a, b);
-              }));
+    return vcmp(a, b);
+  }));
 }
 
 function getData(m) {
@@ -318,84 +318,84 @@ function getData(m) {
 }
 
 function getId(m) {
-  var cmp = m.cmp;
+  let cmp = m.cmp;
   return {
-          cmp: cmp
-        };
+    cmp: cmp
+  };
 }
 
 function packIdData(id, data) {
   return {
-          cmp: id.cmp,
-          data: data
-        };
+    cmp: id.cmp,
+    data: data
+  };
 }
 
-var Int;
+let Int;
 
-var $$String;
+let $$String;
 
-var Dict;
+let Dict;
 
 export {
-  Int ,
-  $$String ,
-  Dict ,
-  make ,
-  isEmpty ,
-  has ,
-  cmpU ,
-  cmp ,
-  eqU ,
-  eq ,
-  findFirstByU ,
-  findFirstBy ,
-  forEachU ,
-  forEach ,
-  reduceU ,
-  reduce ,
-  everyU ,
-  every ,
-  someU ,
-  some ,
-  size ,
-  toArray ,
-  toList ,
-  fromArray ,
-  keysToArray ,
-  valuesToArray ,
-  minKey ,
-  minKeyUndefined ,
-  maxKey ,
-  maxKeyUndefined ,
-  minimum ,
-  minUndefined ,
-  maximum ,
-  maxUndefined ,
-  get ,
-  getUndefined ,
-  getWithDefault ,
-  getExn ,
-  remove ,
-  removeMany ,
-  set ,
-  updateU ,
-  update ,
-  mergeMany ,
-  mergeU ,
-  merge ,
-  keepU ,
-  keep ,
-  partitionU ,
-  partition ,
-  split ,
-  mapU ,
-  map ,
-  mapWithKeyU ,
-  mapWithKey ,
-  getData ,
-  getId ,
-  packIdData ,
-  checkInvariantInternal ,
+  Int,
+  $$String,
+  Dict,
+  make,
+  isEmpty,
+  has,
+  cmpU,
+  cmp,
+  eqU,
+  eq,
+  findFirstByU,
+  findFirstBy,
+  forEachU,
+  forEach,
+  reduceU,
+  reduce,
+  everyU,
+  every,
+  someU,
+  some,
+  size,
+  toArray,
+  toList,
+  fromArray,
+  keysToArray,
+  valuesToArray,
+  minKey,
+  minKeyUndefined,
+  maxKey,
+  maxKeyUndefined,
+  minimum,
+  minUndefined,
+  maximum,
+  maxUndefined,
+  get,
+  getUndefined,
+  getWithDefault,
+  getExn,
+  remove,
+  removeMany,
+  set,
+  updateU,
+  update,
+  mergeMany,
+  mergeU,
+  merge,
+  keepU,
+  keep,
+  partitionU,
+  partition,
+  split,
+  mapU,
+  map,
+  mapWithKeyU,
+  mapWithKey,
+  getData,
+  getId,
+  packIdData,
+  checkInvariantInternal,
 }
 /* No side effect */
