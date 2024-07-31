@@ -5,10 +5,10 @@ import * as Belt_internalAVLset from "./belt_internalAVLset.js";
 import * as Belt_internalSetInt from "./belt_internalSetInt.js";
 
 function remove0(nt, x) {
-  var k = nt.v;
+  let k = nt.v;
   if (x === k) {
-    var l = nt.l;
-    var r = nt.r;
+    let l = nt.l;
+    let r = nt.r;
     if (l !== undefined) {
       if (r !== undefined) {
         nt.r = Belt_internalAVLset.removeMinAuxWithRootMutate(nt, r);
@@ -21,7 +21,7 @@ function remove0(nt, x) {
     }
   }
   if (x < k) {
-    var l$1 = nt.l;
+    let l$1 = nt.l;
     if (l$1 !== undefined) {
       nt.l = remove0(l$1, x);
       return Belt_internalAVLset.balMutate(nt);
@@ -29,7 +29,7 @@ function remove0(nt, x) {
       return nt;
     }
   }
-  var r$1 = nt.r;
+  let r$1 = nt.r;
   if (r$1 !== undefined) {
     nt.r = remove0(r$1, x);
     return Belt_internalAVLset.balMutate(nt);
@@ -39,51 +39,51 @@ function remove0(nt, x) {
 }
 
 function remove(d, v) {
-  var oldRoot = d.data;
+  let oldRoot = d.data;
   if (oldRoot === undefined) {
-    return ;
+    return;
   }
-  var newRoot = remove0(oldRoot, v);
+  let newRoot = remove0(oldRoot, v);
   if (newRoot !== oldRoot) {
     d.data = newRoot;
-    return ;
+    return;
   }
   
 }
 
 function removeMany0(_t, xs, _i, len) {
   while(true) {
-    var i = _i;
-    var t = _t;
+    let i = _i;
+    let t = _t;
     if (i >= len) {
       return t;
     }
-    var ele = xs[i];
-    var u = remove0(t, ele);
+    let ele = xs[i];
+    let u = remove0(t, ele);
     if (u === undefined) {
-      return ;
+      return;
     }
     _i = i + 1 | 0;
     _t = u;
-    continue ;
+    continue;
   };
 }
 
 function removeMany(d, xs) {
-  var oldRoot = d.data;
+  let oldRoot = d.data;
   if (oldRoot === undefined) {
-    return ;
+    return;
   }
-  var len = xs.length;
+  let len = xs.length;
   d.data = removeMany0(oldRoot, xs, 0, len);
 }
 
 function removeCheck0(nt, x, removed) {
-  var k = nt.v;
+  let k = nt.v;
   if (x === k) {
     removed.contents = true;
-    var l = nt.l;
-    var r = nt.r;
+    let l = nt.l;
+    let r = nt.r;
     if (l !== undefined) {
       if (r !== undefined) {
         nt.r = Belt_internalAVLset.removeMinAuxWithRootMutate(nt, r);
@@ -96,7 +96,7 @@ function removeCheck0(nt, x, removed) {
     }
   }
   if (x < k) {
-    var l$1 = nt.l;
+    let l$1 = nt.l;
     if (l$1 !== undefined) {
       nt.l = removeCheck0(l$1, x, removed);
       return Belt_internalAVLset.balMutate(nt);
@@ -104,7 +104,7 @@ function removeCheck0(nt, x, removed) {
       return nt;
     }
   }
-  var r$1 = nt.r;
+  let r$1 = nt.r;
   if (r$1 !== undefined) {
     nt.r = removeCheck0(r$1, x, removed);
     return Belt_internalAVLset.balMutate(nt);
@@ -114,14 +114,14 @@ function removeCheck0(nt, x, removed) {
 }
 
 function removeCheck(d, v) {
-  var oldRoot = d.data;
+  let oldRoot = d.data;
   if (oldRoot === undefined) {
     return false;
   }
-  var removed = {
+  let removed = {
     contents: false
   };
-  var newRoot = removeCheck0(oldRoot, v, removed);
+  let newRoot = removeCheck0(oldRoot, v, removed);
   if (newRoot !== oldRoot) {
     d.data = newRoot;
   }
@@ -130,14 +130,14 @@ function removeCheck(d, v) {
 
 function addCheck0(t, x, added) {
   if (t !== undefined) {
-    var k = t.v;
+    let k = t.v;
     if (x === k) {
       return t;
     }
-    var l = t.l;
-    var r = t.r;
+    let l = t.l;
+    let r = t.r;
     if (x < k) {
-      var ll = addCheck0(l, x, added);
+      let ll = addCheck0(l, x, added);
       t.l = ll;
     } else {
       t.r = addCheck0(r, x, added);
@@ -149,11 +149,11 @@ function addCheck0(t, x, added) {
 }
 
 function addCheck(m, e) {
-  var oldRoot = m.data;
-  var added = {
+  let oldRoot = m.data;
+  let added = {
     contents: false
   };
-  var newRoot = addCheck0(oldRoot, e, added);
+  let newRoot = addCheck0(oldRoot, e, added);
   if (newRoot !== oldRoot) {
     m.data = newRoot;
   }
@@ -161,18 +161,18 @@ function addCheck(m, e) {
 }
 
 function add(d, k) {
-  var oldRoot = d.data;
-  var v = Belt_internalSetInt.addMutate(oldRoot, k);
+  let oldRoot = d.data;
+  let v = Belt_internalSetInt.addMutate(oldRoot, k);
   if (v !== oldRoot) {
     d.data = v;
-    return ;
+    return;
   }
   
 }
 
 function addArrayMutate(t, xs) {
-  var v = t;
-  for(var i = 0 ,i_finish = xs.length; i < i_finish; ++i){
+  let v = t;
+  for(let i = 0 ,i_finish = xs.length; i < i_finish; ++i){
     v = Belt_internalSetInt.addMutate(v, xs[i]);
   }
   return v;
@@ -184,8 +184,8 @@ function mergeMany(d, arr) {
 
 function make() {
   return {
-          data: undefined
-        };
+    data: undefined
+  };
 }
 
 function isEmpty(d) {
@@ -213,9 +213,9 @@ function forEachU(d, f) {
 }
 
 function forEach(d, f) {
-  forEachU(d, (function (a) {
-          f(a);
-        }));
+  Belt_internalAVLset.forEachU(d.data, (function (a) {
+    f(a);
+  }));
 }
 
 function reduceU(d, acc, cb) {
@@ -224,8 +224,8 @@ function reduceU(d, acc, cb) {
 
 function reduce(d, acc, cb) {
   return reduceU(d, acc, (function (a, b) {
-                return cb(a, b);
-              }));
+    return cb(a, b);
+  }));
 }
 
 function everyU(d, p) {
@@ -233,9 +233,9 @@ function everyU(d, p) {
 }
 
 function every(d, p) {
-  return everyU(d, (function (a) {
-                return p(a);
-              }));
+  return Belt_internalAVLset.everyU(d.data, (function (a) {
+    return p(a);
+  }));
 }
 
 function someU(d, p) {
@@ -243,9 +243,9 @@ function someU(d, p) {
 }
 
 function some(d, p) {
-  return someU(d, (function (a) {
-                return p(a);
-              }));
+  return Belt_internalAVLset.someU(d.data, (function (a) {
+    return p(a);
+  }));
 }
 
 function size(d) {
@@ -262,8 +262,8 @@ function toArray(d) {
 
 function fromSortedArrayUnsafe(xs) {
   return {
-          data: Belt_internalAVLset.fromSortedArrayUnsafe(xs)
-        };
+    data: Belt_internalAVLset.fromSortedArrayUnsafe(xs)
+  };
 }
 
 function checkInvariantInternal(d) {
@@ -272,8 +272,8 @@ function checkInvariantInternal(d) {
 
 function fromArray(xs) {
   return {
-          data: Belt_internalSetInt.fromArray(xs)
-        };
+    data: Belt_internalSetInt.fromArray(xs)
+  };
 }
 
 function cmp(d0, d1) {
@@ -297,64 +297,64 @@ function getExn(d, x) {
 }
 
 function split(d, key) {
-  var arr = Belt_internalAVLset.toArray(d.data);
-  var i = Belt_SortArrayInt.binarySearch(arr, key);
-  var len = arr.length;
+  let arr = Belt_internalAVLset.toArray(d.data);
+  let i = Belt_SortArrayInt.binarySearch(arr, key);
+  let len = arr.length;
   if (i >= 0) {
     return [
-            [
-              {
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, i)
-              },
-              {
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, i + 1 | 0, (len - i | 0) - 1 | 0)
-              }
-            ],
-            true
-          ];
+      [
+        {
+          data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, i)
+        },
+        {
+          data: Belt_internalAVLset.fromSortedArrayAux(arr, i + 1 | 0, (len - i | 0) - 1 | 0)
+        }
+      ],
+      true
+    ];
   }
-  var next = (-i | 0) - 1 | 0;
+  let next = (-i | 0) - 1 | 0;
   return [
-          [
-            {
-              data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, next)
-            },
-            {
-              data: Belt_internalAVLset.fromSortedArrayAux(arr, next, len - next | 0)
-            }
-          ],
-          false
-        ];
+    [
+      {
+        data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, next)
+      },
+      {
+        data: Belt_internalAVLset.fromSortedArrayAux(arr, next, len - next | 0)
+      }
+    ],
+    false
+  ];
 }
 
 function keepU(d, p) {
   return {
-          data: Belt_internalAVLset.keepCopyU(d.data, p)
-        };
+    data: Belt_internalAVLset.keepCopyU(d.data, p)
+  };
 }
 
 function keep(d, p) {
   return keepU(d, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 function partitionU(d, p) {
-  var match = Belt_internalAVLset.partitionCopyU(d.data, p);
+  let match = Belt_internalAVLset.partitionCopyU(d.data, p);
   return [
-          {
-            data: match[0]
-          },
-          {
-            data: match[1]
-          }
-        ];
+    {
+      data: match[0]
+    },
+    {
+      data: match[1]
+    }
+  ];
 }
 
 function partition(d, p) {
   return partitionU(d, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 function subset(a, b) {
@@ -362,96 +362,96 @@ function subset(a, b) {
 }
 
 function intersect(dataa, datab) {
-  var dataa$1 = dataa.data;
-  var datab$1 = datab.data;
+  let dataa$1 = dataa.data;
+  let datab$1 = datab.data;
   if (dataa$1 === undefined) {
     return {
-            data: undefined
-          };
+      data: undefined
+    };
   }
   if (datab$1 === undefined) {
     return {
-            data: undefined
-          };
+      data: undefined
+    };
   }
-  var sizea = Belt_internalAVLset.lengthNode(dataa$1);
-  var sizeb = Belt_internalAVLset.lengthNode(datab$1);
-  var totalSize = sizea + sizeb | 0;
-  var tmp = new Array(totalSize);
+  let sizea = Belt_internalAVLset.lengthNode(dataa$1);
+  let sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  let totalSize = sizea + sizeb | 0;
+  let tmp = new Array(totalSize);
   Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
   Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
   if (tmp[sizea - 1 | 0] < tmp[sizea] || tmp[totalSize - 1 | 0] < tmp[0]) {
     return {
-            data: undefined
-          };
+      data: undefined
+    };
   }
-  var tmp2 = new Array(sizea < sizeb ? sizea : sizeb);
-  var k = Belt_SortArrayInt.intersect(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
+  let tmp2 = new Array(sizea < sizeb ? sizea : sizeb);
+  let k = Belt_SortArrayInt.intersect(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
   return {
-          data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-        };
+    data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+  };
 }
 
 function diff(dataa, datab) {
-  var dataa$1 = dataa.data;
-  var datab$1 = datab.data;
+  let dataa$1 = dataa.data;
+  let datab$1 = datab.data;
   if (dataa$1 === undefined) {
     return {
-            data: undefined
-          };
+      data: undefined
+    };
   }
   if (datab$1 === undefined) {
     return {
-            data: Belt_internalAVLset.copy(dataa$1)
-          };
+      data: Belt_internalAVLset.copy(dataa$1)
+    };
   }
-  var sizea = Belt_internalAVLset.lengthNode(dataa$1);
-  var sizeb = Belt_internalAVLset.lengthNode(datab$1);
-  var totalSize = sizea + sizeb | 0;
-  var tmp = new Array(totalSize);
+  let sizea = Belt_internalAVLset.lengthNode(dataa$1);
+  let sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  let totalSize = sizea + sizeb | 0;
+  let tmp = new Array(totalSize);
   Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
   Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
   if (tmp[sizea - 1 | 0] < tmp[sizea] || tmp[totalSize - 1 | 0] < tmp[0]) {
     return {
-            data: Belt_internalAVLset.copy(dataa$1)
-          };
+      data: Belt_internalAVLset.copy(dataa$1)
+    };
   }
-  var tmp2 = new Array(sizea);
-  var k = Belt_SortArrayInt.diff(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
+  let tmp2 = new Array(sizea);
+  let k = Belt_SortArrayInt.diff(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
   return {
-          data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-        };
+    data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+  };
 }
 
 function union(dataa, datab) {
-  var dataa$1 = dataa.data;
-  var datab$1 = datab.data;
+  let dataa$1 = dataa.data;
+  let datab$1 = datab.data;
   if (dataa$1 === undefined) {
     return {
-            data: Belt_internalAVLset.copy(datab$1)
-          };
+      data: Belt_internalAVLset.copy(datab$1)
+    };
   }
   if (datab$1 === undefined) {
     return {
-            data: Belt_internalAVLset.copy(dataa$1)
-          };
+      data: Belt_internalAVLset.copy(dataa$1)
+    };
   }
-  var sizea = Belt_internalAVLset.lengthNode(dataa$1);
-  var sizeb = Belt_internalAVLset.lengthNode(datab$1);
-  var totalSize = sizea + sizeb | 0;
-  var tmp = new Array(totalSize);
+  let sizea = Belt_internalAVLset.lengthNode(dataa$1);
+  let sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  let totalSize = sizea + sizeb | 0;
+  let tmp = new Array(totalSize);
   Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
   Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
   if (tmp[sizea - 1 | 0] < tmp[sizea]) {
     return {
-            data: Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
-          };
+      data: Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
+    };
   }
-  var tmp2 = new Array(totalSize);
-  var k = Belt_SortArrayInt.union(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
+  let tmp2 = new Array(totalSize);
+  let k = Belt_SortArrayInt.union(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0);
   return {
-          data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-        };
+    data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+  };
 }
 
 function has(d, x) {
@@ -460,52 +460,52 @@ function has(d, x) {
 
 function copy(d) {
   return {
-          data: Belt_internalAVLset.copy(d.data)
-        };
+    data: Belt_internalAVLset.copy(d.data)
+  };
 }
 
 export {
-  make ,
-  fromArray ,
-  fromSortedArrayUnsafe ,
-  copy ,
-  isEmpty ,
-  has ,
-  add ,
-  addCheck ,
-  mergeMany ,
-  remove ,
-  removeCheck ,
-  removeMany ,
-  union ,
-  intersect ,
-  diff ,
-  subset ,
-  cmp ,
-  eq ,
-  forEachU ,
-  forEach ,
-  reduceU ,
-  reduce ,
-  everyU ,
-  every ,
-  someU ,
-  some ,
-  keepU ,
-  keep ,
-  partitionU ,
-  partition ,
-  size ,
-  toList ,
-  toArray ,
-  minimum ,
-  minUndefined ,
-  maximum ,
-  maxUndefined ,
-  get ,
-  getUndefined ,
-  getExn ,
-  split ,
-  checkInvariantInternal ,
+  make,
+  fromArray,
+  fromSortedArrayUnsafe,
+  copy,
+  isEmpty,
+  has,
+  add,
+  addCheck,
+  mergeMany,
+  remove,
+  removeCheck,
+  removeMany,
+  union,
+  intersect,
+  diff,
+  subset,
+  cmp,
+  eq,
+  forEachU,
+  forEach,
+  reduceU,
+  reduce,
+  everyU,
+  every,
+  someU,
+  some,
+  keepU,
+  keep,
+  partitionU,
+  partition,
+  size,
+  toList,
+  toArray,
+  minimum,
+  minUndefined,
+  maximum,
+  maxUndefined,
+  get,
+  getUndefined,
+  getExn,
+  split,
+  checkInvariantInternal,
 }
 /* No side effect */

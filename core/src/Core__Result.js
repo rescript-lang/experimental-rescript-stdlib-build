@@ -5,10 +5,11 @@ function getExn(x) {
   if (x.TAG === "Ok") {
     return x._0;
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
 function mapOr(opt, $$default, f) {
@@ -22,9 +23,9 @@ function mapOr(opt, $$default, f) {
 function map(opt, f) {
   if (opt.TAG === "Ok") {
     return {
-            TAG: "Ok",
-            _0: f(opt._0)
-          };
+      TAG: "Ok",
+      _0: f(opt._0)
+    };
   } else {
     return opt;
   }
@@ -102,29 +103,29 @@ function mapError(r, f) {
     return r;
   } else {
     return {
-            TAG: "Error",
-            _0: f(r._0)
-          };
+      TAG: "Error",
+      _0: f(r._0)
+    };
   }
 }
 
-var mapWithDefault = mapOr;
+let mapWithDefault = mapOr;
 
-var getWithDefault = getOr;
+let getWithDefault = getOr;
 
 export {
-  getExn ,
-  mapOr ,
-  mapWithDefault ,
-  map ,
-  flatMap ,
-  getOr ,
-  getWithDefault ,
-  isOk ,
-  isError ,
-  equal ,
-  compare ,
-  forEach ,
-  mapError ,
+  getExn,
+  mapOr,
+  mapWithDefault,
+  map,
+  flatMap,
+  getOr,
+  getWithDefault,
+  isOk,
+  isError,
+  equal,
+  compare,
+  forEach,
+  mapError,
 }
 /* No side effect */

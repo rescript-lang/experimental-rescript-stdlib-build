@@ -6,28 +6,28 @@ function MakeComparableU(M) {
 }
 
 function MakeComparable(M) {
-  var cmp = M.cmp;
-  var cmp$1 = function (a, b) {
+  let cmp = M.cmp;
+  let cmp$1 = function (a, b) {
     return cmp(a, b);
   };
   return {
-          cmp: cmp$1
-        };
+    cmp: cmp$1
+  };
 }
 
 function comparableU(cmp) {
   return {
-          cmp: cmp
-        };
+    cmp: cmp
+  };
 }
 
 function comparable(cmp) {
-  var cmp$1 = function (a, b) {
+  let cmp$1 = function (a, b) {
     return cmp(a, b);
   };
   return {
-          cmp: cmp$1
-        };
+    cmp: cmp$1
+  };
 }
 
 function MakeHashableU(M) {
@@ -35,48 +35,48 @@ function MakeHashableU(M) {
 }
 
 function MakeHashable(M) {
-  var hash = M.hash;
-  var hash$1 = function (a) {
+  let hash = M.hash;
+  let hash$1 = function (a) {
     return hash(a);
   };
-  var eq = M.eq;
-  var eq$1 = function (a, b) {
+  let eq = M.eq;
+  let eq$1 = function (a, b) {
     return eq(a, b);
   };
   return {
-          hash: hash$1,
-          eq: eq$1
-        };
+    hash: hash$1,
+    eq: eq$1
+  };
 }
 
 function hashableU(hash, eq) {
   return {
-          hash: hash,
-          eq: eq
-        };
+    hash: hash,
+    eq: eq
+  };
 }
 
 function hashable(hash, eq) {
-  var hash$1 = function (a) {
+  let hash$1 = function (a) {
     return hash(a);
   };
-  var eq$1 = function (a, b) {
+  let eq$1 = function (a, b) {
     return eq(a, b);
   };
   return {
-          hash: hash$1,
-          eq: eq$1
-        };
+    hash: hash$1,
+    eq: eq$1
+  };
 }
 
 export {
-  MakeComparableU ,
-  MakeComparable ,
-  comparableU ,
-  comparable ,
-  MakeHashableU ,
-  MakeHashable ,
-  hashableU ,
-  hashable ,
+  MakeComparableU,
+  MakeComparable,
+  comparableU,
+  comparable,
+  MakeHashableU,
+  MakeHashable,
+  hashableU,
+  hashable,
 }
 /* No side effect */

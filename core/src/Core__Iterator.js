@@ -2,15 +2,15 @@
 
 
 function forEach(iterator, f) {
-  var iteratorDone = false;
+  let iteratorDone = false;
   while(!iteratorDone) {
-    var match = iterator.next();
+    let match = iterator.next();
     f(match.value);
     iteratorDone = match.done;
   };
 }
 
 export {
-  forEach ,
+  forEach,
 }
 /* No side effect */

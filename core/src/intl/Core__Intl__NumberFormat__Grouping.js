@@ -3,16 +3,16 @@
 import * as Core__Type from "../Core__Type.js";
 
 function parseJsValue(value) {
-  var value$1 = Core__Type.Classify.classify(value);
+  let value$1 = Core__Type.Classify.classify(value);
   if (typeof value$1 !== "object") {
-    return ;
+    return;
   }
   switch (value$1.TAG) {
     case "Bool" :
         return {
-                NAME: "bool",
-                VAL: value$1._0
-              };
+          NAME: "bool",
+          VAL: value$1._0
+        };
     case "String" :
         switch (value$1._0) {
           case "always" :
@@ -22,14 +22,14 @@ function parseJsValue(value) {
           case "min2" :
               return "min2";
           default:
-            return ;
+            return;
         }
     default:
-      return ;
+      return;
   }
 }
 
 export {
-  parseJsValue ,
+  parseJsValue,
 }
 /* No side effect */

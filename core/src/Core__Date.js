@@ -2,7 +2,7 @@
 
 import * as Core__Float from "./Core__Float.js";
 
-var UTC = {};
+let UTC = {};
 
 function equal(a, b) {
   return a.getTime() === b.getTime();
@@ -13,8 +13,8 @@ function compare(a, b) {
 }
 
 export {
-  UTC ,
-  equal ,
-  compare ,
+  UTC,
+  equal,
+  compare,
 }
 /* No side effect */

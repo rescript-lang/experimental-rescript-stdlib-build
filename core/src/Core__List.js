@@ -14,10 +14,11 @@ function headExn(x) {
   if (x) {
     return x.hd;
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
 function tail(x) {
@@ -31,79 +32,82 @@ function tailExn(x) {
   if (x) {
     return x.tl;
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
 function add(xs, x) {
   return {
-          hd: x,
-          tl: xs
-        };
+    hd: x,
+    tl: xs
+  };
 }
 
 function get(x, n) {
   if (n < 0) {
-    return ;
+    return;
   } else {
-    var _x = x;
-    var _n = n;
+    let _x = x;
+    let _n = n;
     while(true) {
-      var n$1 = _n;
-      var x$1 = _x;
+      let n$1 = _n;
+      let x$1 = _x;
       if (!x$1) {
-        return ;
+        return;
       }
       if (n$1 === 0) {
         return Caml_option.some(x$1.hd);
       }
       _n = n$1 - 1 | 0;
       _x = x$1.tl;
-      continue ;
+      continue;
     };
   }
 }
 
 function getExn(x, n) {
   if (n < 0) {
-    throw {
-          RE_EXN_ID: "Not_found",
-          Error: new Error()
-        };
+    throw new Error("Not_found", {
+          cause: {
+            RE_EXN_ID: "Not_found"
+          }
+        });
   }
-  var _x = x;
-  var _n = n;
+  let _x = x;
+  let _n = n;
   while(true) {
-    var n$1 = _n;
-    var x$1 = _x;
+    let n$1 = _n;
+    let x$1 = _x;
     if (x$1) {
       if (n$1 === 0) {
         return x$1.hd;
       }
       _n = n$1 - 1 | 0;
       _x = x$1.tl;
-      continue ;
+      continue;
     }
-    throw {
-          RE_EXN_ID: "Not_found",
-          Error: new Error()
-        };
+    throw new Error("Not_found", {
+          cause: {
+            RE_EXN_ID: "Not_found"
+          }
+        });
   };
 }
 
 function partitionAux(p, _cell, _precX, _precY) {
   while(true) {
-    var precY = _precY;
-    var precX = _precX;
-    var cell = _cell;
+    let precY = _precY;
+    let precX = _precX;
+    let cell = _cell;
     if (!cell) {
-      return ;
+      return;
     }
-    var t = cell.tl;
-    var h = cell.hd;
-    var next = {
+    let t = cell.tl;
+    let h = cell.hd;
+    let next = {
       hd: h,
       tl: /* [] */0
     };
@@ -111,29 +115,29 @@ function partitionAux(p, _cell, _precX, _precY) {
       precX.tl = next;
       _precX = next;
       _cell = t;
-      continue ;
+      continue;
     }
     precY.tl = next;
     _precY = next;
     _cell = t;
-    continue ;
+    continue;
   };
 }
 
 function splitAux(_cell, _precX, _precY) {
   while(true) {
-    var precY = _precY;
-    var precX = _precX;
-    var cell = _cell;
+    let precY = _precY;
+    let precX = _precX;
+    let cell = _cell;
     if (!cell) {
-      return ;
+      return;
     }
-    var match = cell.hd;
-    var nextA = {
+    let match = cell.hd;
+    let nextA = {
       hd: match[0],
       tl: /* [] */0
     };
-    var nextB = {
+    let nextB = {
       hd: match[1],
       tl: /* [] */0
     };
@@ -142,64 +146,64 @@ function splitAux(_cell, _precX, _precY) {
     _precY = nextB;
     _precX = nextA;
     _cell = cell.tl;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxCont(_cellX, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
       return prec;
     }
-    var next = {
+    let next = {
       hd: cellX.hd,
       tl: /* [] */0
     };
     prec.tl = next;
     _prec = next;
     _cellX = cellX.tl;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWitFilter(f, _cellX, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
-    var t = cellX.tl;
-    var h = cellX.hd;
+    let t = cellX.tl;
+    let h = cellX.hd;
     if (f(h)) {
-      var next = {
+      let next = {
         hd: h,
         tl: /* [] */0
       };
       prec.tl = next;
       _prec = next;
       _cellX = t;
-      continue ;
+      continue;
     }
     _cellX = t;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWithFilterIndex(f, _cellX, _prec, _i) {
   while(true) {
-    var i = _i;
-    var prec = _prec;
-    var cellX = _cellX;
+    let i = _i;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
-    var t = cellX.tl;
-    var h = cellX.hd;
+    let t = cellX.tl;
+    let h = cellX.hd;
     if (f(h, i)) {
-      var next = {
+      let next = {
         hd: h,
         tl: /* [] */0
       };
@@ -207,71 +211,71 @@ function copyAuxWithFilterIndex(f, _cellX, _prec, _i) {
       _i = i + 1 | 0;
       _prec = next;
       _cellX = t;
-      continue ;
+      continue;
     }
     _i = i + 1 | 0;
     _cellX = t;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWitFilterMap(f, _cellX, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
-    var t = cellX.tl;
-    var h = f(cellX.hd);
+    let t = cellX.tl;
+    let h = f(cellX.hd);
     if (h !== undefined) {
-      var next = {
+      let next = {
         hd: Caml_option.valFromOption(h),
         tl: /* [] */0
       };
       prec.tl = next;
       _prec = next;
       _cellX = t;
-      continue ;
+      continue;
     }
     _cellX = t;
-    continue ;
+    continue;
   };
 }
 
 function removeAssocAuxWithMap(_cellX, x, _prec, f) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
       return false;
     }
-    var t = cellX.tl;
-    var h = cellX.hd;
+    let t = cellX.tl;
+    let h = cellX.hd;
     if (f(h[0], x)) {
       prec.tl = t;
       return true;
     }
-    var next = {
+    let next = {
       hd: h,
       tl: /* [] */0
     };
     prec.tl = next;
     _prec = next;
     _cellX = t;
-    continue ;
+    continue;
   };
 }
 
 function setAssocAuxWithMap(_cellX, x, k, _prec, eq) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
       return false;
     }
-    var t = cellX.tl;
-    var h = cellX.hd;
+    let t = cellX.tl;
+    let h = cellX.hd;
     if (eq(h[0], x)) {
       prec.tl = {
         hd: [
@@ -282,47 +286,47 @@ function setAssocAuxWithMap(_cellX, x, k, _prec, eq) {
       };
       return true;
     }
-    var next = {
+    let next = {
       hd: h,
       tl: /* [] */0
     };
     prec.tl = next;
     _prec = next;
     _cellX = t;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWithMap(_cellX, _prec, f) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
-    var next = {
+    let next = {
       hd: f(cellX.hd),
       tl: /* [] */0
     };
     prec.tl = next;
     _prec = next;
     _cellX = cellX.tl;
-    continue ;
+    continue;
   };
 }
 
 function zipAux(_cellX, _cellY, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellY = _cellY;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellY = _cellY;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
     if (!cellY) {
-      return ;
+      return;
     }
-    var next = {
+    let next = {
       hd: [
         cellX.hd,
         cellY.hd
@@ -333,22 +337,22 @@ function zipAux(_cellX, _cellY, _prec) {
     _prec = next;
     _cellY = cellY.tl;
     _cellX = cellX.tl;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWithMap2(f, _cellX, _cellY, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellY = _cellY;
-    var cellX = _cellX;
+    let prec = _prec;
+    let cellY = _cellY;
+    let cellX = _cellX;
     if (!cellX) {
-      return ;
+      return;
     }
     if (!cellY) {
-      return ;
+      return;
     }
-    var next = {
+    let next = {
       hd: f(cellX.hd, cellY.hd),
       tl: /* [] */0
     };
@@ -356,19 +360,19 @@ function copyAuxWithMap2(f, _cellX, _cellY, _prec) {
     _prec = next;
     _cellY = cellY.tl;
     _cellX = cellX.tl;
-    continue ;
+    continue;
   };
 }
 
 function copyAuxWithMapI(f, _i, _cellX, _prec) {
   while(true) {
-    var prec = _prec;
-    var cellX = _cellX;
-    var i = _i;
+    let prec = _prec;
+    let cellX = _cellX;
+    let i = _i;
     if (!cellX) {
-      return ;
+      return;
     }
-    var next = {
+    let next = {
       hd: f(cellX.hd, i),
       tl: /* [] */0
     };
@@ -376,22 +380,22 @@ function copyAuxWithMapI(f, _i, _cellX, _prec) {
     _prec = next;
     _cellX = cellX.tl;
     _i = i + 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function takeAux(_n, _cell, _prec) {
   while(true) {
-    var prec = _prec;
-    var cell = _cell;
-    var n = _n;
+    let prec = _prec;
+    let cell = _cell;
+    let n = _n;
     if (n === 0) {
       return true;
     }
     if (!cell) {
       return false;
     }
-    var cell$1 = {
+    let cell$1 = {
       hd: cell.hd,
       tl: /* [] */0
     };
@@ -399,22 +403,22 @@ function takeAux(_n, _cell, _prec) {
     _prec = cell$1;
     _cell = cell.tl;
     _n = n - 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function splitAtAux(_n, _cell, _prec) {
   while(true) {
-    var prec = _prec;
-    var cell = _cell;
-    var n = _n;
+    let prec = _prec;
+    let cell = _cell;
+    let n = _n;
     if (n === 0) {
       return cell;
     }
     if (!cell) {
-      return ;
+      return;
     }
-    var cell$1 = {
+    let cell$1 = {
       hd: cell.hd,
       tl: /* [] */0
     };
@@ -422,25 +426,25 @@ function splitAtAux(_n, _cell, _prec) {
     _prec = cell$1;
     _cell = cell.tl;
     _n = n - 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function take(lst, n) {
   if (n < 0) {
-    return ;
+    return;
   }
   if (n === 0) {
     return /* [] */0;
   }
   if (!lst) {
-    return ;
+    return;
   }
-  var cell = {
+  let cell = {
     hd: lst.hd,
     tl: /* [] */0
   };
-  var has = takeAux(n - 1 | 0, lst.tl, cell);
+  let has = takeAux(n - 1 | 0, lst.tl, cell);
   if (has) {
     return cell;
   }
@@ -449,49 +453,49 @@ function take(lst, n) {
 
 function drop(lst, n) {
   if (n < 0) {
-    return ;
+    return;
   } else {
-    var _l = lst;
-    var _n = n;
+    let _l = lst;
+    let _n = n;
     while(true) {
-      var n$1 = _n;
-      var l = _l;
+      let n$1 = _n;
+      let l = _l;
       if (n$1 === 0) {
         return l;
       }
       if (!l) {
-        return ;
+        return;
       }
       _n = n$1 - 1 | 0;
       _l = l.tl;
-      continue ;
+      continue;
     };
   }
 }
 
 function splitAt(lst, n) {
   if (n < 0) {
-    return ;
+    return;
   }
   if (n === 0) {
     return [
-            /* [] */0,
-            lst
-          ];
+      /* [] */0,
+      lst
+    ];
   }
   if (!lst) {
-    return ;
+    return;
   }
-  var cell = {
+  let cell = {
     hd: lst.hd,
     tl: /* [] */0
   };
-  var rest = splitAtAux(n - 1 | 0, lst.tl, cell);
+  let rest = splitAtAux(n - 1 | 0, lst.tl, cell);
   if (rest !== undefined) {
     return [
-            cell,
-            rest
-          ];
+      cell,
+      rest
+    ];
   }
   
 }
@@ -500,7 +504,7 @@ function concat(xs, ys) {
   if (!xs) {
     return ys;
   }
-  var cell = {
+  let cell = {
     hd: xs.hd,
     tl: /* [] */0
   };
@@ -512,7 +516,7 @@ function map(xs, f) {
   if (!xs) {
     return /* [] */0;
   }
-  var cell = {
+  let cell = {
     hd: f(xs.hd),
     tl: /* [] */0
   };
@@ -527,7 +531,7 @@ function zipBy(l1, l2, f) {
   if (!l2) {
     return /* [] */0;
   }
-  var cell = {
+  let cell = {
     hd: f(l1.hd, l2.hd),
     tl: /* [] */0
   };
@@ -539,7 +543,7 @@ function mapWithIndex(xs, f) {
   if (!xs) {
     return /* [] */0;
   }
-  var cell = {
+  let cell = {
     hd: f(xs.hd, 0),
     tl: /* [] */0
   };
@@ -551,14 +555,14 @@ function fromInitializer(n, f) {
   if (n <= 0) {
     return /* [] */0;
   }
-  var headX = {
+  let headX = {
     hd: f(0),
     tl: /* [] */0
   };
-  var cur = headX;
-  var i = 1;
+  let cur = headX;
+  let i = 1;
   while(i < n) {
-    var v = {
+    let v = {
       hd: f(i),
       tl: /* [] */0
     };
@@ -573,14 +577,14 @@ function make(n, v) {
   if (n <= 0) {
     return /* [] */0;
   }
-  var headX = {
+  let headX = {
     hd: v,
     tl: /* [] */0
   };
-  var cur = headX;
-  var i = 1;
+  let cur = headX;
+  let i = 1;
   while(i < n) {
-    var v$1 = {
+    let v$1 = {
       hd: v,
       tl: /* [] */0
     };
@@ -592,40 +596,40 @@ function make(n, v) {
 }
 
 function length(xs) {
-  var _x = xs;
-  var _acc = 0;
+  let _x = xs;
+  let _acc = 0;
   while(true) {
-    var acc = _acc;
-    var x = _x;
+    let acc = _acc;
+    let x = _x;
     if (!x) {
       return acc;
     }
     _acc = acc + 1 | 0;
     _x = x.tl;
-    continue ;
+    continue;
   };
 }
 
 function fillAux(arr, _i, _x) {
   while(true) {
-    var x = _x;
-    var i = _i;
+    let x = _x;
+    let i = _i;
     if (!x) {
-      return ;
+      return;
     }
     arr[i] = x.hd;
     _x = x.tl;
     _i = i + 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function fromArray(a) {
-  var _i = a.length - 1 | 0;
-  var _res = /* [] */0;
+  let _i = a.length - 1 | 0;
+  let _res = /* [] */0;
   while(true) {
-    var res = _res;
-    var i = _i;
+    let res = _res;
+    let i = _i;
     if (i < 0) {
       return res;
     }
@@ -634,27 +638,27 @@ function fromArray(a) {
       tl: res
     };
     _i = i - 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function toArray(x) {
-  var len = length(x);
-  var arr = new Array(len);
+  let len = length(x);
+  let arr = new Array(len);
   fillAux(arr, 0, x);
   return arr;
 }
 
 function toShuffled(xs) {
-  var v = toArray(xs);
+  let v = toArray(xs);
   Core__Array.shuffle(v);
   return fromArray(v);
 }
 
 function reverseConcat(_l1, _l2) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       return l2;
     }
@@ -663,7 +667,7 @@ function reverseConcat(_l1, _l2) {
       tl: l2
     };
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
@@ -673,27 +677,27 @@ function reverse(l) {
 
 function flatAux(_prec, _xs) {
   while(true) {
-    var xs = _xs;
-    var prec = _prec;
+    let xs = _xs;
+    let prec = _prec;
     if (xs) {
       _xs = xs.tl;
       _prec = copyAuxCont(xs.hd, prec);
-      continue ;
+      continue;
     }
     prec.tl = /* [] */0;
-    return ;
+    return;
   };
 }
 
 function flat(_xs) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return /* [] */0;
     }
-    var match = xs.hd;
+    let match = xs.hd;
     if (match) {
-      var cell = {
+      let cell = {
         hd: match.hd,
         tl: /* [] */0
       };
@@ -701,32 +705,32 @@ function flat(_xs) {
       return cell;
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function concatMany(xs) {
-  var len = xs.length;
+  let len = xs.length;
   if (len === 1) {
     return xs[0];
   }
   if (len === 0) {
     return /* [] */0;
   }
-  var len$1 = xs.length;
-  var v = xs[len$1 - 1 | 0];
-  for(var i = len$1 - 2 | 0; i >= 0; --i){
+  let len$1 = xs.length;
+  let v = xs[len$1 - 1 | 0];
+  for(let i = len$1 - 2 | 0; i >= 0; --i){
     v = concat(xs[i], v);
   }
   return v;
 }
 
 function mapReverse(l, f) {
-  var _accu = /* [] */0;
-  var _xs = l;
+  let _accu = /* [] */0;
+  let _xs = l;
   while(true) {
-    var xs = _xs;
-    var accu = _accu;
+    let xs = _xs;
+    let accu = _accu;
     if (!xs) {
       return accu;
     }
@@ -735,48 +739,48 @@ function mapReverse(l, f) {
       hd: f(xs.hd),
       tl: accu
     };
-    continue ;
+    continue;
   };
 }
 
 function forEach(_xs, f) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
-      return ;
+      return;
     }
     f(xs.hd);
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function forEachWithIndex(l, f) {
-  var _xs = l;
-  var _i = 0;
+  let _xs = l;
+  let _i = 0;
   while(true) {
-    var i = _i;
-    var xs = _xs;
+    let i = _i;
+    let xs = _xs;
     if (!xs) {
-      return ;
+      return;
     }
     f(xs.hd, i);
     _i = i + 1 | 0;
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function reduce(_l, _accu, f) {
   while(true) {
-    var accu = _accu;
-    var l = _l;
+    let accu = _accu;
+    let l = _l;
     if (!l) {
       return accu;
     }
     _accu = f(accu, l.hd);
     _l = l.tl;
-    continue ;
+    continue;
   };
 }
 
@@ -789,13 +793,13 @@ function reduceReverseUnsafe(l, accu, f) {
 }
 
 function reduceReverse(l, acc, f) {
-  var len = length(l);
+  let len = length(l);
   if (len < 1000) {
     return reduceReverseUnsafe(l, acc, f);
   } else {
-    var a = toArray(l);
-    var r = acc;
-    for(var i = a.length - 1 | 0; i >= 0; --i){
+    let a = toArray(l);
+    let r = acc;
+    for(let i = a.length - 1 | 0; i >= 0; --i){
       r = f(r, a[i]);
     }
     return r;
@@ -803,31 +807,31 @@ function reduceReverse(l, acc, f) {
 }
 
 function reduceWithIndex(l, acc, f) {
-  var _l = l;
-  var _acc = acc;
-  var _i = 0;
+  let _l = l;
+  let _acc = acc;
+  let _i = 0;
   while(true) {
-    var i = _i;
-    var acc$1 = _acc;
-    var l$1 = _l;
+    let i = _i;
+    let acc$1 = _acc;
+    let l$1 = _l;
     if (!l$1) {
       return acc$1;
     }
     _i = i + 1 | 0;
     _acc = f(acc$1, l$1.hd, i);
     _l = l$1.tl;
-    continue ;
+    continue;
   };
 }
 
 function mapReverse2(l1, l2, f) {
-  var _l1 = l1;
-  var _l2 = l2;
-  var _accu = /* [] */0;
+  let _l1 = l1;
+  let _l2 = l2;
+  let _accu = /* [] */0;
   while(true) {
-    var accu = _accu;
-    var l2$1 = _l2;
-    var l1$1 = _l1;
+    let accu = _accu;
+    let l2$1 = _l2;
+    let l1$1 = _l1;
     if (!l1$1) {
       return accu;
     }
@@ -840,32 +844,32 @@ function mapReverse2(l1, l2, f) {
     };
     _l2 = l2$1.tl;
     _l1 = l1$1.tl;
-    continue ;
+    continue;
   };
 }
 
 function forEach2(_l1, _l2, f) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
-      return ;
+      return;
     }
     if (!l2) {
-      return ;
+      return;
     }
     f(l1.hd, l2.hd);
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function reduce2(_l1, _l2, _accu, f) {
   while(true) {
-    var accu = _accu;
-    var l2 = _l2;
-    var l1 = _l1;
+    let accu = _accu;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       return accu;
     }
@@ -875,7 +879,7 @@ function reduce2(_l1, _l2, _accu, f) {
     _accu = f(accu, l1.hd, l2.hd);
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
@@ -888,15 +892,15 @@ function reduceReverse2Unsafe(l1, l2, accu, f) {
 }
 
 function reduceReverse2(l1, l2, acc, f) {
-  var len = length(l1);
+  let len = length(l1);
   if (len < 1000) {
     return reduceReverse2Unsafe(l1, l2, acc, f);
   } else {
-    var a = toArray(l1);
-    var b = toArray(l2);
-    var r = acc;
-    var len$1 = a.length < b.length ? a.length : b.length;
-    for(var i = len$1 - 1 | 0; i >= 0; --i){
+    let a = toArray(l1);
+    let b = toArray(l2);
+    let r = acc;
+    let len$1 = a.length < b.length ? a.length : b.length;
+    for(let i = len$1 - 1 | 0; i >= 0; --i){
       r = f(r, a[i], b[i]);
     }
     return r;
@@ -905,7 +909,7 @@ function reduceReverse2(l1, l2, acc, f) {
 
 function every(_xs, p) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return true;
     }
@@ -913,13 +917,13 @@ function every(_xs, p) {
       return false;
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function some(_xs, p) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return false;
     }
@@ -927,14 +931,14 @@ function some(_xs, p) {
       return true;
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function every2(_l1, _l2, p) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       return true;
     }
@@ -946,14 +950,14 @@ function every2(_l1, _l2, p) {
     }
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function compareLength(_l1, _l2) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       if (l2) {
         return -1;
@@ -966,14 +970,14 @@ function compareLength(_l1, _l2) {
     }
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function compare(_l1, _l2, p) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       if (l2) {
         return -1;
@@ -984,20 +988,20 @@ function compare(_l1, _l2, p) {
     if (!l2) {
       return 1;
     }
-    var c = p(l1.hd, l2.hd);
+    let c = p(l1.hd, l2.hd);
     if (c !== 0) {
       return c;
     }
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function equal(_l1, _l2, p) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       if (l2) {
         return false;
@@ -1013,14 +1017,14 @@ function equal(_l1, _l2, p) {
     }
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function some2(_l1, _l2, p) {
   while(true) {
-    var l2 = _l2;
-    var l1 = _l1;
+    let l2 = _l2;
+    let l1 = _l1;
     if (!l1) {
       return false;
     }
@@ -1032,13 +1036,13 @@ function some2(_l1, _l2, p) {
     }
     _l2 = l2.tl;
     _l1 = l1.tl;
-    continue ;
+    continue;
   };
 }
 
 function has(_xs, x, eq) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return false;
     }
@@ -1046,28 +1050,28 @@ function has(_xs, x, eq) {
       return true;
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function getAssoc(_xs, x, eq) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
-      return ;
+      return;
     }
-    var match = xs.hd;
+    let match = xs.hd;
     if (eq(match[0], x)) {
       return Caml_option.some(match[1]);
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function hasAssoc(_xs, x, eq) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return false;
     }
@@ -1075,7 +1079,7 @@ function hasAssoc(_xs, x, eq) {
       return true;
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
@@ -1083,16 +1087,16 @@ function removeAssoc(xs, x, eq) {
   if (!xs) {
     return /* [] */0;
   }
-  var l = xs.tl;
-  var pair = xs.hd;
+  let l = xs.tl;
+  let pair = xs.hd;
   if (eq(pair[0], x)) {
     return l;
   }
-  var cell = {
+  let cell = {
     hd: pair,
     tl: /* [] */0
   };
-  var removed = removeAssocAuxWithMap(l, x, cell, eq);
+  let removed = removeAssocAuxWithMap(l, x, cell, eq);
   if (removed) {
     return cell;
   } else {
@@ -1103,73 +1107,73 @@ function removeAssoc(xs, x, eq) {
 function setAssoc(xs, x, k, eq) {
   if (!xs) {
     return {
-            hd: [
-              x,
-              k
-            ],
-            tl: /* [] */0
-          };
+      hd: [
+        x,
+        k
+      ],
+      tl: /* [] */0
+    };
   }
-  var l = xs.tl;
-  var pair = xs.hd;
+  let l = xs.tl;
+  let pair = xs.hd;
   if (eq(pair[0], x)) {
     return {
-            hd: [
-              x,
-              k
-            ],
-            tl: l
-          };
+      hd: [
+        x,
+        k
+      ],
+      tl: l
+    };
   }
-  var cell = {
+  let cell = {
     hd: pair,
     tl: /* [] */0
   };
-  var replaced = setAssocAuxWithMap(l, x, k, cell, eq);
+  let replaced = setAssocAuxWithMap(l, x, k, cell, eq);
   if (replaced) {
     return cell;
   } else {
     return {
-            hd: [
-              x,
-              k
-            ],
-            tl: xs
-          };
+      hd: [
+        x,
+        k
+      ],
+      tl: xs
+    };
   }
 }
 
 function sort(xs, cmp) {
-  var arr = toArray(xs);
+  let arr = toArray(xs);
   arr.sort(cmp);
   return fromArray(arr);
 }
 
 function find(_xs, p) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
-      return ;
+      return;
     }
-    var x = xs.hd;
+    let x = xs.hd;
     if (p(x)) {
       return Caml_option.some(x);
     }
     _xs = xs.tl;
-    continue ;
+    continue;
   };
 }
 
 function filter(_xs, p) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return /* [] */0;
     }
-    var t = xs.tl;
-    var h = xs.hd;
+    let t = xs.tl;
+    let h = xs.hd;
     if (p(h)) {
-      var cell = {
+      let cell = {
         hd: h,
         tl: /* [] */0
       };
@@ -1177,23 +1181,23 @@ function filter(_xs, p) {
       return cell;
     }
     _xs = t;
-    continue ;
+    continue;
   };
 }
 
 function filterWithIndex(xs, p) {
-  var _xs = xs;
-  var _i = 0;
+  let _xs = xs;
+  let _i = 0;
   while(true) {
-    var i = _i;
-    var xs$1 = _xs;
+    let i = _i;
+    let xs$1 = _xs;
     if (!xs$1) {
       return /* [] */0;
     }
-    var t = xs$1.tl;
-    var h = xs$1.hd;
+    let t = xs$1.tl;
+    let h = xs$1.hd;
     if (p(h, i)) {
-      var cell = {
+      let cell = {
         hd: h,
         tl: /* [] */0
       };
@@ -1202,20 +1206,20 @@ function filterWithIndex(xs, p) {
     }
     _i = i + 1 | 0;
     _xs = t;
-    continue ;
+    continue;
   };
 }
 
 function filterMap(_xs, p) {
   while(true) {
-    var xs = _xs;
+    let xs = _xs;
     if (!xs) {
       return /* [] */0;
     }
-    var t = xs.tl;
-    var h = p(xs.hd);
+    let t = xs.tl;
+    let h = p(xs.hd);
     if (h !== undefined) {
-      var cell = {
+      let cell = {
         hd: Caml_option.valFromOption(h),
         tl: /* [] */0
       };
@@ -1223,62 +1227,62 @@ function filterMap(_xs, p) {
       return cell;
     }
     _xs = t;
-    continue ;
+    continue;
   };
 }
 
 function partition(l, p) {
   if (!l) {
     return [
-            /* [] */0,
-            /* [] */0
-          ];
+      /* [] */0,
+      /* [] */0
+    ];
   }
-  var h = l.hd;
-  var nextX = {
+  let h = l.hd;
+  let nextX = {
     hd: h,
     tl: /* [] */0
   };
-  var nextY = {
+  let nextY = {
     hd: h,
     tl: /* [] */0
   };
-  var b = p(h);
+  let b = p(h);
   partitionAux(p, l.tl, nextX, nextY);
   if (b) {
     return [
-            nextX,
-            nextY.tl
-          ];
+      nextX,
+      nextY.tl
+    ];
   } else {
     return [
-            nextX.tl,
-            nextY
-          ];
+      nextX.tl,
+      nextY
+    ];
   }
 }
 
 function unzip(xs) {
   if (!xs) {
     return [
-            /* [] */0,
-            /* [] */0
-          ];
+      /* [] */0,
+      /* [] */0
+    ];
   }
-  var match = xs.hd;
-  var cellX = {
+  let match = xs.hd;
+  let cellX = {
     hd: match[0],
     tl: /* [] */0
   };
-  var cellY = {
+  let cellY = {
     hd: match[1],
     tl: /* [] */0
   };
   splitAux(xs.tl, cellX, cellY);
   return [
-          cellX,
-          cellY
-        ];
+    cellX,
+    cellY
+  ];
 }
 
 function zip(l1, l2) {
@@ -1288,7 +1292,7 @@ function zip(l1, l2) {
   if (!l2) {
     return /* [] */0;
   }
-  var cell = {
+  let cell = {
     hd: [
       l1.hd,
       l2.hd
@@ -1299,63 +1303,63 @@ function zip(l1, l2) {
   return cell;
 }
 
-var size = length;
+let size = length;
 
 export {
-  length ,
-  size ,
-  head ,
-  headExn ,
-  tail ,
-  tailExn ,
-  add ,
-  get ,
-  getExn ,
-  make ,
-  fromInitializer ,
-  toShuffled ,
-  drop ,
-  take ,
-  splitAt ,
-  concat ,
-  concatMany ,
-  reverseConcat ,
-  flat ,
-  map ,
-  zip ,
-  zipBy ,
-  mapWithIndex ,
-  fromArray ,
-  toArray ,
-  reverse ,
-  mapReverse ,
-  forEach ,
-  forEachWithIndex ,
-  reduce ,
-  reduceWithIndex ,
-  reduceReverse ,
-  mapReverse2 ,
-  forEach2 ,
-  reduce2 ,
-  reduceReverse2 ,
-  every ,
-  some ,
-  every2 ,
-  some2 ,
-  compareLength ,
-  compare ,
-  equal ,
-  has ,
-  find ,
-  filter ,
-  filterWithIndex ,
-  filterMap ,
-  partition ,
-  unzip ,
-  getAssoc ,
-  hasAssoc ,
-  removeAssoc ,
-  setAssoc ,
-  sort ,
+  length,
+  size,
+  head,
+  headExn,
+  tail,
+  tailExn,
+  add,
+  get,
+  getExn,
+  make,
+  fromInitializer,
+  toShuffled,
+  drop,
+  take,
+  splitAt,
+  concat,
+  concatMany,
+  reverseConcat,
+  flat,
+  map,
+  zip,
+  zipBy,
+  mapWithIndex,
+  fromArray,
+  toArray,
+  reverse,
+  mapReverse,
+  forEach,
+  forEachWithIndex,
+  reduce,
+  reduceWithIndex,
+  reduceReverse,
+  mapReverse2,
+  forEach2,
+  reduce2,
+  reduceReverse2,
+  every,
+  some,
+  every2,
+  some2,
+  compareLength,
+  compare,
+  equal,
+  has,
+  find,
+  filter,
+  filterWithIndex,
+  filterMap,
+  partition,
+  unzip,
+  getAssoc,
+  hasAssoc,
+  removeAssoc,
+  setAssoc,
+  sort,
 }
 /* No side effect */

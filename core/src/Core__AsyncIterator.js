@@ -2,15 +2,15 @@
 
 
 async function forEach(iterator, f) {
-  var iteratorDone = false;
+  let iteratorDone = false;
   while(!iteratorDone) {
-    var match = await iterator.next();
+    let match = await iterator.next();
     f(match.value);
     iteratorDone = match.done;
   };
 }
 
 export {
-  forEach ,
+  forEach,
 }
 /* No side effect */

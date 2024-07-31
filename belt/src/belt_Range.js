@@ -2,20 +2,20 @@
 
 
 function forEachU(s, f, action) {
-  for(var i = s; i <= f; ++i){
+  for(let i = s; i <= f; ++i){
     action(i);
   }
 }
 
 function forEach(s, f, action) {
   forEachU(s, f, (function (a) {
-          action(a);
-        }));
+    action(a);
+  }));
 }
 
 function everyU(_s, f, p) {
   while(true) {
-    var s = _s;
+    let s = _s;
     if (s > f) {
       return true;
     }
@@ -23,21 +23,21 @@ function everyU(_s, f, p) {
       return false;
     }
     _s = s + 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function every(s, f, p) {
   return everyU(s, f, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 function everyByU(s, f, step, p) {
   if (step > 0) {
-    var _s = s;
+    let _s = s;
     while(true) {
-      var s$1 = _s;
+      let s$1 = _s;
       if (s$1 > f) {
         return true;
       }
@@ -45,7 +45,7 @@ function everyByU(s, f, step, p) {
         return false;
       }
       _s = s$1 + step | 0;
-      continue ;
+      continue;
     };
   } else {
     return true;
@@ -54,13 +54,13 @@ function everyByU(s, f, step, p) {
 
 function everyBy(s, f, step, p) {
   return everyByU(s, f, step, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 function someU(_s, f, p) {
   while(true) {
-    var s = _s;
+    let s = _s;
     if (s > f) {
       return false;
     }
@@ -68,21 +68,21 @@ function someU(_s, f, p) {
       return true;
     }
     _s = s + 1 | 0;
-    continue ;
+    continue;
   };
 }
 
 function some(s, f, p) {
   return someU(s, f, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 function someByU(s, f, step, p) {
   if (step > 0) {
-    var _s = s;
+    let _s = s;
     while(true) {
-      var s$1 = _s;
+      let s$1 = _s;
       if (s$1 > f) {
         return false;
       }
@@ -90,7 +90,7 @@ function someByU(s, f, step, p) {
         return true;
       }
       _s = s$1 + step | 0;
-      continue ;
+      continue;
     };
   } else {
     return false;
@@ -99,20 +99,20 @@ function someByU(s, f, step, p) {
 
 function someBy(s, f, step, p) {
   return someByU(s, f, step, (function (a) {
-                return p(a);
-              }));
+    return p(a);
+  }));
 }
 
 export {
-  forEachU ,
-  forEach ,
-  everyU ,
-  every ,
-  everyByU ,
-  everyBy ,
-  someU ,
-  some ,
-  someByU ,
-  someBy ,
+  forEachU,
+  forEach,
+  everyU,
+  every,
+  everyByU,
+  everyBy,
+  someU,
+  some,
+  someByU,
+  someBy,
 }
 /* No side effect */

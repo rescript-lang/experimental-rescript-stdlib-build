@@ -2,57 +2,57 @@
 
 
 function classify(value) {
-  var match = Object.prototype.toString.call(value);
+  let match = Object.prototype.toString.call(value);
   switch (match) {
     case "[object BigInt]" :
         return {
-                TAG: "BigInt",
-                _0: value
-              };
+          TAG: "BigInt",
+          _0: value
+        };
     case "[object Boolean]" :
         return {
-                TAG: "Bool",
-                _0: value
-              };
+          TAG: "Bool",
+          _0: value
+        };
     case "[object AsyncFunction]" :
     case "[object Function]" :
     case "[object GeneratorFunction]" :
         return {
-                TAG: "Function",
-                _0: value
-              };
+          TAG: "Function",
+          _0: value
+        };
     case "[object Null]" :
         return "Null";
     case "[object Number]" :
         return {
-                TAG: "Number",
-                _0: value
-              };
+          TAG: "Number",
+          _0: value
+        };
     case "[object String]" :
         return {
-                TAG: "String",
-                _0: value
-              };
+          TAG: "String",
+          _0: value
+        };
     case "[object Symbol]" :
         return {
-                TAG: "Symbol",
-                _0: value
-              };
+          TAG: "Symbol",
+          _0: value
+        };
     case "[object Undefined]" :
         return "Undefined";
     default:
       return {
-              TAG: "Object",
-              _0: value
-            };
+        TAG: "Object",
+        _0: value
+      };
   }
 }
 
-var Classify = {
+let Classify = {
   classify: classify
 };
 
 export {
-  Classify ,
+  Classify,
 }
 /* No side effect */

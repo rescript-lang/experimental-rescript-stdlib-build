@@ -1,9 +1,9 @@
 
 
 
-var Constants = {};
+let Constants = {};
 
 export {
-  Constants ,
+  Constants,
 }
 /* No side effect */

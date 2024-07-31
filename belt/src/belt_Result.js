@@ -5,10 +5,11 @@ function getExn(x) {
   if (x.TAG === "Ok") {
     return x._0;
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
 function mapWithDefaultU(opt, $$default, f) {
@@ -21,28 +22,28 @@ function mapWithDefaultU(opt, $$default, f) {
 
 function mapWithDefault(opt, $$default, f) {
   return mapWithDefaultU(opt, $$default, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function mapU(opt, f) {
   if (opt.TAG === "Ok") {
     return {
-            TAG: "Ok",
-            _0: f(opt._0)
-          };
+      TAG: "Ok",
+      _0: f(opt._0)
+    };
   } else {
     return {
-            TAG: "Error",
-            _0: opt._0
-          };
+      TAG: "Error",
+      _0: opt._0
+    };
   }
 }
 
 function map(opt, f) {
   return mapU(opt, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function flatMapU(opt, f) {
@@ -50,16 +51,16 @@ function flatMapU(opt, f) {
     return f(opt._0);
   } else {
     return {
-            TAG: "Error",
-            _0: opt._0
-          };
+      TAG: "Error",
+      _0: opt._0
+    };
   }
 }
 
 function flatMap(opt, f) {
   return flatMapU(opt, (function (x) {
-                return f(x);
-              }));
+    return f(x);
+  }));
 }
 
 function getWithDefault(opt, $$default) {
@@ -102,8 +103,8 @@ function eqU(a, b, f) {
 
 function eq(a, b, f) {
   return eqU(a, b, (function (x, y) {
-                return f(x, y);
-              }));
+    return f(x, y);
+  }));
 }
 
 function cmpU(a, b, f) {
@@ -122,24 +123,24 @@ function cmpU(a, b, f) {
 
 function cmp(a, b, f) {
   return cmpU(a, b, (function (x, y) {
-                return f(x, y);
-              }));
+    return f(x, y);
+  }));
 }
 
 export {
-  getExn ,
-  mapWithDefaultU ,
-  mapWithDefault ,
-  mapU ,
-  map ,
-  flatMapU ,
-  flatMap ,
-  getWithDefault ,
-  isOk ,
-  isError ,
-  eqU ,
-  eq ,
-  cmpU ,
-  cmp ,
+  getExn,
+  mapWithDefaultU,
+  mapWithDefault,
+  mapU,
+  map,
+  flatMapU,
+  flatMap,
+  getWithDefault,
+  isOk,
+  isError,
+  eqU,
+  eq,
+  cmpU,
+  cmp,
 }
 /* No side effect */

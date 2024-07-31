@@ -1,7 +1,7 @@
 
 
 
-var Constants = {};
+let Constants = {};
 
 function equal(a, b) {
   return a === b;
@@ -18,16 +18,16 @@ function compare(a, b) {
 }
 
 function fromString(i) {
-  var i$1 = parseFloat(i);
+  let i$1 = parseFloat(i);
   if (isNaN(i$1)) {
-    return ;
+    return;
   } else {
     return i$1;
   }
 }
 
 function clamp(min, max, value) {
-  var value$1 = max !== undefined && max < value ? max : value;
+  let value$1 = max !== undefined && max < value ? max : value;
   if (min !== undefined && min > value$1) {
     return min;
   } else {
@@ -36,10 +36,10 @@ function clamp(min, max, value) {
 }
 
 export {
-  Constants ,
-  equal ,
-  compare ,
-  fromString ,
-  clamp ,
+  Constants,
+  equal,
+  compare,
+  fromString,
+  clamp,
 }
 /* No side effect */

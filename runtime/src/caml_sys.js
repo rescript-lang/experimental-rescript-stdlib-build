@@ -3,22 +3,24 @@
 
 function sys_getenv(s) {
   if (typeof process === "undefined" || process.env === undefined) {
-    throw {
-          RE_EXN_ID: "Not_found",
-          Error: new Error()
-        };
+    throw new Error("Not_found", {
+          cause: {
+            RE_EXN_ID: "Not_found"
+          }
+        });
   }
-  var x = process.env[s];
+  let x = process.env[s];
   if (x !== undefined) {
     return x;
   }
-  throw {
-        RE_EXN_ID: "Not_found",
-        Error: new Error()
-      };
+  throw new Error("Not_found", {
+        cause: {
+          RE_EXN_ID: "Not_found"
+        }
+      });
 }
 
-var os_type = (function(_){
+let os_type = (function(_){
   if(typeof process !== 'undefined' && process.platform === 'win32'){
         return "Win32"    
   }
@@ -35,7 +37,7 @@ function sys_time() {
   }
 }
 
-var sys_getcwd = (function(param){
+let sys_getcwd = (function(param){
     if (typeof process === "undefined" || process.cwd === undefined){
       return "/"  
     }
@@ -45,21 +47,21 @@ var sys_getcwd = (function(param){
 function sys_get_argv() {
   if (typeof process === "undefined") {
     return [
-            "",
-            [""]
-          ];
+      "",
+      [""]
+    ];
   }
-  var argv = process.argv;
+  let argv = process.argv;
   if (argv == null) {
     return [
-            "",
-            [""]
-          ];
+      "",
+      [""]
+    ];
   } else {
     return [
-            argv[0],
-            argv
-          ];
+      argv[0],
+      argv
+    ];
   }
 }
 
@@ -71,29 +73,31 @@ function sys_exit(exit_code) {
 }
 
 function sys_is_directory(_s) {
-  throw {
-        RE_EXN_ID: "Failure",
-        _1: "sys_is_directory not implemented",
-        Error: new Error()
-      };
+  throw new Error("Failure", {
+        cause: {
+          RE_EXN_ID: "Failure",
+          _1: "sys_is_directory not implemented"
+        }
+      });
 }
 
 function sys_file_exists(_s) {
-  throw {
-        RE_EXN_ID: "Failure",
-        _1: "sys_file_exists not implemented",
-        Error: new Error()
-      };
+  throw new Error("Failure", {
+        cause: {
+          RE_EXN_ID: "Failure",
+          _1: "sys_file_exists not implemented"
+        }
+      });
 }
 
 export {
-  sys_getenv ,
-  sys_time ,
-  os_type ,
-  sys_getcwd ,
-  sys_get_argv ,
-  sys_exit ,
-  sys_is_directory ,
-  sys_file_exists ,
+  sys_getenv,
+  sys_time,
+  os_type,
+  sys_getcwd,
+  sys_get_argv,
+  sys_exit,
+  sys_is_directory,
+  sys_file_exists,
 }
 /* No side effect */
