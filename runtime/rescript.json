@@ -4,11 +4,5 @@
     "dir": "src",
     "subdirs": true
   },
-  "bs-dependencies": ["stdlib-mini"],
-  "bsc-flags": [
-    "-nostdlib",
-    "-nopervasives",
-    "-bs-no-version-header",
-    "-open Stdlib_mini"
-  ]
+  "bsc-flags": ["-nostdlib", "-nopervasives", "-bs-no-version-header"]
 }
