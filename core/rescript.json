@@ -4,7 +4,7 @@
     "dir": "src",
     "subdirs": true
   },
-  "bs-dependencies": ["stdlib-mini", "runtime"],
+  "bs-dependencies": ["runtime"],
   "bsc-flags": [
     "-nostdlib",
     "-nopervasives",
