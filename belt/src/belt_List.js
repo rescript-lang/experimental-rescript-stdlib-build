@@ -1419,45 +1419,16 @@ function partitionU(l, p) {
   let b = p(h);
   partitionAux(p, l.tl, nextX, nextY);
   if (b) {
-    let tmp;
-    if (nextY) {
-      tmp = nextY.tl;
-    } else {
-      throw new Error("Assert_failure", {
-            cause: {
-              RE_EXN_ID: "Assert_failure",
-              _1: [
-                "belt_List.res",
-                876,
-                20
-              ]
-            }
-          });
-    }
     return [
       nextX,
-      tmp
+      nextY.tl
+    ];
+  } else {
+    return [
+      nextX.tl,
+      nextY
     ];
   }
-  let tmp$1;
-  if (nextX) {
-    tmp$1 = nextX.tl;
-  } else {
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_List.res",
-              883,
-              20
-            ]
-          }
-        });
-  }
-  return [
-    tmp$1,
-    nextY
-  ];
 }
 
 function partition(l, p) {

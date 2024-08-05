@@ -58,22 +58,11 @@ function swapUnsafe(xs, i, j) {
   xs[j] = tmp;
 }
 
-function floor_int(f) {
-  if (f > 2147483647) {
-    return 2147483647;
-  } else if (f < -2147483648) {
-    return -2147483648;
-  } else {
-    return floor(f);
-  }
-}
-
-function random_int(min, max) {
-  return floor_int(Math.random() * (max - min | 0)) + min | 0;
-}
-
 function shuffleInPlace(xs) {
   let len = xs.length;
+  let random_int = function (min, max) {
+    return Math.floor(Math.random() * (max - min | 0)) + min | 0;
+  };
   for(let i = 0; i < len; ++i){
     swapUnsafe(xs, i, random_int(i, len));
   }

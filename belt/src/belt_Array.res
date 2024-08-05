@@ -64,32 +64,15 @@ let swapUnsafe = (xs, i, j) => {
   setUnsafe(xs, j, tmp)
 }
 
-// TODO? Parts of Js.Math/Js.Int that we need for the shuffle function
-module Js_math = {
-  @val @scope("Math")
-  external random: unit => float = "random"
-  external intToFloat: int => float = "%floatofint"
-  external unsafe_floor_int: float => int = "floor"
-
-  let intMax: int = 2147483647
-  let intMin: int = -2147483648
-
-  let floor_int = f =>
-    if f > intToFloat(intMax) {
-      intMax
-    } else if f < intToFloat(intMin) {
-      intMin
-    } else {
-      unsafe_floor_int(f)
-    }
-
-  let random_int = (min, max) => floor_int(random() *. intToFloat(max - min)) + min
-}
+@val @scope("Math") external random: unit => float = "random"
+@val @scope("Math") external floor: float => int = "floor"
+external toFloat: int => float = "%floatofint"
 
 let shuffleInPlace = xs => {
   let len = length(xs)
+  let random_int = (min, max) => floor(random() *. toFloat(max - min)) + min
   for i in 0 to len - 1 {
-    swapUnsafe(xs, i, Js_math.random_int(i, len)) /* [i,len) */
+    swapUnsafe(xs, i, random_int(i, len)) /* [i,len) */
   }
 }
 
