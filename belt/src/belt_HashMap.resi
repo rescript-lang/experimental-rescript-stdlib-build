@@ -33,10 +33,10 @@ _hash_ functions will have different type.
 
 ```rescript
 type t = int
-module I0 = unpack(Belt.Id.hashableU(~hash=(. a: t) => "&"(a, 0xff_ff), ~eq=(. a, b) => a == b))
+module I0 = unpack(Belt.Id.hashableU(~hash=(a: t) => "&"(a, 0xff_ff), ~eq=(a, b) => a == b))
 let s0: t<_, string, _> = make(~hintSize=40, ~id=module(I0))
 
-module I1 = unpack(Belt.Id.hashableU(~hash=(. a: t) => "&"(a, 0xff), ~eq=(. a, b) => a == b))
+module I1 = unpack(Belt.Id.hashableU(~hash=(a: t) => "&"(a, 0xff), ~eq=(a, b) => a == b))
 let s1: t<_, string, _> = make(~hintSize=40, ~id=module(I1))
 ```
 

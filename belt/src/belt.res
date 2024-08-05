@@ -92,7 +92,7 @@ E.g.:
 ```rescript
 let forEach: (t<'a>, 'a => unit) => unit
 
-let forEachU: (t<'a>, (. 'a) => unit) => unit
+let forEachU: (t<'a>, 'a => unit) => unit
 ```
 
 The uncurried version will be faster in some cases, but for simplicity we recommend to stick with the curried version unless you need the extra performance.
@@ -104,7 +104,7 @@ The two versions can be invoked as follows:
 ```rescript
 ["a", "b", "c"]->Belt.Array.forEach(x => Js.log(x))
 
-["a", "b", "c"]->Belt.Array.forEachU((. x) => Js.log(x))
+["a", "b", "c"]->Belt.Array.forEachU(x => Js.log(x))
 ```
 
 ## Specialized Collections
