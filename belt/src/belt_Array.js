@@ -102,7 +102,7 @@ function make(l, f) {
   return res;
 }
 
-function makeByU(l, f) {
+function makeBy(l, f) {
   if (l <= 0) {
     return [];
   }
@@ -113,22 +113,10 @@ function makeByU(l, f) {
   return res;
 }
 
-function makeBy(l, f) {
-  return makeByU(l, (function (a) {
-    return f(a);
-  }));
-}
-
-function makeByAndShuffleU(l, f) {
-  let u = makeByU(l, f);
+function makeByAndShuffle(l, f) {
+  let u = makeBy(l, f);
   shuffleInPlace(u);
   return u;
-}
-
-function makeByAndShuffle(l, f) {
-  return makeByAndShuffleU(l, (function (a) {
-    return f(a);
-  }));
 }
 
 function range(start, finish) {
@@ -172,7 +160,7 @@ function zip(xs, ys) {
   return s;
 }
 
-function zipByU(xs, ys, f) {
+function zipBy(xs, ys, f) {
   let lenx = xs.length;
   let leny = ys.length;
   let len = lenx < leny ? lenx : leny;
@@ -181,12 +169,6 @@ function zipByU(xs, ys, f) {
     s[i] = f(xs[i], ys[i]);
   }
   return s;
-}
-
-function zipBy(xs, ys, f) {
-  return zipByU(xs, ys, (function (a, b) {
-    return f(a, b);
-  }));
 }
 
 function concat(a1, a2) {
@@ -294,19 +276,13 @@ function blit(a1, ofs1, a2, ofs2, len) {
   }
 }
 
-function forEachU(a, f) {
+function forEach(a, f) {
   for(let i = 0 ,i_finish = a.length; i < i_finish; ++i){
     f(a[i]);
   }
 }
 
-function forEach(a, f) {
-  forEachU(a, (function (a) {
-    f(a);
-  }));
-}
-
-function mapU(a, f) {
+function map(a, f) {
   let l = a.length;
   let r = new Array(l);
   for(let i = 0; i < l; ++i){
@@ -315,23 +291,11 @@ function mapU(a, f) {
   return r;
 }
 
-function map(a, f) {
-  return mapU(a, (function (a) {
-    return f(a);
-  }));
-}
-
-function flatMapU(a, f) {
-  return concatMany(mapU(a, f));
-}
-
 function flatMap(a, f) {
-  return concatMany(mapU(a, (function (a) {
-    return f(a);
-  })));
+  return concatMany(map(a, f));
 }
 
-function getByU(a, p) {
+function getBy(a, p) {
   let l = a.length;
   let i = 0;
   let r;
@@ -345,13 +309,7 @@ function getByU(a, p) {
   return r;
 }
 
-function getBy(a, p) {
-  return getByU(a, (function (a) {
-    return p(a);
-  }));
-}
-
-function getIndexByU(a, p) {
+function getIndexBy(a, p) {
   let l = a.length;
   let i = 0;
   let r;
@@ -365,13 +323,7 @@ function getIndexByU(a, p) {
   return r;
 }
 
-function getIndexBy(a, p) {
-  return getIndexByU(a, (function (a) {
-    return p(a);
-  }));
-}
-
-function keepU(a, f) {
+function keep(a, f) {
   let l = a.length;
   let r = new Array(l);
   let j = 0;
@@ -387,13 +339,7 @@ function keepU(a, f) {
   return r;
 }
 
-function keep(a, f) {
-  return keepU(a, (function (a) {
-    return f(a);
-  }));
-}
-
-function keepWithIndexU(a, f) {
+function keepWithIndex(a, f) {
   let l = a.length;
   let r = new Array(l);
   let j = 0;
@@ -409,13 +355,7 @@ function keepWithIndexU(a, f) {
   return r;
 }
 
-function keepWithIndex(a, f) {
-  return keepWithIndexU(a, (function (a, i) {
-    return f(a, i);
-  }));
-}
-
-function keepMapU(a, f) {
+function keepMap(a, f) {
   let l = a.length;
   let r = new Array(l);
   let j = 0;
@@ -432,25 +372,13 @@ function keepMapU(a, f) {
   return r;
 }
 
-function keepMap(a, f) {
-  return keepMapU(a, (function (a) {
-    return f(a);
-  }));
-}
-
-function forEachWithIndexU(a, f) {
+function forEachWithIndex(a, f) {
   for(let i = 0 ,i_finish = a.length; i < i_finish; ++i){
     f(i, a[i]);
   }
 }
 
-function forEachWithIndex(a, f) {
-  forEachWithIndexU(a, (function (a, b) {
-    f(a, b);
-  }));
-}
-
-function mapWithIndexU(a, f) {
+function mapWithIndex(a, f) {
   let l = a.length;
   let r = new Array(l);
   for(let i = 0; i < l; ++i){
@@ -459,13 +387,7 @@ function mapWithIndexU(a, f) {
   return r;
 }
 
-function mapWithIndex(a, f) {
-  return mapWithIndexU(a, (function (a, b) {
-    return f(a, b);
-  }));
-}
-
-function reduceU(a, x, f) {
+function reduce(a, x, f) {
   let r = x;
   for(let i = 0 ,i_finish = a.length; i < i_finish; ++i){
     r = f(r, a[i]);
@@ -473,13 +395,7 @@ function reduceU(a, x, f) {
   return r;
 }
 
-function reduce(a, x, f) {
-  return reduceU(a, x, (function (a, b) {
-    return f(a, b);
-  }));
-}
-
-function reduceReverseU(a, x, f) {
+function reduceReverse(a, x, f) {
   let r = x;
   for(let i = a.length - 1 | 0; i >= 0; --i){
     r = f(r, a[i]);
@@ -487,13 +403,7 @@ function reduceReverseU(a, x, f) {
   return r;
 }
 
-function reduceReverse(a, x, f) {
-  return reduceReverseU(a, x, (function (a, b) {
-    return f(a, b);
-  }));
-}
-
-function reduceReverse2U(a, b, x, f) {
+function reduceReverse2(a, b, x, f) {
   let r = x;
   let len = Caml.int_min(a.length, b.length);
   for(let i = len - 1 | 0; i >= 0; --i){
@@ -502,13 +412,7 @@ function reduceReverse2U(a, b, x, f) {
   return r;
 }
 
-function reduceReverse2(a, b, x, f) {
-  return reduceReverse2U(a, b, x, (function (a, b, c) {
-    return f(a, b, c);
-  }));
-}
-
-function reduceWithIndexU(a, x, f) {
+function reduceWithIndex(a, x, f) {
   let r = x;
   for(let i = 0 ,i_finish = a.length; i < i_finish; ++i){
     r = f(r, a[i], i);
@@ -516,13 +420,7 @@ function reduceWithIndexU(a, x, f) {
   return r;
 }
 
-function reduceWithIndex(a, x, f) {
-  return reduceWithIndexU(a, x, (function (a, b, c) {
-    return f(a, b, c);
-  }));
-}
-
-function everyU(arr, b) {
+function every(arr, b) {
   let len = arr.length;
   let _i = 0;
   while(true) {
@@ -538,13 +436,7 @@ function everyU(arr, b) {
   };
 }
 
-function every(arr, f) {
-  return everyU(arr, (function (b) {
-    return f(b);
-  }));
-}
-
-function someU(arr, b) {
+function some(arr, b) {
   let len = arr.length;
   let _i = 0;
   while(true) {
@@ -558,12 +450,6 @@ function someU(arr, b) {
     _i = i + 1 | 0;
     continue;
   };
-}
-
-function some(arr, f) {
-  return someU(arr, (function (b) {
-    return f(b);
-  }));
 }
 
 function everyAux2(arr1, arr2, _i, b, len) {
@@ -580,17 +466,11 @@ function everyAux2(arr1, arr2, _i, b, len) {
   };
 }
 
-function every2U(a, b, p) {
+function every2(a, b, p) {
   return everyAux2(a, b, 0, p, Caml.int_min(a.length, b.length));
 }
 
-function every2(a, b, p) {
-  return every2U(a, b, (function (a, b) {
-    return p(a, b);
-  }));
-}
-
-function some2U(a, b, p) {
+function some2(a, b, p) {
   let _i = 0;
   let len = Caml.int_min(a.length, b.length);
   while(true) {
@@ -606,13 +486,7 @@ function some2U(a, b, p) {
   };
 }
 
-function some2(a, b, p) {
-  return some2U(a, b, (function (a, b) {
-    return p(a, b);
-  }));
-}
-
-function eqU(a, b, p) {
+function eq(a, b, p) {
   let lena = a.length;
   let lenb = b.length;
   if (lena === lenb) {
@@ -622,13 +496,7 @@ function eqU(a, b, p) {
   }
 }
 
-function eq(a, b, p) {
-  return eqU(a, b, (function (a, b) {
-    return p(a, b);
-  }));
-}
-
-function cmpU(a, b, p) {
+function cmp(a, b, p) {
   let lena = a.length;
   let lenb = b.length;
   if (lena > lenb) {
@@ -652,13 +520,7 @@ function cmpU(a, b, p) {
   }
 }
 
-function cmp(a, b, p) {
-  return cmpU(a, b, (function (a, b) {
-    return p(a, b);
-  }));
-}
-
-function partitionU(a, f) {
+function partition(a, f) {
   let l = a.length;
   let i = 0;
   let j = 0;
@@ -682,12 +544,6 @@ function partitionU(a, f) {
   ];
 }
 
-function partition(a, f) {
-  return partitionU(a, (function (x) {
-    return f(x);
-  }));
-}
-
 function unzip(a) {
   let l = a.length;
   let a1 = new Array(l);
@@ -703,7 +559,7 @@ function unzip(a) {
   ];
 }
 
-function joinWithU(a, sep, toString) {
+function joinWith(a, sep, toString) {
   let l = a.length;
   if (l === 0) {
     return "";
@@ -723,13 +579,7 @@ function joinWithU(a, sep, toString) {
   };
 }
 
-function joinWith(a, sep, toString) {
-  return joinWithU(a, sep, (function (x) {
-    return toString(x);
-  }));
-}
-
-function initU(n, f) {
+function init(n, f) {
   let v = new Array(n);
   for(let i = 0; i < n; ++i){
     v[i] = f(i);
@@ -737,11 +587,57 @@ function initU(n, f) {
   return v;
 }
 
-function init(n, f) {
-  return initU(n, (function (i) {
-    return f(i);
-  }));
-}
+let makeByU = makeBy;
+
+let makeByAndShuffleU = makeByAndShuffle;
+
+let zipByU = zipBy;
+
+let forEachU = forEach;
+
+let mapU = map;
+
+let flatMapU = flatMap;
+
+let getByU = getBy;
+
+let getIndexByU = getIndexBy;
+
+let keepU = keep;
+
+let keepWithIndexU = keepWithIndex;
+
+let keepMapU = keepMap;
+
+let forEachWithIndexU = forEachWithIndex;
+
+let mapWithIndexU = mapWithIndex;
+
+let partitionU = partition;
+
+let reduceU = reduce;
+
+let reduceReverseU = reduceReverse;
+
+let reduceReverse2U = reduceReverse2;
+
+let reduceWithIndexU = reduceWithIndex;
+
+let joinWithU = joinWith;
+
+let someU = some;
+
+let everyU = every;
+
+let every2U = every2;
+
+let some2U = some2;
+
+let cmpU = cmp;
+
+let eqU = eq;
+
+let initU = init;
 
 export {
   get,
