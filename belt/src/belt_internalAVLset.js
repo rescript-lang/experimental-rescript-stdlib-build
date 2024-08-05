@@ -54,36 +54,13 @@ function bal(l, v, r) {
   let hl = l !== undefined ? l.h : 0;
   let hr = r !== undefined ? r.h : 0;
   if (hl > (hr + 2 | 0)) {
-    if (l !== undefined) {
-      let ll = l.l;
-      let lr = l.r;
-      if (heightGe(ll, lr)) {
-        return create(ll, l.v, create(lr, v, r));
-      }
-      if (lr !== undefined) {
-        return create(create(ll, l.v, lr.l), lr.v, create(lr.r, v, r));
-      }
-      throw new Error("Assert_failure", {
-            cause: {
-              RE_EXN_ID: "Assert_failure",
-              _1: [
-                "belt_internalAVLset.res",
-                102,
-                18
-              ]
-            }
-          });
+    let ll = l.l;
+    let lr = l.r;
+    if (heightGe(ll, lr)) {
+      return create(ll, l.v, create(lr, v, r));
+    } else {
+      return create(create(ll, l.v, lr.l), lr.v, create(lr.r, v, r));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLset.res",
-              96,
-              14
-            ]
-          }
-        });
   }
   if (hr <= (hl + 2 | 0)) {
     return {
@@ -95,36 +72,13 @@ function bal(l, v, r) {
       r: r
     };
   }
-  if (r !== undefined) {
-    let rl = r.l;
-    let rr = r.r;
-    if (heightGe(rr, rl)) {
-      return create(create(l, v, rl), r.v, rr);
-    }
-    if (rl !== undefined) {
-      return create(create(l, v, rl.l), rl.v, create(rl.r, r.v, rr));
-    }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLset.res",
-              115,
-              18
-            ]
-          }
-        });
+  let rl = r.l;
+  let rr = r.r;
+  if (heightGe(rr, rl)) {
+    return create(create(l, v, rl), r.v, rr);
+  } else {
+    return create(create(l, v, rl.l), rl.v, create(rl.r, r.v, rr));
   }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLset.res",
-            109,
-            14
-          ]
-        }
-      });
 }
 
 function min0Aux(_n) {
@@ -804,104 +758,56 @@ function getExn(_n, x, cmp) {
 
 function rotateWithLeftChild(k2) {
   let k1 = k2.l;
-  if (k1 !== undefined) {
-    k2.l = k1.r;
-    k1.r = k2;
-    let n = k2.l;
-    let hlk2 = n !== undefined ? n.h : 0;
-    let n$1 = k2.r;
-    let hrk2 = n$1 !== undefined ? n$1.h : 0;
-    k2.h = (
-      hlk2 > hrk2 ? hlk2 : hrk2
-    ) + 1 | 0;
-    let n$2 = k1.l;
-    let hlk1 = n$2 !== undefined ? n$2.h : 0;
-    let hk2 = k2.h;
-    k1.h = (
-      hlk1 > hk2 ? hlk1 : hk2
-    ) + 1 | 0;
-    return k1;
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLset.res",
-            633,
-            12
-          ]
-        }
-      });
+  k2.l = k1.r;
+  k1.r = k2;
+  let n = k2.l;
+  let hlk2 = n !== undefined ? n.h : 0;
+  let n$1 = k2.r;
+  let hrk2 = n$1 !== undefined ? n$1.h : 0;
+  k2.h = (
+    hlk2 > hrk2 ? hlk2 : hrk2
+  ) + 1 | 0;
+  let n$2 = k1.l;
+  let hlk1 = n$2 !== undefined ? n$2.h : 0;
+  let hk2 = k2.h;
+  k1.h = (
+    hlk1 > hk2 ? hlk1 : hk2
+  ) + 1 | 0;
+  return k1;
 }
 
 function rotateWithRightChild(k1) {
   let k2 = k1.r;
-  if (k2 !== undefined) {
-    k1.r = k2.l;
-    k2.l = k1;
-    let n = k1.l;
-    let hlk1 = n !== undefined ? n.h : 0;
-    let n$1 = k1.r;
-    let hrk1 = n$1 !== undefined ? n$1.h : 0;
-    k1.h = (
-      hlk1 > hrk1 ? hlk1 : hrk1
-    ) + 1 | 0;
-    let n$2 = k2.r;
-    let hrk2 = n$2 !== undefined ? n$2.h : 0;
-    let hk1 = k1.h;
-    k2.h = (
-      hrk2 > hk1 ? hrk2 : hk1
-    ) + 1 | 0;
-    return k2;
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLset.res",
-            646,
-            12
-          ]
-        }
-      });
+  k1.r = k2.l;
+  k2.l = k1;
+  let n = k1.l;
+  let hlk1 = n !== undefined ? n.h : 0;
+  let n$1 = k1.r;
+  let hrk1 = n$1 !== undefined ? n$1.h : 0;
+  k1.h = (
+    hlk1 > hrk1 ? hlk1 : hrk1
+  ) + 1 | 0;
+  let n$2 = k2.r;
+  let hrk2 = n$2 !== undefined ? n$2.h : 0;
+  let hk1 = k1.h;
+  k2.h = (
+    hrk2 > hk1 ? hrk2 : hk1
+  ) + 1 | 0;
+  return k2;
 }
 
 function doubleWithLeftChild(k3) {
   let k3l = k3.l;
-  if (k3l !== undefined) {
-    let v = rotateWithRightChild(k3l);
-    k3.l = v;
-    return rotateWithLeftChild(k3);
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLset.res",
-            663,
-            12
-          ]
-        }
-      });
+  let v = rotateWithRightChild(k3l);
+  k3.l = v;
+  return rotateWithLeftChild(k3);
 }
 
 function doubleWithRightChild(k2) {
   let k2r = k2.r;
-  if (k2r !== undefined) {
-    let v = rotateWithLeftChild(k2r);
-    k2.r = v;
-    return rotateWithRightChild(k2);
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLset.res",
-            672,
-            12
-          ]
-        }
-      });
+  let v = rotateWithLeftChild(k2r);
+  k2.r = v;
+  return rotateWithRightChild(k2);
 }
 
 function heightUpdateMutate(t) {
@@ -921,46 +827,22 @@ function balMutate(nt) {
   let hl = l !== undefined ? l.h : 0;
   let hr = r !== undefined ? r.h : 0;
   if (hl > (2 + hr | 0)) {
-    if (l !== undefined) {
-      let ll = l.l;
-      let lr = l.r;
-      if (heightGe(ll, lr)) {
-        return heightUpdateMutate(rotateWithLeftChild(nt));
-      } else {
-        return heightUpdateMutate(doubleWithLeftChild(nt));
-      }
+    let ll = l.l;
+    let lr = l.r;
+    if (heightGe(ll, lr)) {
+      return heightUpdateMutate(rotateWithLeftChild(nt));
+    } else {
+      return heightUpdateMutate(doubleWithLeftChild(nt));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLset.res",
-              690,
-              14
-            ]
-          }
-        });
   }
   if (hr > (2 + hl | 0)) {
-    if (r !== undefined) {
-      let rl = r.l;
-      let rr = r.r;
-      if (heightGe(rr, rl)) {
-        return heightUpdateMutate(rotateWithRightChild(nt));
-      } else {
-        return heightUpdateMutate(doubleWithRightChild(nt));
-      }
+    let rl = r.l;
+    let rr = r.r;
+    if (heightGe(rr, rl)) {
+      return heightUpdateMutate(rotateWithRightChild(nt));
+    } else {
+      return heightUpdateMutate(doubleWithRightChild(nt));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLset.res",
-              700,
-              14
-            ]
-          }
-        });
   }
   nt.h = (
     hl > hr ? hl : hr

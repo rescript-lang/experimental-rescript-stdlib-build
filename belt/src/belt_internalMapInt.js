@@ -200,24 +200,12 @@ function mergeU(s1, s2, f) {
   } else if (s2 === undefined) {
     return;
   }
-  if (s2 !== undefined) {
-    let v2 = s2.k;
-    let d2 = s2.v;
-    let l2 = s2.l;
-    let r2 = s2.r;
-    let match$1 = split(v2, s1);
-    return Belt_internalAVLtree.concatOrJoin(mergeU(match$1[0], l2, f), v2, f(v2, match$1[1], Caml_option.some(d2)), mergeU(match$1[2], r2, f));
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalMapInt.res",
-            187,
-            9
-          ]
-        }
-      });
+  let v2 = s2.k;
+  let d2 = s2.v;
+  let l2 = s2.l;
+  let r2 = s2.r;
+  let match$1 = split(v2, s1);
+  return Belt_internalAVLtree.concatOrJoin(mergeU(match$1[0], l2, f), v2, f(v2, match$1[1], Caml_option.some(d2)), mergeU(match$1[2], r2, f));
 }
 
 function merge(s1, s2, f) {

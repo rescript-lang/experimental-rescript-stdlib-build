@@ -77,36 +77,13 @@ function bal(l, x, d, r) {
   let hl = l !== undefined ? l.h : 0;
   let hr = r !== undefined ? r.h : 0;
   if (hl > (hr + 2 | 0)) {
-    if (l !== undefined) {
-      let ll = l.l;
-      let lr = l.r;
-      if (treeHeight(ll) >= treeHeight(lr)) {
-        return create(ll, l.k, l.v, create(lr, x, d, r));
-      }
-      if (lr !== undefined) {
-        return create(create(ll, l.k, l.v, lr.l), lr.k, lr.v, create(lr.r, x, d, r));
-      }
-      throw new Error("Assert_failure", {
-            cause: {
-              RE_EXN_ID: "Assert_failure",
-              _1: [
-                "belt_internalAVLtree.res",
-                97,
-                18
-              ]
-            }
-          });
+    let ll = l.l;
+    let lr = l.r;
+    if (treeHeight(ll) >= treeHeight(lr)) {
+      return create(ll, l.k, l.v, create(lr, x, d, r));
+    } else {
+      return create(create(ll, l.k, l.v, lr.l), lr.k, lr.v, create(lr.r, x, d, r));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              91,
-              14
-            ]
-          }
-        });
   }
   if (hr <= (hl + 2 | 0)) {
     return {
@@ -117,36 +94,13 @@ function bal(l, x, d, r) {
       r: r
     };
   }
-  if (r !== undefined) {
-    let rl = r.l;
-    let rr = r.r;
-    if (treeHeight(rr) >= treeHeight(rl)) {
-      return create(create(l, x, d, rl), r.k, r.v, rr);
-    }
-    if (rl !== undefined) {
-      return create(create(l, x, d, rl.l), rl.k, rl.v, create(rl.r, r.k, r.v, rr));
-    }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              111,
-              18
-            ]
-          }
-        });
+  let rl = r.l;
+  let rr = r.r;
+  if (treeHeight(rr) >= treeHeight(rl)) {
+    return create(create(l, x, d, rl), r.k, r.v, rr);
+  } else {
+    return create(create(l, x, d, rl.l), rl.k, rl.v, create(rl.r, r.k, r.v, rr));
   }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLtree.res",
-            105,
-            14
-          ]
-        }
-      });
 }
 
 function minKey0Aux(_n) {
@@ -1009,102 +963,48 @@ function has(_n, x, cmp) {
 
 function rotateWithLeftChild(k2) {
   let k1 = k2.l;
-  if (k1 !== undefined) {
-    k2.l = k1.r;
-    k1.r = k2;
-    let hlk2 = treeHeight(k2.l);
-    let hrk2 = treeHeight(k2.r);
-    k2.h = (
-      hlk2 > hrk2 ? hlk2 : hrk2
-    ) + 1 | 0;
-    let hlk1 = treeHeight(k1.l);
-    let hk2 = k2.h;
-    k1.h = (
-      hlk1 > hk2 ? hlk1 : hk2
-    ) + 1 | 0;
-    return k1;
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLtree.res",
-            804,
-            12
-          ]
-        }
-      });
+  k2.l = k1.r;
+  k1.r = k2;
+  let hlk2 = treeHeight(k2.l);
+  let hrk2 = treeHeight(k2.r);
+  k2.h = (
+    hlk2 > hrk2 ? hlk2 : hrk2
+  ) + 1 | 0;
+  let hlk1 = treeHeight(k1.l);
+  let hk2 = k2.h;
+  k1.h = (
+    hlk1 > hk2 ? hlk1 : hk2
+  ) + 1 | 0;
+  return k1;
 }
 
 function rotateWithRightChild(k1) {
   let k2 = k1.r;
-  if (k2 !== undefined) {
-    k1.r = k2.l;
-    k2.l = k1;
-    let hlk1 = treeHeight(k1.l);
-    let hrk1 = treeHeight(k1.r);
-    k1.h = (
-      hlk1 > hrk1 ? hlk1 : hrk1
-    ) + 1 | 0;
-    let hrk2 = treeHeight(k2.r);
-    let hk1 = k1.h;
-    k2.h = (
-      hrk2 > hk1 ? hrk2 : hk1
-    ) + 1 | 0;
-    return k2;
-  }
-  throw new Error("Assert_failure", {
-        cause: {
-          RE_EXN_ID: "Assert_failure",
-          _1: [
-            "belt_internalAVLtree.res",
-            817,
-            12
-          ]
-        }
-      });
+  k1.r = k2.l;
+  k2.l = k1;
+  let hlk1 = treeHeight(k1.l);
+  let hrk1 = treeHeight(k1.r);
+  k1.h = (
+    hlk1 > hrk1 ? hlk1 : hrk1
+  ) + 1 | 0;
+  let hrk2 = treeHeight(k2.r);
+  let hk1 = k1.h;
+  k2.h = (
+    hrk2 > hk1 ? hrk2 : hk1
+  ) + 1 | 0;
+  return k2;
 }
 
 function doubleWithLeftChild(k3) {
   let x = k3.l;
-  let k3l;
-  if (x !== undefined) {
-    k3l = x;
-  } else {
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              833,
-              12
-            ]
-          }
-        });
-  }
-  let v = rotateWithRightChild(k3l);
+  let v = rotateWithRightChild(x);
   k3.l = v;
   return rotateWithLeftChild(k3);
 }
 
 function doubleWithRightChild(k2) {
   let x = k2.r;
-  let k2r;
-  if (x !== undefined) {
-    k2r = x;
-  } else {
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              843,
-              12
-            ]
-          }
-        });
-  }
-  let v = rotateWithLeftChild(k2r);
+  let v = rotateWithLeftChild(x);
   k2.r = v;
   return rotateWithRightChild(k2);
 }
@@ -1124,46 +1024,22 @@ function balMutate(nt) {
   let hl = treeHeight(l);
   let hr = treeHeight(r);
   if (hl > (2 + hr | 0)) {
-    if (l !== undefined) {
-      let ll = l.l;
-      let lr = l.r;
-      if (heightGe(ll, lr)) {
-        return heightUpdateMutate(rotateWithLeftChild(nt));
-      } else {
-        return heightUpdateMutate(doubleWithLeftChild(nt));
-      }
+    let ll = l.l;
+    let lr = l.r;
+    if (heightGe(ll, lr)) {
+      return heightUpdateMutate(rotateWithLeftChild(nt));
+    } else {
+      return heightUpdateMutate(doubleWithLeftChild(nt));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              862,
-              14
-            ]
-          }
-        });
   }
   if (hr > (2 + hl | 0)) {
-    if (r !== undefined) {
-      let rl = r.l;
-      let rr = r.r;
-      if (heightGe(rr, rl)) {
-        return heightUpdateMutate(rotateWithRightChild(nt));
-      } else {
-        return heightUpdateMutate(doubleWithRightChild(nt));
-      }
+    let rl = r.l;
+    let rr = r.r;
+    if (heightGe(rr, rl)) {
+      return heightUpdateMutate(rotateWithRightChild(nt));
+    } else {
+      return heightUpdateMutate(doubleWithRightChild(nt));
     }
-    throw new Error("Assert_failure", {
-          cause: {
-            RE_EXN_ID: "Assert_failure",
-            _1: [
-              "belt_internalAVLtree.res",
-              872,
-              14
-            ]
-          }
-        });
   }
   nt.h = (
     hl > hr ? hl : hr
