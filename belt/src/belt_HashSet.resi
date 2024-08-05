@@ -34,8 +34,8 @@ different _hash_ functions will have different type.
 ```rescript
 module I0 = unpack(
   Belt.Id.hashableU(
-    ~hash=(. a: int) => land(a, 65535),
-    ~eq=(. a, b) => a == b,
+    ~hash=(a: int) => land(a, 65535),
+    ~eq=(a, b) => a == b,
   )
 )
 
@@ -43,8 +43,8 @@ let s0 = Belt.HashSet.make(~id=module(I0), ~hintSize=40)
 
 module I1 = unpack(
   Belt.Id.hashableU(
-    ~hash=(. a: int) => land(a, 255),
-    ~eq=(. a, b) => a == b,
+    ~hash=(a: int) => land(a, 255),
+    ~eq=(a, b) => a == b,
   )
 )
 
