@@ -217,7 +217,3 @@ let linear = (h, f) => {
 let keysToArray = h => linear(h, x => x.key)
 let valuesToArray = h => linear(h, x => x.value)
 let toArray = h => linear(h, x => (x.key, x.value))
-
-let forEachU = forEach
-let keepMapInPlaceU = keepMapInPlace
-let reduceU = reduce

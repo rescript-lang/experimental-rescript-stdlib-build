@@ -33,18 +33,12 @@ and t<'hash, 'eq, 'a, 'b> = C.container<'hash, 'eq, bucket<'a, 'b>>
 
 let copy: t<'hash, 'eq, 'a, 'b> => t<'hash, 'eq, 'a, 'b>
 
-@deprecated("Use `forEach` instead")
-let forEachU: (t<_, _, 'a, 'b>, ('a, 'b) => 'c) => unit
 let forEach: (t<_, _, 'a, 'b>, ('a, 'b) => 'c) => unit
 
-@deprecated("Use `reduce` instead")
-let reduceU: (t<_, _, 'a, 'b>, 'c, ('c, 'a, 'b) => 'c) => 'c
 let reduce: (t<_, _, 'a, 'b>, 'c, ('c, 'a, 'b) => 'c) => 'c
 
 let logStats: t<_> => unit
 
-@deprecated("Use `keepMapInPlace` instead")
-let keepMapInPlaceU: (t<_, _, 'a, 'b>, ('a, 'b) => option<'b>) => unit
 let keepMapInPlace: (t<_, _, 'a, 'b>, ('a, 'b) => option<'b>) => unit
 
 let fillArray: (int, array<('a, 'b)>, bucket<'a, 'b>) => int

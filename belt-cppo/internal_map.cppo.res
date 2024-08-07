@@ -193,7 +193,6 @@ let rec merge = (s1, s2, f) =>
   | _ => assert(false)
   }
 
-
 let rec compareAux = (e1, e2, vcmp) =>
   switch (e1, e2) {
   | (list{h1, ...t1}, list{h2, ...t2}) =>

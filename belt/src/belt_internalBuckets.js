@@ -255,21 +255,12 @@ function toArray(h) {
 
 let C;
 
-let forEachU = forEach;
-
-let reduceU = reduce;
-
-let keepMapInPlaceU = keepMapInPlace;
-
 export {
   C,
   copy,
-  forEachU,
   forEach,
-  reduceU,
   reduce,
   logStats,
-  keepMapInPlaceU,
   keepMapInPlace,
   fillArray,
   keysToArray,

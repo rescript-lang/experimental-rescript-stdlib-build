@@ -32,7 +32,7 @@ let forEach = (d, f) => N.forEach(d.data, f)
 let map = (d, f) => {data: N.map(d.data, f)}
 let mapWithKey = (d, f) => {data: N.mapWithKey(d.data, f)}
 let reduce = (d, acc, f) => N.reduce(d.data, acc, f)
-let every= (d, f) => N.every(d.data, f)
+let every = (d, f) => N.every(d.data, f)
 let some = (d, f) => N.some(d.data, f)
 let size = d => N.size(d.data)
 let toList = d => N.toList(d.data)
