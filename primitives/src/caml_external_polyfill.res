@@ -23,7 +23,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. */
 
 type global
-let getGlobalThis: (. unit) => global = %raw(` function(){
+let getGlobalThis: unit => global = %raw(` function(){
   if (typeof globalThis !== 'undefined') return globalThis;
 	if (typeof self !== 'undefined') return self;
 	if (typeof window !== 'undefined') return window;
@@ -33,7 +33,7 @@ let getGlobalThis: (. unit) => global = %raw(` function(){
 }`)
 
 type dyn
-let resolve: (. string) => dyn = %raw(`function(s){
+let resolve: string => dyn = %raw(`function(s){
   var myGlobal = getGlobalThis();
   if (myGlobal[s] === undefined){
     throw new Error(s + " not polyfilled by ReScript yet\n")

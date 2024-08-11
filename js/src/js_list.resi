@@ -42,30 +42,30 @@ let revAppend: (t<'a>, t<'a>) => t<'a>
 
 let rev: t<'a> => t<'a>
 
-let mapRev: ((. 'a) => 'b, t<'a>) => t<'b>
+let mapRev: ('a => 'b, t<'a>) => t<'b>
 
-let map: ((. 'a) => 'b, t<'a>) => t<'b>
+let map: ('a => 'b, t<'a>) => t<'b>
 
-let iter: ((. 'a) => unit, t<'a>) => unit
+let iter: ('a => unit, t<'a>) => unit
 
-let iteri: ((. int, 'a) => unit, t<'a>) => unit
+let iteri: ((int, 'a) => unit, t<'a>) => unit
 
 /** Application order is left to right, tail recurisve */
-let foldLeft: ((. 'a, 'b) => 'a, 'a, list<'b>) => 'a
+let foldLeft: (('a, 'b) => 'a, 'a, list<'b>) => 'a
 
 /** Application order is right to left tail-recursive. */
-let foldRight: ((. 'a, 'b) => 'b, list<'a>, 'b) => 'b
+let foldRight: (('a, 'b) => 'b, list<'a>, 'b) => 'b
 
 let flatten: t<t<'a>> => t<'a>
 
-let filter: ((. 'a) => bool, t<'a>) => t<'a>
+let filter: ('a => bool, t<'a>) => t<'a>
 
-let filterMap: ((. 'a) => option<'b>, t<'a>) => t<'b>
+let filterMap: ('a => option<'b>, t<'a>) => t<'b>
 
-let countBy: ((. 'a) => bool, list<'a>) => int
+let countBy: ('a => bool, list<'a>) => int
 
-let init: (int, (. int) => 'a) => t<'a>
+let init: (int, int => 'a) => t<'a>
 
 let toVector: t<'a> => array<'a>
 
-let equal: ((. 'a, 'a) => bool, list<'a>, list<'a>) => bool
+let equal: (('a, 'a) => bool, list<'a>, list<'a>) => bool

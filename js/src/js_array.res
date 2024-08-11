@@ -99,7 +99,7 @@ let code = s => Js.String.charCodeAt(0, s)
 Js.Array.fromMap(strArr, code) == [97.0, 98.0, 99.0, 100.0]
 ```
 */
-external fromMap: (array_like<'a>, ('a => 'b)) => array<'b> = "Array.from"
+external fromMap: (array_like<'a>, 'a => 'b) => array<'b> = "Array.from"
 
 /* ES2015 */
 
@@ -689,7 +689,7 @@ Js.Array.every(isEven, [6, 22, 8, 4]) == true
 Js.Array.every(isEven, [6, 22, 7, 4]) == false
 ```
 */
-external every: (('a => bool)) => bool = "every"
+external every: ('a => bool) => bool = "every"
 
 @send.pipe(: t<'a> as 'this)
 /**
@@ -718,7 +718,7 @@ let nonEmpty = s => s != ""
 Js.Array.filter(nonEmpty, ["abc", "", "", "def", "ghi"]) == ["abc", "def", "ghi"]
 ```
 */
-external filter: (('a => bool)) => 'this = "filter"
+external filter: ('a => bool) => 'this = "filter"
 
 @send.pipe(: t<'a> as 'this)
 /**
@@ -756,7 +756,7 @@ Js.Array.find(x => x < 0, [33, 22, -55, 77, -44]) == Some(-55)
 Js.Array.find(x => x < 0, [33, 22, 55, 77, 44]) == None
 ```
 */
-external find: (('a => bool)) => option<'a> = "find"
+external find: ('a => bool) => option<'a> = "find"
 
 @send.pipe(: t<'a> as 'this)
 @return(nullable)
@@ -786,7 +786,7 @@ Js.Array.findIndex(x => x < 0, [33, 22, -55, 77, -44]) == 2
 Js.Array.findIndex(x => x < 0, [33, 22, 55, 77, 44]) == -1
 ```
 */
-external findIndex: (('a => bool)) => int = "findIndex"
+external findIndex: ('a => bool) => int = "findIndex"
 
 @send.pipe(: t<'a> as 'this)
 /**
@@ -815,7 +815,7 @@ The `forEach()` function applies the function given as the first argument to eac
 Js.Array.forEach(x => Js.log(x), ["a", "b", "c"]) == ()
 ```
 */
-external forEach: (('a => unit)) => unit = "forEach"
+external forEach: ('a => unit) => unit = "forEach"
 
 @send.pipe(: t<'a> as 'this)
 /**
@@ -849,7 +849,7 @@ Js.Array.map(x => x * x, [12, 4, 8]) == [144, 16, 64]
 Js.Array.map(Js.String.length, ["animal", "vegetable", "mineral"]) == [6, 9, 7]
 ```
 */
-external map: (('a => 'b)) => t<'b> = "map"
+external map: ('a => 'b) => t<'b> = "map"
 
 @send.pipe(: t<'a> as 'this)
 /**
@@ -1020,7 +1020,7 @@ Js.Array.some(isEven, [3, 7, 5, 2, 9]) == true
 Js.Array.some(isEven, [3, 7, 5, 1, 9]) == false
 ```
 */
-external some: (('a => bool)) => bool = "some"
+external some: ('a => bool) => bool = "some"
 
 @send.pipe(: t<'a> as 'this)
 /**
