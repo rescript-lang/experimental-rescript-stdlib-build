@@ -44,8 +44,7 @@ type error
 */
 
 @new
-external make: ((~resolve: 'a => unit, ~reject: exn => unit) => unit) => promise<'a> =
-  "Promise"
+external make: ((~resolve: 'a => unit, ~reject: exn => unit) => unit) => promise<'a> = "Promise"
 
 /* `make (fun resolve reject -> .. )` */
 @val @scope("Promise") external resolve: 'a => promise<'a> = "resolve"
