@@ -78,7 +78,7 @@ let rev = l => revAppend(l, list{})
 let rec mapRevAux = (f, acc, ls) =>
   switch ls {
   | list{} => acc
-  | list{a, ...l} => mapRevAux(f, list{f(. a), ...acc}, l)
+  | list{a, ...l} => mapRevAux(f, list{f(a), ...acc}, l)
   }
 
 let mapRev = (f, ls) => mapRevAux(f, list{}, ls)
@@ -89,7 +89,7 @@ let rec iter = (f, x) =>
   switch x {
   | list{} => ()
   | list{a, ...l} =>
-    f(. a)
+    f(a)
     iter(f, l)
   }
 
@@ -97,7 +97,7 @@ let rec iteri = (i, f, x) =>
   switch x {
   | list{} => ()
   | list{a, ...l} =>
-    f(. i, a)
+    f(i, a)
     iteri(i + 1, f, l)
   }
 
@@ -106,7 +106,7 @@ let iteri = (f, l) => iteri(0, f, l)
 let rec foldLeft = (f, accu, l) =>
   switch l {
   | list{} => accu
-  | list{a, ...l} => foldLeft(f, f(. accu, a), l)
+  | list{a, ...l} => foldLeft(f, f(accu, a), l)
   }
 
 let foldRightMaxStack = 1000
@@ -114,7 +114,7 @@ let foldRightMaxStack = 1000
 let rec tailLoop = (f, acc, x) =>
   switch x {
   | list{} => acc
-  | list{h, ...t} => tailLoop(f, f(. h, acc), t)
+  | list{h, ...t} => tailLoop(f, f(h, acc), t)
   }
 
 let foldRight = (f, l, init) => {
@@ -123,9 +123,9 @@ let foldRight = (f, l, init) => {
     | list{} => init
     | list{h, ...t} =>
       if n < foldRightMaxStack {
-        f(. h, loop(n + 1, t))
+        f(h, loop(n + 1, t))
       } else {
-        f(. h, tailLoop(f, init, rev(t)))
+        f(h, tailLoop(f, init, rev(t)))
       }
     }
 
@@ -144,7 +144,7 @@ let rec filterRevAux = (f, acc, xs) =>
   switch xs {
   | list{} => acc
   | list{y, ...ys} =>
-    switch f(. y) {
+    switch f(y) {
     | false => filterRevAux(f, acc, ys)
     | true => filterRevAux(f, list{y, ...acc}, ys)
     }
@@ -152,11 +152,11 @@ let rec filterRevAux = (f, acc, xs) =>
 
 let filter = (f, xs) => rev(filterRevAux(f, list{}, xs))
 
-let rec filterMapRevAux = (f: (. 'a) => option<'b>, acc, xs) =>
+let rec filterMapRevAux = (f: 'a => option<'b>, acc, xs) =>
   switch xs {
   | list{} => acc
   | list{y, ...ys} =>
-    switch f(. y) {
+    switch f(y) {
     | None => filterMapRevAux(f, acc, ys)
     | Some(z) => filterMapRevAux(f, list{z, ...acc}, ys)
     }
@@ -170,7 +170,7 @@ let rec countByAux = (f, acc, xs) =>
   | list{y, ...ys} =>
     countByAux(
       f,
-      if f(. y) {
+      if f(y) {
         acc + 1
       } else {
         acc
@@ -204,7 +204,7 @@ let rec equal = (cmp, xs, ys) =>
   switch (xs, ys) {
   | (list{}, list{}) => true
   | (list{x, ...xs}, list{y, ...ys}) =>
-    if cmp(. x, y) {
+    if cmp(x, y) {
       equal(cmp, xs, ys)
     } else {
       false

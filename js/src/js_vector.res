@@ -41,7 +41,7 @@ let filterInPlace = (p, a) => {
   let j = ref(0)
   while i.contents < Js_array2.length(a) {
     let v = Js_array2.unsafe_get(a, i.contents)
-    if p(. v) {
+    if p(v) {
       Js_array2.unsafe_set(a, j.contents, v)
       j.contents = j.contents + 1
     }
@@ -59,12 +59,12 @@ let memByRef = (x, xs) => Js_array2.indexOf(xs, x) >= 0
 
 let iter = (f, xs) =>
   for i in 0 to Js_array2.length(xs) - 1 {
-    f(. Js_array2.unsafe_get(xs, i))
+    f(Js_array2.unsafe_get(xs, i))
   }
 
 let iteri = (f, a) =>
   for i in 0 to length(a) - 1 {
-    f(. i, unsafe_get(a, i))
+    f(i, unsafe_get(a, i))
   }
 
 @new external createUnsafe: int => t<'a> = "Array"
@@ -92,7 +92,7 @@ let toList = a => {
 let init = (n, f) => {
   let v = createUnsafe(n)
   for i in 0 to n - 1 {
-    unsafe_set(v, i, f(. i))
+    unsafe_set(v, i, f(i))
   }
   v
 }
@@ -110,7 +110,7 @@ let map = (f, a) => {
   let l = Js_array2.length(a)
   let r = createUnsafe(l)
   for i in 0 to l - 1 {
-    unsafe_set(r, i, f(. unsafe_get(a, i)))
+    unsafe_set(r, i, f(unsafe_get(a, i)))
   }
   r
 }
@@ -118,7 +118,7 @@ let map = (f, a) => {
 let foldLeft = (f, x, a) => {
   let r = ref(x)
   for i in 0 to length(a) - 1 {
-    r.contents = f(. r.contents, unsafe_get(a, i))
+    r.contents = f(r.contents, unsafe_get(a, i))
   }
   r.contents
 }
@@ -126,7 +126,7 @@ let foldLeft = (f, x, a) => {
 let foldRight = (f, a, x) => {
   let r = ref(x)
   for i in length(a) - 1 downto 0 {
-    r.contents = f(. unsafe_get(a, i), r.contents)
+    r.contents = f(unsafe_get(a, i), r.contents)
   }
   r.contents
 }
@@ -138,7 +138,7 @@ let mapi = (f, a) => {
   } else {
     let r = createUnsafe(l)
     for i in 0 to l - 1 {
-      unsafe_set(r, i, f(. i, unsafe_get(a, i)))
+      unsafe_set(r, i, f(i, unsafe_get(a, i)))
     }
     r
   }

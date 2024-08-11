@@ -26,7 +26,7 @@
 
 type t<'a> = array<'a>
 
-let filterInPlace: ((. 'a) => bool, t<'a>) => unit
+let filterInPlace: ('a => bool, t<'a>) => unit
 let empty: t<'a> => unit
 let pushBack: ('a, t<'a>) => unit
 
@@ -34,8 +34,8 @@ let pushBack: ('a, t<'a>) => unit
 let copy: t<'a> => t<'a>
 
 let memByRef: ('a, t<'a>) => bool
-let iter: ((. 'a) => unit, t<'a>) => unit
-let iteri: ((. int, 'a) => unit, t<'a>) => unit
+let iter: ('a => unit, t<'a>) => unit
+let iteri: ((int, 'a) => unit, t<'a>) => unit
 
 /* [@@deprecated "Use Js.List.toVector instead"] */
 /* val ofList : 'a list -> 'a t */
@@ -43,10 +43,10 @@ let iteri: ((. int, 'a) => unit, t<'a>) => unit
  */
 
 let toList: t<'a> => list<'a>
-let map: ((. 'a) => 'b, t<'a>) => t<'b>
-let mapi: ((. int, 'a) => 'b, t<'a>) => t<'b>
-let foldLeft: ((. 'a, 'b) => 'a, 'a, t<'b>) => 'a
-let foldRight: ((. 'b, 'a) => 'a, t<'b>, 'a) => 'a
+let map: ('a => 'b, t<'a>) => t<'b>
+let mapi: ((int, 'a) => 'b, t<'a>) => t<'b>
+let foldLeft: (('a, 'b) => 'a, 'a, t<'b>) => 'a
+let foldRight: (('b, 'a) => 'a, t<'b>, 'a) => 'a
 
 /** Return the length (number of elements) of the given array. */
 external length: t<'a> => int = "%array_length"
@@ -83,7 +83,7 @@ external make: (int, 'a) => t<'a> = "?make_vect"
 Raises `RangeError` when n is negative.
 n : size
 */
-let init: (int, (. int) => 'a) => t<'a>
+let init: (int, int => 'a) => t<'a>
 
 /** `append(x, a)` returns a fresh vector with `x` appended to `a`. */
 let append: ('a, t<'a>) => t<'a>

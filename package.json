@@ -14,7 +14,9 @@
     "start": "rewatch watch",
     "build": "rewatch",
     "watch": "rewatch watch",
-    "clean": "rewatch clean"
+    "clean": "rewatch clean",
+    "format": "rescript format */src/*.res */src/*.resi",
+    "formatCheck": "rescript format -check */src/*.res */src/*.resi"
   },
   "devDependencies": {
     "@rolandpeelen/rewatch": "^1.0.8"

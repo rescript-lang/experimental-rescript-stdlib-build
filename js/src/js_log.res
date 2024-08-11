@@ -1,5 +1,6 @@
 /** Equivalent to console.log any value */
-@val @scope("console")
+@val
+@scope("console")
 external log: 'a => unit = "log"
 
 @val @scope("console")
@@ -12,5 +13,7 @@ external log3: 'a => 'b => 'c => unit = "log"
 external log4: 'a => 'b => 'c => 'd => unit = "log"
 
 /** A convenience function to console.log more than 4 arguments */
-@val @scope("console") @variadic
+@val
+@scope("console")
+@variadic
 external logMany: array<'a> => unit = "log"
