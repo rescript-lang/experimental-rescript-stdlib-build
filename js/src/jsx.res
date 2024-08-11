@@ -1,7 +1,3 @@
-/*** Internal: use Jsx directly. */
-
-@@uncurried
-
 type element
 type ref
 

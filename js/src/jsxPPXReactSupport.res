@@ -34,8 +34,6 @@
     }
 )
 
-@@uncurried // Can't move this up as @inline not working with uncurried
-
 @module("react")
 external createElement: (Jsx.component<'props>, 'props) => Jsx.element = "createElement"
 
