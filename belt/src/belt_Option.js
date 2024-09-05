@@ -21,10 +21,10 @@ function getExn(x) {
     return Caml_option.valFromOption(x);
   }
   throw new Error("Not_found", {
-        cause: {
-          RE_EXN_ID: "Not_found"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Not_found"
+    }
+  });
 }
 
 function mapWithDefault(opt, $$default, f) {

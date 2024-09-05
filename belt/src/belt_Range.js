@@ -2,13 +2,13 @@
 
 
 function forEach(s, f, action) {
-  for(let i = s; i <= f; ++i){
+  for (let i = s; i <= f; ++i) {
     action(i);
   }
 }
 
 function every(_s, f, p) {
-  while(true) {
+  while (true) {
     let s = _s;
     if (s > f) {
       return true;
@@ -24,7 +24,7 @@ function every(_s, f, p) {
 function everyBy(s, f, step, p) {
   if (step > 0) {
     let _s = s;
-    while(true) {
+    while (true) {
       let s$1 = _s;
       if (s$1 > f) {
         return true;
@@ -41,7 +41,7 @@ function everyBy(s, f, step, p) {
 }
 
 function some(_s, f, p) {
-  while(true) {
+  while (true) {
     let s = _s;
     if (s > f) {
       return false;
@@ -57,7 +57,7 @@ function some(_s, f, p) {
 function someBy(s, f, step, p) {
   if (step > 0) {
     let _s = s;
-    while(true) {
+    while (true) {
       let s$1 = _s;
       if (s$1 > f) {
         return false;

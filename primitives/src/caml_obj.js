@@ -45,46 +45,44 @@ function compare(a, b) {
   let b_type = typeof b;
   switch (a_type) {
     case "bigint" :
-        if (b_type === "bigint") {
-          return Caml.float_compare(a, b);
-        }
-        break;
+      if (b_type === "bigint") {
+        return Caml.float_compare(a, b);
+      }
+      break;
     case "boolean" :
-        if (b_type === "boolean") {
-          return Caml.bool_compare(a, b);
-        }
-        break;
+      if (b_type === "boolean") {
+        return Caml.bool_compare(a, b);
+      }
+      break;
     case "function" :
-        if (b_type === "function") {
-          throw new Error("Invalid_argument", {
-                cause: {
-                  RE_EXN_ID: "Invalid_argument",
-                  _1: "compare: functional value"
-                }
-              });
-        }
-        break;
+      if (b_type === "function") {
+        throw new Error("Invalid_argument", {
+          cause: {
+            RE_EXN_ID: "Invalid_argument",
+            _1: "compare: functional value"
+          }
+        });
+      }
+      break;
     case "number" :
-        if (b_type === "number") {
-          return Caml.float_compare(a, b);
-        }
-        break;
+      if (b_type === "number") {
+        return Caml.float_compare(a, b);
+      }
+      break;
     case "string" :
-        if (b_type === "string") {
-          return Caml.string_compare(a, b);
-        } else {
-          return 1;
-        }
+      if (b_type === "string") {
+        return Caml.string_compare(a, b);
+      } else {
+        return 1;
+      }
     case "undefined" :
-        return -1;
-    default:
-      
+      return -1;
   }
   switch (b_type) {
     case "string" :
-        return -1;
+      return -1;
     case "undefined" :
-        return 1;
+      return 1;
     default:
       if (a_type === "boolean") {
         return 1;
@@ -140,11 +138,11 @@ function compare(a, b) {
       }
       if (tag_a === 251) {
         throw new Error("Invalid_argument", {
-              cause: {
-                RE_EXN_ID: "Invalid_argument",
-                _1: "equal: abstract value"
-              }
-            });
+          cause: {
+            RE_EXN_ID: "Invalid_argument",
+            _1: "equal: abstract value"
+          }
+        });
       }
       if (tag_a !== tag_b) {
         if (tag_a < tag_b) {
@@ -158,7 +156,7 @@ function compare(a, b) {
       if (len_a === len_b) {
         if (Array.isArray(a)) {
           let _i = 0;
-          while(true) {
+          while (true) {
             let i = _i;
             if (i === len_a) {
               return 0;
@@ -177,7 +175,7 @@ function compare(a, b) {
         }
       } else if (len_a < len_b) {
         let _i$1 = 0;
-        while(true) {
+        while (true) {
           let i$1 = _i$1;
           if (i$1 === len_a) {
             return -1;
@@ -191,7 +189,7 @@ function compare(a, b) {
         };
       } else {
         let _i$2 = 0;
-        while(true) {
+        while (true) {
           let i$2 = _i$2;
           if (i$2 === len_b) {
             return 1;
@@ -214,11 +212,11 @@ function aux_obj_compare(a, b) {
   let min_key_rhs = {
     contents: undefined
   };
-  let do_key = function (param) {
+  let do_key = param => {
     let min_key = param[2];
     let b = param[1];
     let a = param[0];
-    return function (key) {
+    return key => {
       if (!(!Object.prototype.hasOwnProperty.call(b, key) || compare(a[key], b[key]) > 0)) {
         return;
       }
@@ -269,11 +267,11 @@ function equal(a, b) {
   let b_type = typeof b;
   if (a_type === "function" || b_type === "function") {
     throw new Error("Invalid_argument", {
-          cause: {
-            RE_EXN_ID: "Invalid_argument",
-            _1: "equal: functional value"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Invalid_argument",
+        _1: "equal: functional value"
+      }
+    });
   }
   if (b_type === "number" || b_type === "bigint" || b_type === "undefined" || b === null) {
     return false;
@@ -285,11 +283,11 @@ function equal(a, b) {
   }
   if (tag_a === 251) {
     throw new Error("Invalid_argument", {
-          cause: {
-            RE_EXN_ID: "Invalid_argument",
-            _1: "equal: abstract value"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Invalid_argument",
+        _1: "equal: abstract value"
+      }
+    });
   }
   if (tag_a !== tag_b) {
     return false;
@@ -299,7 +297,7 @@ function equal(a, b) {
   if (len_a === len_b) {
     if (Array.isArray(a)) {
       let _i = 0;
-      while(true) {
+      while (true) {
         let i = _i;
         if (i === len_a) {
           return true;
@@ -316,14 +314,14 @@ function equal(a, b) {
       let result = {
         contents: true
       };
-      let do_key_a = function (key) {
+      let do_key_a = key => {
         if (!Object.prototype.hasOwnProperty.call(b, key)) {
           result.contents = false;
           return;
         }
         
       };
-      let do_key_b = function (key) {
+      let do_key_b = key => {
         if (!Object.prototype.hasOwnProperty.call(a, key) || !equal(b[key], a[key])) {
           result.contents = false;
           return;

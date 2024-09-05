@@ -104,7 +104,7 @@ function bal(l, x, d, r) {
 }
 
 function minKey0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.l;
     if (n$1 === undefined) {
@@ -130,7 +130,7 @@ function minKeyUndefined(n) {
 }
 
 function maxKey0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.r;
     if (n$1 === undefined) {
@@ -156,7 +156,7 @@ function maxKeyUndefined(n) {
 }
 
 function minKV0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.l;
     if (n$1 === undefined) {
@@ -185,7 +185,7 @@ function minUndefined(n) {
 }
 
 function maxKV0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.r;
     if (n$1 === undefined) {
@@ -229,7 +229,7 @@ function isEmpty(x) {
 }
 
 function stackAllLeft(_v, _s) {
-  while(true) {
+  while (true) {
     let s = _s;
     let v = _v;
     if (v === undefined) {
@@ -269,7 +269,7 @@ function findFirstBy(n, p) {
 }
 
 function forEach(_n, f) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -315,7 +315,7 @@ function mapWithKey(n, f) {
 }
 
 function reduce(_m, _accu, f) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let m = _m;
     if (m === undefined) {
@@ -332,7 +332,7 @@ function reduce(_m, _accu, f) {
 }
 
 function every(_n, p) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return true;
@@ -349,7 +349,7 @@ function every(_n, p) {
 }
 
 function some(_n, p) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return false;
@@ -510,7 +510,7 @@ function size(n) {
 }
 
 function toListAux(_n, _accu) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let n = _n;
     if (n === undefined) {
@@ -537,7 +537,7 @@ function toList(s) {
 }
 
 function checkInvariantInternal(_v) {
-  while(true) {
+  while (true) {
     let v = _v;
     if (v === undefined) {
       return;
@@ -547,15 +547,15 @@ function checkInvariantInternal(_v) {
     let diff = treeHeight(l) - treeHeight(r) | 0;
     if (!(diff <= 2 && diff >= -2)) {
       throw new Error("Assert_failure", {
-            cause: {
-              RE_EXN_ID: "Assert_failure",
-              _1: [
-                "belt_internalAVLtree.res",
-                439,
-                4
-              ]
-            }
-          });
+        cause: {
+          RE_EXN_ID: "Assert_failure",
+          _1: [
+            "belt_internalAVLtree.res",
+            439,
+            4
+          ]
+        }
+      });
     }
     checkInvariantInternal(l);
     _v = r;
@@ -564,7 +564,7 @@ function checkInvariantInternal(_v) {
 }
 
 function fillArrayKey(_n, _i, arr) {
-  while(true) {
+  while (true) {
     let i = _i;
     let n = _n;
     let v = n.k;
@@ -583,7 +583,7 @@ function fillArrayKey(_n, _i, arr) {
 }
 
 function fillArrayValue(_n, _i, arr) {
-  while(true) {
+  while (true) {
     let i = _i;
     let n = _n;
     let l = n.l;
@@ -601,7 +601,7 @@ function fillArrayValue(_n, _i, arr) {
 }
 
 function fillArray(_n, _i, arr) {
-  while(true) {
+  while (true) {
     let i = _i;
     let n = _n;
     let l = n.l;
@@ -655,36 +655,36 @@ function valuesToArray(n) {
 function fromSortedArrayRevAux(arr, off, len) {
   switch (len) {
     case 0 :
-        return;
+      return;
     case 1 :
-        let match = arr[off];
-        return singleton(match[0], match[1]);
+      let match = arr[off];
+      return singleton(match[0], match[1]);
     case 2 :
-        let match_0 = arr[off];
-        let match_1 = arr[off - 1 | 0];
-        let match$1 = match_1;
-        let match$2 = match_0;
-        return {
-          k: match$1[0],
-          v: match$1[1],
-          h: 2,
-          l: singleton(match$2[0], match$2[1]),
-          r: undefined
-        };
+      let match_0 = arr[off];
+      let match_1 = arr[off - 1 | 0];
+      let match$1 = match_1;
+      let match$2 = match_0;
+      return {
+        k: match$1[0],
+        v: match$1[1],
+        h: 2,
+        l: singleton(match$2[0], match$2[1]),
+        r: undefined
+      };
     case 3 :
-        let match_0$1 = arr[off];
-        let match_1$1 = arr[off - 1 | 0];
-        let match_2 = arr[off - 2 | 0];
-        let match$3 = match_2;
-        let match$4 = match_1$1;
-        let match$5 = match_0$1;
-        return {
-          k: match$4[0],
-          v: match$4[1],
-          h: 2,
-          l: singleton(match$5[0], match$5[1]),
-          r: singleton(match$3[0], match$3[1])
-        };
+      let match_0$1 = arr[off];
+      let match_1$1 = arr[off - 1 | 0];
+      let match_2 = arr[off - 2 | 0];
+      let match$3 = match_2;
+      let match$4 = match_1$1;
+      let match$5 = match_0$1;
+      return {
+        k: match$4[0],
+        v: match$4[1],
+        h: 2,
+        l: singleton(match$5[0], match$5[1]),
+        r: singleton(match$3[0], match$3[1])
+      };
     default:
       let nl = len / 2 | 0;
       let left = fromSortedArrayRevAux(arr, off, nl);
@@ -697,36 +697,36 @@ function fromSortedArrayRevAux(arr, off, len) {
 function fromSortedArrayAux(arr, off, len) {
   switch (len) {
     case 0 :
-        return;
+      return;
     case 1 :
-        let match = arr[off];
-        return singleton(match[0], match[1]);
+      let match = arr[off];
+      return singleton(match[0], match[1]);
     case 2 :
-        let match_0 = arr[off];
-        let match_1 = arr[off + 1 | 0];
-        let match$1 = match_1;
-        let match$2 = match_0;
-        return {
-          k: match$1[0],
-          v: match$1[1],
-          h: 2,
-          l: singleton(match$2[0], match$2[1]),
-          r: undefined
-        };
+      let match_0 = arr[off];
+      let match_1 = arr[off + 1 | 0];
+      let match$1 = match_1;
+      let match$2 = match_0;
+      return {
+        k: match$1[0],
+        v: match$1[1],
+        h: 2,
+        l: singleton(match$2[0], match$2[1]),
+        r: undefined
+      };
     case 3 :
-        let match_0$1 = arr[off];
-        let match_1$1 = arr[off + 1 | 0];
-        let match_2 = arr[off + 2 | 0];
-        let match$3 = match_2;
-        let match$4 = match_1$1;
-        let match$5 = match_0$1;
-        return {
-          k: match$4[0],
-          v: match$4[1],
-          h: 2,
-          l: singleton(match$5[0], match$5[1]),
-          r: singleton(match$3[0], match$3[1])
-        };
+      let match_0$1 = arr[off];
+      let match_1$1 = arr[off + 1 | 0];
+      let match_2 = arr[off + 2 | 0];
+      let match$3 = match_2;
+      let match$4 = match_1$1;
+      let match$5 = match_0$1;
+      return {
+        k: match$4[0],
+        v: match$4[1],
+        h: 2,
+        l: singleton(match$5[0], match$5[1]),
+        r: singleton(match$3[0], match$3[1])
+      };
     default:
       let nl = len / 2 | 0;
       let left = fromSortedArrayAux(arr, off, nl);
@@ -746,7 +746,7 @@ function cmp(s1, s2, kcmp, vcmp) {
   if (len1 === len2) {
     let _e1 = stackAllLeft(s1, /* [] */0);
     let _e2 = stackAllLeft(s2, /* [] */0);
-    while(true) {
+    while (true) {
       let e2 = _e2;
       let e1 = _e1;
       if (!e1) {
@@ -782,7 +782,7 @@ function eq(s1, s2, kcmp, veq) {
   if (len1 === len2) {
     let _e1 = stackAllLeft(s1, /* [] */0);
     let _e2 = stackAllLeft(s2, /* [] */0);
-    while(true) {
+    while (true) {
       let e2 = _e2;
       let e1 = _e1;
       if (!e1) {
@@ -806,7 +806,7 @@ function eq(s1, s2, kcmp, veq) {
 }
 
 function get(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -822,7 +822,7 @@ function get(_n, x, cmp) {
 }
 
 function getUndefined(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -838,7 +838,7 @@ function getUndefined(_n, x, cmp) {
 }
 
 function getExn(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n !== undefined) {
       let v = n.k;
@@ -850,15 +850,15 @@ function getExn(_n, x, cmp) {
       continue;
     }
     throw new Error("Not_found", {
-          cause: {
-            RE_EXN_ID: "Not_found"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Not_found"
+      }
+    });
   };
 }
 
 function getWithDefault(_n, x, def, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return def;
@@ -874,7 +874,7 @@ function getWithDefault(_n, x, def, cmp) {
 }
 
 function has(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return false;
@@ -1001,9 +1001,7 @@ function fromArray(xs, cmp) {
   if (len === 0) {
     return;
   }
-  let next = Belt_SortArray.strictlySortedLength(xs, (function (param, param$1) {
-    return cmp(param[0], param$1[0]) < 0;
-  }));
+  let next = Belt_SortArray.strictlySortedLength(xs, (param, param$1) => cmp(param[0], param$1[0]) < 0);
   let result;
   if (next >= 0) {
     result = fromSortedArrayAux(xs, 0, next);
@@ -1011,7 +1009,7 @@ function fromArray(xs, cmp) {
     next = -next | 0;
     result = fromSortedArrayRevAux(xs, next - 1 | 0, next);
   }
-  for(let i = next; i < len; ++i){
+  for (let i = next; i < len; ++i) {
     let match = xs[i];
     result = updateMutate(result, match[0], match[1], cmp);
   }

@@ -82,7 +82,7 @@ function bal(l, v, r) {
 }
 
 function min0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.l;
     if (n$1 === undefined) {
@@ -108,7 +108,7 @@ function minUndefined(n) {
 }
 
 function max0Aux(_n) {
-  while(true) {
+  while (true) {
     let n = _n;
     let n$1 = n.r;
     if (n$1 === undefined) {
@@ -148,7 +148,7 @@ function isEmpty(n) {
 }
 
 function stackAllLeft(_v, _s) {
-  while(true) {
+  while (true) {
     let s = _s;
     let v = _v;
     if (v === undefined) {
@@ -164,7 +164,7 @@ function stackAllLeft(_v, _s) {
 }
 
 function forEach(_n, f) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -177,7 +177,7 @@ function forEach(_n, f) {
 }
 
 function reduce(_s, _accu, f) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let s = _s;
     if (s === undefined) {
@@ -190,7 +190,7 @@ function reduce(_s, _accu, f) {
 }
 
 function every(_n, p) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return true;
@@ -207,7 +207,7 @@ function every(_n, p) {
 }
 
 function some(_n, p) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return false;
@@ -316,7 +316,7 @@ function size(n) {
 }
 
 function toListAux(_n, _accu) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let n = _n;
     if (n === undefined) {
@@ -336,7 +336,7 @@ function toList(s) {
 }
 
 function checkInvariantInternal(_v) {
-  while(true) {
+  while (true) {
     let v = _v;
     if (v === undefined) {
       return;
@@ -350,15 +350,15 @@ function checkInvariantInternal(_v) {
     ) | 0;
     if (!(diff <= 2 && diff >= -2)) {
       throw new Error("Assert_failure", {
-            cause: {
-              RE_EXN_ID: "Assert_failure",
-              _1: [
-                "belt_internalAVLset.res",
-                310,
-                4
-              ]
-            }
-          });
+        cause: {
+          RE_EXN_ID: "Assert_failure",
+          _1: [
+            "belt_internalAVLset.res",
+            310,
+            4
+          ]
+        }
+      });
     }
     checkInvariantInternal(l);
     _v = r;
@@ -367,7 +367,7 @@ function checkInvariantInternal(_v) {
 }
 
 function fillArray(_n, _i, arr) {
-  while(true) {
+  while (true) {
     let i = _i;
     let n = _n;
     let v = n.v;
@@ -386,7 +386,7 @@ function fillArray(_n, _i, arr) {
 }
 
 function fillArrayWithPartition(_n, cursor, arr, p) {
-  while(true) {
+  while (true) {
     let n = _n;
     let v = n.v;
     let l = n.l;
@@ -412,7 +412,7 @@ function fillArrayWithPartition(_n, cursor, arr, p) {
 }
 
 function fillArrayWithFilter(_n, _i, arr, p) {
-  while(true) {
+  while (true) {
     let i = _i;
     let n = _n;
     let v = n.v;
@@ -442,28 +442,28 @@ function toArray(n) {
 function fromSortedArrayRevAux(arr, off, len) {
   switch (len) {
     case 0 :
-        return;
+      return;
     case 1 :
-        return singleton(arr[off]);
+      return singleton(arr[off]);
     case 2 :
-        let x0 = arr[off];
-        let x1 = arr[off - 1 | 0];
-        return {
-          v: x1,
-          h: 2,
-          l: singleton(x0),
-          r: undefined
-        };
+      let x0 = arr[off];
+      let x1 = arr[off - 1 | 0];
+      return {
+        v: x1,
+        h: 2,
+        l: singleton(x0),
+        r: undefined
+      };
     case 3 :
-        let x0$1 = arr[off];
-        let x1$1 = arr[off - 1 | 0];
-        let x2 = arr[off - 2 | 0];
-        return {
-          v: x1$1,
-          h: 2,
-          l: singleton(x0$1),
-          r: singleton(x2)
-        };
+      let x0$1 = arr[off];
+      let x1$1 = arr[off - 1 | 0];
+      let x2 = arr[off - 2 | 0];
+      return {
+        v: x1$1,
+        h: 2,
+        l: singleton(x0$1),
+        r: singleton(x2)
+      };
     default:
       let nl = len / 2 | 0;
       let left = fromSortedArrayRevAux(arr, off, nl);
@@ -476,28 +476,28 @@ function fromSortedArrayRevAux(arr, off, len) {
 function fromSortedArrayAux(arr, off, len) {
   switch (len) {
     case 0 :
-        return;
+      return;
     case 1 :
-        return singleton(arr[off]);
+      return singleton(arr[off]);
     case 2 :
-        let x0 = arr[off];
-        let x1 = arr[off + 1 | 0];
-        return {
-          v: x1,
-          h: 2,
-          l: singleton(x0),
-          r: undefined
-        };
+      let x0 = arr[off];
+      let x1 = arr[off + 1 | 0];
+      return {
+        v: x1,
+        h: 2,
+        l: singleton(x0),
+        r: undefined
+      };
     case 3 :
-        let x0$1 = arr[off];
-        let x1$1 = arr[off + 1 | 0];
-        let x2 = arr[off + 2 | 0];
-        return {
-          v: x1$1,
-          h: 2,
-          l: singleton(x0$1),
-          r: singleton(x2)
-        };
+      let x0$1 = arr[off];
+      let x1$1 = arr[off + 1 | 0];
+      let x2 = arr[off + 2 | 0];
+      return {
+        v: x1$1,
+        h: 2,
+        l: singleton(x0$1),
+        r: singleton(x2)
+      };
     default:
       let nl = len / 2 | 0;
       let left = fromSortedArrayAux(arr, off, nl);
@@ -565,7 +565,7 @@ function partitionCopy(n, p) {
 }
 
 function has(_t, x, cmp) {
-  while(true) {
+  while (true) {
     let t = _t;
     if (t === undefined) {
       return false;
@@ -586,7 +586,7 @@ function cmp(s1, s2, cmp$1) {
   if (len1 === len2) {
     let _e1 = stackAllLeft(s1, /* [] */0);
     let _e2 = stackAllLeft(s2, /* [] */0);
-    while(true) {
+    while (true) {
       let e2 = _e2;
       let e1 = _e1;
       if (!e1) {
@@ -617,7 +617,7 @@ function eq(s1, s2, c) {
 }
 
 function subset(_s1, _s2, cmp) {
-  while(true) {
+  while (true) {
     let s2 = _s2;
     let s1 = _s1;
     if (s1 === undefined) {
@@ -657,7 +657,7 @@ function subset(_s1, _s2, cmp) {
 }
 
 function get(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -673,7 +673,7 @@ function get(_n, x, cmp) {
 }
 
 function getUndefined(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -689,7 +689,7 @@ function getUndefined(_n, x, cmp) {
 }
 
 function getExn(_n, x, cmp) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n !== undefined) {
       let v = n.v;
@@ -701,10 +701,10 @@ function getExn(_n, x, cmp) {
       continue;
     }
     throw new Error("Not_found", {
-          cause: {
-            RE_EXN_ID: "Not_found"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Not_found"
+      }
+    });
   };
 }
 
@@ -827,9 +827,7 @@ function fromArray(xs, cmp) {
   if (len === 0) {
     return;
   }
-  let next = Belt_SortArray.strictlySortedLength(xs, (function (x, y) {
-    return cmp(x, y) < 0;
-  }));
+  let next = Belt_SortArray.strictlySortedLength(xs, (x, y) => cmp(x, y) < 0);
   let result;
   if (next >= 0) {
     result = fromSortedArrayAux(xs, 0, next);
@@ -837,7 +835,7 @@ function fromArray(xs, cmp) {
     next = -next | 0;
     result = fromSortedArrayRevAux(xs, next - 1 | 0, next);
   }
-  for(let i = next; i < len; ++i){
+  for (let i = next; i < len; ++i) {
     result = addMutate(cmp, result, xs[i]);
   }
   return result;

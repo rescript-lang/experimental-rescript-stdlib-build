@@ -3,7 +3,7 @@
 import * as Belt_Array from "./belt_Array.js";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len, lt) {
-  while(true) {
+  while (true) {
     let acc = _acc;
     let prec = _prec;
     if (acc >= len) {
@@ -29,7 +29,7 @@ function strictlySortedLength(xs, lt) {
   if (lt(x0, x1)) {
     let _prec = x1;
     let _acc = 2;
-    while(true) {
+    while (true) {
       let acc = _acc;
       let prec = _prec;
       if (acc >= len) {
@@ -57,7 +57,7 @@ function isSorted(a, cmp) {
   } else {
     let _i = 0;
     let last_bound = len - 1 | 0;
-    while(true) {
+    while (true) {
       let i = _i;
       if (i === last_bound) {
         return true;
@@ -79,7 +79,7 @@ function merge(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs, cmp) 
   let _i2 = src2ofs;
   let _s2 = src2[src2ofs];
   let _d = dstofs;
-  while(true) {
+  while (true) {
     let d = _d;
     let s2 = _s2;
     let i2 = _i2;
@@ -116,7 +116,7 @@ function union(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs, cmp) 
   let _i2 = src2ofs;
   let _s2 = src2[src2ofs];
   let _d = dstofs;
-  while(true) {
+  while (true) {
     let d = _d;
     let s2 = _s2;
     let i2 = _i2;
@@ -179,7 +179,7 @@ function intersect(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs, c
   let _i2 = src2ofs;
   let _s2 = src2[src2ofs];
   let _d = dstofs;
-  while(true) {
+  while (true) {
     let d = _d;
     let s2 = _s2;
     let i2 = _i2;
@@ -228,7 +228,7 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs, cmp) {
   let _i2 = src2ofs;
   let _s2 = src2[src2ofs];
   let _d = dstofs;
-  while(true) {
+  while (true) {
     let d = _d;
     let s2 = _s2;
     let i2 = _i2;
@@ -276,10 +276,10 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs, cmp) {
 }
 
 function insertionSort(src, srcofs, dst, dstofs, len, cmp) {
-  for(let i = 0; i < len; ++i){
+  for (let i = 0; i < len; ++i) {
     let e = src[srcofs + i | 0];
     let j = (dstofs + i | 0) - 1 | 0;
-    while(j >= dstofs && cmp(dst[j], e) > 0) {
+    while (j >= dstofs && cmp(dst[j], e) > 0) {
       dst[j + 1 | 0] = dst[j];
       j = j - 1 | 0;
     };
@@ -334,7 +334,7 @@ function binarySearchBy(sorted, key, cmp) {
   } else {
     let _lo = 0;
     let _hi = len - 1 | 0;
-    while(true) {
+    while (true) {
       let hi$1 = _hi;
       let lo$1 = _lo;
       let mid = (lo$1 + hi$1 | 0) / 2 | 0;

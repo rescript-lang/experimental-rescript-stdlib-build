@@ -16,7 +16,7 @@ function fromInitializer(length, f) {
     return [];
   }
   let arr = new Array(length);
-  for(let i = 0; i < length; ++i){
+  for (let i = 0; i < length; ++i) {
     arr[i] = f(i);
   }
   return arr;
@@ -26,7 +26,7 @@ function equal(a, b, eq) {
   let len = a.length;
   if (len === b.length) {
     let _i = 0;
-    while(true) {
+    while (true) {
       let i = _i;
       if (i === len) {
         return true;
@@ -51,7 +51,7 @@ function compare(a, b, cmp) {
     return 1;
   } else {
     let _i = 0;
-    while(true) {
+    while (true) {
       let i = _i;
       if (i === lenA) {
         return 0;
@@ -118,7 +118,7 @@ function random_int(min, max) {
 
 function shuffle(xs) {
   let len = xs.length;
-  for(let i = 0; i < len; ++i){
+  for (let i = 0; i < len; ++i) {
     swapUnsafe(xs, i, random_int(i, len));
   }
 }
@@ -133,7 +133,7 @@ function filterMap(a, f) {
   let l = a.length;
   let r = new Array(l);
   let j = 0;
-  for(let i = 0; i < l; ++i){
+  for (let i = 0; i < l; ++i) {
     let v = a[i];
     let v$1 = f(v);
     if (v$1 !== undefined) {
@@ -147,14 +147,12 @@ function filterMap(a, f) {
 }
 
 function keepSome(__x) {
-  return filterMap(__x, (function (x) {
-    return x;
-  }));
+  return filterMap(__x, x => x);
 }
 
 function findMap(arr, f) {
   let _i = 0;
-  while(true) {
+  while (true) {
     let i = _i;
     if (i === arr.length) {
       return;
