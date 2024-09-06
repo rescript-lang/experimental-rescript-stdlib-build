@@ -18,10 +18,7 @@
     "format": "rescript format */src/*.res */src/*.resi",
     "formatCheck": "rescript format -check */src/*.res */src/*.resi"
   },
-  "devDependencies": {
-    "@rolandpeelen/rewatch": "^1.0.8"
-  },
   "dependencies": {
-    "rescript": "^12.0.0-alpha.1"
+    "rescript": "^12.0.0-alpha.2"
   }
 }

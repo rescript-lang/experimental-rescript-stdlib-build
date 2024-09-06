@@ -15,10 +15,10 @@ function headExn(x) {
     return x.hd;
   }
   throw new Error("Not_found", {
-        cause: {
-          RE_EXN_ID: "Not_found"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Not_found"
+    }
+  });
 }
 
 function tail(x) {
@@ -33,10 +33,10 @@ function tailExn(x) {
     return x.tl;
   }
   throw new Error("Not_found", {
-        cause: {
-          RE_EXN_ID: "Not_found"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Not_found"
+    }
+  });
 }
 
 function add(xs, x) {
@@ -52,7 +52,7 @@ function get(x, n) {
   } else {
     let _x = x;
     let _n = n;
-    while(true) {
+    while (true) {
       let n$1 = _n;
       let x$1 = _x;
       if (!x$1) {
@@ -71,14 +71,14 @@ function get(x, n) {
 function getExn(x, n) {
   if (n < 0) {
     throw new Error("Not_found", {
-          cause: {
-            RE_EXN_ID: "Not_found"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Not_found"
+      }
+    });
   }
   let _x = x;
   let _n = n;
-  while(true) {
+  while (true) {
     let n$1 = _n;
     let x$1 = _x;
     if (x$1) {
@@ -90,15 +90,15 @@ function getExn(x, n) {
       continue;
     }
     throw new Error("Not_found", {
-          cause: {
-            RE_EXN_ID: "Not_found"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Not_found"
+      }
+    });
   };
 }
 
 function partitionAux(p, _cell, _precX, _precY) {
-  while(true) {
+  while (true) {
     let precY = _precY;
     let precX = _precX;
     let cell = _cell;
@@ -125,7 +125,7 @@ function partitionAux(p, _cell, _precX, _precY) {
 }
 
 function splitAux(_cell, _precX, _precY) {
-  while(true) {
+  while (true) {
     let precY = _precY;
     let precX = _precX;
     let cell = _cell;
@@ -151,7 +151,7 @@ function splitAux(_cell, _precX, _precY) {
 }
 
 function copyAuxCont(_cellX, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -169,7 +169,7 @@ function copyAuxCont(_cellX, _prec) {
 }
 
 function copyAuxWitFilter(f, _cellX, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -193,7 +193,7 @@ function copyAuxWitFilter(f, _cellX, _prec) {
 }
 
 function copyAuxWithFilterIndex(f, _cellX, _prec, _i) {
-  while(true) {
+  while (true) {
     let i = _i;
     let prec = _prec;
     let cellX = _cellX;
@@ -220,7 +220,7 @@ function copyAuxWithFilterIndex(f, _cellX, _prec, _i) {
 }
 
 function copyAuxWitFilterMap(f, _cellX, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -244,7 +244,7 @@ function copyAuxWitFilterMap(f, _cellX, _prec) {
 }
 
 function removeAssocAuxWithMap(_cellX, x, _prec, f) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -268,7 +268,7 @@ function removeAssocAuxWithMap(_cellX, x, _prec, f) {
 }
 
 function setAssocAuxWithMap(_cellX, x, k, _prec, eq) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -298,7 +298,7 @@ function setAssocAuxWithMap(_cellX, x, k, _prec, eq) {
 }
 
 function copyAuxWithMap(_cellX, _prec, f) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     if (!cellX) {
@@ -316,7 +316,7 @@ function copyAuxWithMap(_cellX, _prec, f) {
 }
 
 function zipAux(_cellX, _cellY, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellY = _cellY;
     let cellX = _cellX;
@@ -342,7 +342,7 @@ function zipAux(_cellX, _cellY, _prec) {
 }
 
 function copyAuxWithMap2(f, _cellX, _cellY, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellY = _cellY;
     let cellX = _cellX;
@@ -365,7 +365,7 @@ function copyAuxWithMap2(f, _cellX, _cellY, _prec) {
 }
 
 function copyAuxWithMapI(f, _i, _cellX, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cellX = _cellX;
     let i = _i;
@@ -385,7 +385,7 @@ function copyAuxWithMapI(f, _i, _cellX, _prec) {
 }
 
 function takeAux(_n, _cell, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cell = _cell;
     let n = _n;
@@ -408,7 +408,7 @@ function takeAux(_n, _cell, _prec) {
 }
 
 function splitAtAux(_n, _cell, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let cell = _cell;
     let n = _n;
@@ -457,7 +457,7 @@ function drop(lst, n) {
   } else {
     let _l = lst;
     let _n = n;
-    while(true) {
+    while (true) {
       let n$1 = _n;
       let l = _l;
       if (n$1 === 0) {
@@ -561,7 +561,7 @@ function fromInitializer(n, f) {
   };
   let cur = headX;
   let i = 1;
-  while(i < n) {
+  while (i < n) {
     let v = {
       hd: f(i),
       tl: /* [] */0
@@ -583,7 +583,7 @@ function make(n, v) {
   };
   let cur = headX;
   let i = 1;
-  while(i < n) {
+  while (i < n) {
     let v$1 = {
       hd: v,
       tl: /* [] */0
@@ -598,7 +598,7 @@ function make(n, v) {
 function length(xs) {
   let _x = xs;
   let _acc = 0;
-  while(true) {
+  while (true) {
     let acc = _acc;
     let x = _x;
     if (!x) {
@@ -611,7 +611,7 @@ function length(xs) {
 }
 
 function fillAux(arr, _i, _x) {
-  while(true) {
+  while (true) {
     let x = _x;
     let i = _i;
     if (!x) {
@@ -627,7 +627,7 @@ function fillAux(arr, _i, _x) {
 function fromArray(a) {
   let _i = a.length - 1 | 0;
   let _res = /* [] */0;
-  while(true) {
+  while (true) {
     let res = _res;
     let i = _i;
     if (i < 0) {
@@ -656,7 +656,7 @@ function toShuffled(xs) {
 }
 
 function reverseConcat(_l1, _l2) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -676,7 +676,7 @@ function reverse(l) {
 }
 
 function flatAux(_prec, _xs) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     let prec = _prec;
     if (xs) {
@@ -690,7 +690,7 @@ function flatAux(_prec, _xs) {
 }
 
 function flat(_xs) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return /* [] */0;
@@ -719,7 +719,7 @@ function concatMany(xs) {
   }
   let len$1 = xs.length;
   let v = xs[len$1 - 1 | 0];
-  for(let i = len$1 - 2 | 0; i >= 0; --i){
+  for (let i = len$1 - 2 | 0; i >= 0; --i) {
     v = concat(xs[i], v);
   }
   return v;
@@ -728,7 +728,7 @@ function concatMany(xs) {
 function mapReverse(l, f) {
   let _accu = /* [] */0;
   let _xs = l;
-  while(true) {
+  while (true) {
     let xs = _xs;
     let accu = _accu;
     if (!xs) {
@@ -744,7 +744,7 @@ function mapReverse(l, f) {
 }
 
 function forEach(_xs, f) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return;
@@ -758,7 +758,7 @@ function forEach(_xs, f) {
 function forEachWithIndex(l, f) {
   let _xs = l;
   let _i = 0;
-  while(true) {
+  while (true) {
     let i = _i;
     let xs = _xs;
     if (!xs) {
@@ -772,7 +772,7 @@ function forEachWithIndex(l, f) {
 }
 
 function reduce(_l, _accu, f) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let l = _l;
     if (!l) {
@@ -799,7 +799,7 @@ function reduceReverse(l, acc, f) {
   } else {
     let a = toArray(l);
     let r = acc;
-    for(let i = a.length - 1 | 0; i >= 0; --i){
+    for (let i = a.length - 1 | 0; i >= 0; --i) {
       r = f(r, a[i]);
     }
     return r;
@@ -810,7 +810,7 @@ function reduceWithIndex(l, acc, f) {
   let _l = l;
   let _acc = acc;
   let _i = 0;
-  while(true) {
+  while (true) {
     let i = _i;
     let acc$1 = _acc;
     let l$1 = _l;
@@ -828,7 +828,7 @@ function mapReverse2(l1, l2, f) {
   let _l1 = l1;
   let _l2 = l2;
   let _accu = /* [] */0;
-  while(true) {
+  while (true) {
     let accu = _accu;
     let l2$1 = _l2;
     let l1$1 = _l1;
@@ -849,7 +849,7 @@ function mapReverse2(l1, l2, f) {
 }
 
 function forEach2(_l1, _l2, f) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -866,7 +866,7 @@ function forEach2(_l1, _l2, f) {
 }
 
 function reduce2(_l1, _l2, _accu, f) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let l2 = _l2;
     let l1 = _l1;
@@ -900,7 +900,7 @@ function reduceReverse2(l1, l2, acc, f) {
     let b = toArray(l2);
     let r = acc;
     let len$1 = a.length < b.length ? a.length : b.length;
-    for(let i = len$1 - 1 | 0; i >= 0; --i){
+    for (let i = len$1 - 1 | 0; i >= 0; --i) {
       r = f(r, a[i], b[i]);
     }
     return r;
@@ -908,7 +908,7 @@ function reduceReverse2(l1, l2, acc, f) {
 }
 
 function every(_xs, p) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return true;
@@ -922,7 +922,7 @@ function every(_xs, p) {
 }
 
 function some(_xs, p) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return false;
@@ -936,7 +936,7 @@ function some(_xs, p) {
 }
 
 function every2(_l1, _l2, p) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -955,7 +955,7 @@ function every2(_l1, _l2, p) {
 }
 
 function compareLength(_l1, _l2) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -975,7 +975,7 @@ function compareLength(_l1, _l2) {
 }
 
 function compare(_l1, _l2, p) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -999,7 +999,7 @@ function compare(_l1, _l2, p) {
 }
 
 function equal(_l1, _l2, p) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -1022,7 +1022,7 @@ function equal(_l1, _l2, p) {
 }
 
 function some2(_l1, _l2, p) {
-  while(true) {
+  while (true) {
     let l2 = _l2;
     let l1 = _l1;
     if (!l1) {
@@ -1041,7 +1041,7 @@ function some2(_l1, _l2, p) {
 }
 
 function has(_xs, x, eq) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return false;
@@ -1055,7 +1055,7 @@ function has(_xs, x, eq) {
 }
 
 function getAssoc(_xs, x, eq) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return;
@@ -1070,7 +1070,7 @@ function getAssoc(_xs, x, eq) {
 }
 
 function hasAssoc(_xs, x, eq) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return false;
@@ -1150,7 +1150,7 @@ function sort(xs, cmp) {
 }
 
 function find(_xs, p) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return;
@@ -1165,7 +1165,7 @@ function find(_xs, p) {
 }
 
 function filter(_xs, p) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return /* [] */0;
@@ -1188,7 +1188,7 @@ function filter(_xs, p) {
 function filterWithIndex(xs, p) {
   let _xs = xs;
   let _i = 0;
-  while(true) {
+  while (true) {
     let i = _i;
     let xs$1 = _xs;
     if (!xs$1) {
@@ -1211,7 +1211,7 @@ function filterWithIndex(xs, p) {
 }
 
 function filterMap(_xs, p) {
-  while(true) {
+  while (true) {
     let xs = _xs;
     if (!xs) {
       return /* [] */0;

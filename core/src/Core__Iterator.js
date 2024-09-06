@@ -3,7 +3,7 @@
 
 function forEach(iterator, f) {
   let iteratorDone = false;
-  while(!iteratorDone) {
+  while (!iteratorDone) {
     let match = iterator.next();
     f(match.value);
     iteratorDone = match.done;

@@ -52,7 +52,7 @@ function hash(count, _limit, seed, obj) {
   let num = count;
   push_back(queue, obj);
   num = num - 1 | 0;
-  while(queue.length !== 0 && num > 0) {
+  while (queue.length !== 0 && num > 0) {
     let obj$1 = unsafe_pop(queue);
     if (typeof obj$1 === "number") {
       let u$1 = obj$1 | 0;
@@ -72,7 +72,7 @@ function hash(count, _limit, seed, obj) {
           s = Caml_hash_primitive.hash_mix_int(s, tag);
           let v = size - 1 | 0;
           let block = v < num ? v : num;
-          for(let i = 0; i <= block; ++i){
+          for (let i = 0; i <= block; ++i) {
             push_back(queue, obj$1[i]);
           }
         }
@@ -84,9 +84,7 @@ function hash(count, _limit, seed, obj) {
               ++ size
             }
             return size
-          })(obj$1, (function (v) {
-          push_back(queue, v);
-        }));
+          })(obj$1, v => push_back(queue, v));
         s = Caml_hash_primitive.hash_mix_int(s, (size$1 << 10) | 0);
       }
     }

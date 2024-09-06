@@ -3,7 +3,7 @@
 import * as Belt_Array from "./belt_Array.js";
 
 function copyAuxCont(_c, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let c = _c;
     if (c === undefined) {
@@ -35,7 +35,7 @@ function copyBucket(c) {
 function copyBuckets(buckets) {
   let len = buckets.length;
   let newBuckets = new Array(len);
-  for(let i = 0; i < len; ++i){
+  for (let i = 0; i < len; ++i) {
     newBuckets[i] = copyBucket(buckets[i]);
   }
   return newBuckets;
@@ -51,7 +51,7 @@ function copy(x) {
 }
 
 function bucketLength(_accu, _buckets) {
-  while(true) {
+  while (true) {
     let buckets = _buckets;
     let accu = _accu;
     if (buckets === undefined) {
@@ -64,7 +64,7 @@ function bucketLength(_accu, _buckets) {
 }
 
 function doBucketIter(f, _buckets) {
-  while(true) {
+  while (true) {
     let buckets = _buckets;
     if (buckets === undefined) {
       return;
@@ -77,13 +77,13 @@ function doBucketIter(f, _buckets) {
 
 function forEach(h, f) {
   let d = h.buckets;
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     doBucketIter(f, d[i]);
   }
 }
 
 function fillArray(_i, arr, _cell) {
-  while(true) {
+  while (true) {
     let cell = _cell;
     let i = _i;
     arr[i] = cell.key;
@@ -101,7 +101,7 @@ function toArray(h) {
   let d = h.buckets;
   let current = 0;
   let arr = new Array(h.size);
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     let cell = d[i];
     if (cell !== undefined) {
       current = fillArray(current, arr, cell);
@@ -112,7 +112,7 @@ function toArray(h) {
 }
 
 function doBucketFold(f, _b, _accu) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let b = _b;
     if (b === undefined) {
@@ -127,32 +127,30 @@ function doBucketFold(f, _b, _accu) {
 function reduce(h, init, f) {
   let d = h.buckets;
   let accu = init;
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     accu = doBucketFold(f, d[i], accu);
   }
   return accu;
 }
 
 function getMaxBucketLength(h) {
-  return Belt_Array.reduce(h.buckets, 0, (function (m, b) {
+  return Belt_Array.reduce(h.buckets, 0, (m, b) => {
     let len = bucketLength(0, b);
     if (m > len) {
       return m;
     } else {
       return len;
     }
-  }));
+  });
 }
 
 function getBucketHistogram(h) {
   let mbl = getMaxBucketLength(h);
-  let histo = Belt_Array.makeBy(mbl + 1 | 0, (function (param) {
-    return 0;
-  }));
-  Belt_Array.forEach(h.buckets, (function (b) {
+  let histo = Belt_Array.makeBy(mbl + 1 | 0, param => 0);
+  Belt_Array.forEach(h.buckets, b => {
     let l = bucketLength(0, b);
     histo[l] = histo[l] + 1 | 0;
-  }));
+  });
   return histo;
 }
 

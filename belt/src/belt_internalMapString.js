@@ -22,7 +22,7 @@ function add(t, x, data) {
 }
 
 function get(_n, x) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -37,7 +37,7 @@ function get(_n, x) {
 }
 
 function getUndefined(_n, x) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return;
@@ -52,7 +52,7 @@ function getUndefined(_n, x) {
 }
 
 function getExn(_n, x) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n !== undefined) {
       let v = n.k;
@@ -63,15 +63,15 @@ function getExn(_n, x) {
       continue;
     }
     throw new Error("Not_found", {
-          cause: {
-            RE_EXN_ID: "Not_found"
-          }
-        });
+      cause: {
+        RE_EXN_ID: "Not_found"
+      }
+    });
   };
 }
 
 function getWithDefault(_n, x, def) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return def;
@@ -86,7 +86,7 @@ function getWithDefault(_n, x, def) {
 }
 
 function has(_n, x) {
-  while(true) {
+  while (true) {
     let n = _n;
     if (n === undefined) {
       return false;
@@ -209,7 +209,7 @@ function merge(s1, s2, f) {
 }
 
 function compareAux(_e1, _e2, vcmp) {
-  while(true) {
+  while (true) {
     let e2 = _e2;
     let e1 = _e1;
     if (!e1) {
@@ -247,7 +247,7 @@ function cmp(s1, s2, cmp$1) {
 }
 
 function eqAux(_e1, _e2, eq) {
-  while(true) {
+  while (true) {
     let e2 = _e2;
     let e1 = _e1;
     if (!e1) {
@@ -303,9 +303,7 @@ function fromArray(xs) {
   if (len === 0) {
     return;
   }
-  let next = Belt_SortArray.strictlySortedLength(xs, (function (param, param$1) {
-    return param[0] < param$1[0];
-  }));
+  let next = Belt_SortArray.strictlySortedLength(xs, (param, param$1) => param[0] < param$1[0]);
   let result;
   if (next >= 0) {
     result = Belt_internalAVLtree.fromSortedArrayAux(xs, 0, next);
@@ -313,7 +311,7 @@ function fromArray(xs) {
     next = -next | 0;
     result = Belt_internalAVLtree.fromSortedArrayRevAux(xs, next - 1 | 0, next);
   }
-  for(let i = next; i < len; ++i){
+  for (let i = next; i < len; ++i) {
     let match = xs[i];
     result = addMutate(result, match[0], match[1]);
   }

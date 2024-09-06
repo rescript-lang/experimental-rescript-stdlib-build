@@ -3,7 +3,7 @@
 
 async function forEach(iterator, f) {
   let iteratorDone = false;
-  while(!iteratorDone) {
+  while (!iteratorDone) {
     let match = await iterator.next();
     f(match.value);
     iteratorDone = match.done;

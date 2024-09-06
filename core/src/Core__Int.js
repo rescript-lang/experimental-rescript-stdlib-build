@@ -44,8 +44,8 @@ function range(start, end, optionsOpt) {
     } else {
       if (start !== end) {
         throw new Error(new RangeError("Incorrect range arguments").RE_EXN_ID, {
-              cause: new RangeError("Incorrect range arguments")
-            });
+          cause: new RangeError("Incorrect range arguments")
+        });
       }
       step = n;
     }
@@ -62,9 +62,7 @@ function range(start, end, optionsOpt) {
     let range$2 = options.inclusive === true ? range$1 + 1 | 0 : range$1;
     length = Math.ceil(range$2 / abs(step)) | 0;
   }
-  return Core__Array.fromInitializer(length, (function (i) {
-    return start + Math.imul(i, step) | 0;
-  }));
+  return Core__Array.fromInitializer(length, i => start + Math.imul(i, step) | 0);
 }
 
 function rangeWithOptions(start, end, options) {

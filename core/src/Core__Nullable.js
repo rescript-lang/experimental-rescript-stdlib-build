@@ -31,11 +31,11 @@ function getExn(value) {
     return value;
   }
   throw new Error("Invalid_argument", {
-        cause: {
-          RE_EXN_ID: "Invalid_argument",
-          _1: "Nullable.getExn: value is null or undefined"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Invalid_argument",
+      _1: "Nullable.getExn: value is null or undefined"
+    }
+  });
 }
 
 function forEach(value, f) {

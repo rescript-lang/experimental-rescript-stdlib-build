@@ -55,10 +55,10 @@ function peekExn(q) {
     return v.content;
   }
   throw new Error("Not_found", {
-        cause: {
-          RE_EXN_ID: "Not_found"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Not_found"
+    }
+  });
 }
 
 function pop(q) {
@@ -91,10 +91,10 @@ function popExn(q) {
     }
   }
   throw new Error("Not_found", {
-        cause: {
-          RE_EXN_ID: "Not_found"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Not_found"
+    }
+  });
 }
 
 function popUndefined(q) {
@@ -121,7 +121,7 @@ function copy(q) {
   };
   let _prev;
   let _cell = q.first;
-  while(true) {
+  while (true) {
     let cell = _cell;
     let prev = _prev;
     if (cell !== undefined) {
@@ -152,7 +152,7 @@ function map(q, f) {
   };
   let _prev;
   let _cell = q.first;
-  while(true) {
+  while (true) {
     let cell = _cell;
     let prev = _prev;
     if (cell !== undefined) {
@@ -185,7 +185,7 @@ function size(q) {
 
 function forEach(q, f) {
   let _cell = q.first;
-  while(true) {
+  while (true) {
     let cell = _cell;
     if (cell === undefined) {
       return;
@@ -199,7 +199,7 @@ function forEach(q, f) {
 function reduce(q, accu, f) {
   let _accu = accu;
   let _cell = q.first;
-  while(true) {
+  while (true) {
     let cell = _cell;
     let accu$1 = _accu;
     if (cell === undefined) {
@@ -231,7 +231,7 @@ function transfer(q1, q2) {
 }
 
 function fillAux(_i, arr, _cell) {
-  while(true) {
+  while (true) {
     let cell = _cell;
     let i = _i;
     if (cell === undefined) {
@@ -256,7 +256,7 @@ function fromArray(arr) {
     first: undefined,
     last: undefined
   };
-  for(let i = 0 ,i_finish = arr.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = arr.length; i < i_finish; ++i) {
     add(q, arr[i]);
   }
   return q;

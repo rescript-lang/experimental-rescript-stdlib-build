@@ -17,7 +17,7 @@ function copyBucket(c) {
 }
 
 function copyAuxCont(_c, _prec) {
-  while(true) {
+  while (true) {
     let prec = _prec;
     let c = _c;
     if (c === undefined) {
@@ -38,7 +38,7 @@ function copyAuxCont(_c, _prec) {
 function copyBuckets(buckets) {
   let len = buckets.length;
   let newBuckets = new Array(len);
-  for(let i = 0; i < len; ++i){
+  for (let i = 0; i < len; ++i) {
     newBuckets[i] = copyBucket(buckets[i]);
   }
   return newBuckets;
@@ -54,7 +54,7 @@ function copy(x) {
 }
 
 function bucketLength(_accu, _buckets) {
-  while(true) {
+  while (true) {
     let buckets = _buckets;
     let accu = _accu;
     if (buckets === undefined) {
@@ -67,7 +67,7 @@ function bucketLength(_accu, _buckets) {
 }
 
 function do_bucket_iter(f, _buckets) {
-  while(true) {
+  while (true) {
     let buckets = _buckets;
     if (buckets === undefined) {
       return;
@@ -80,13 +80,13 @@ function do_bucket_iter(f, _buckets) {
 
 function forEach(h, f) {
   let d = h.buckets;
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     do_bucket_iter(f, d[i]);
   }
 }
 
 function do_bucket_fold(f, _b, _accu) {
-  while(true) {
+  while (true) {
     let accu = _accu;
     let b = _b;
     if (b === undefined) {
@@ -101,32 +101,30 @@ function do_bucket_fold(f, _b, _accu) {
 function reduce(h, init, f) {
   let d = h.buckets;
   let accu = init;
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     accu = do_bucket_fold(f, d[i], accu);
   }
   return accu;
 }
 
 function getMaxBucketLength(h) {
-  return Belt_Array.reduce(h.buckets, 0, (function (m, b) {
+  return Belt_Array.reduce(h.buckets, 0, (m, b) => {
     let len = bucketLength(0, b);
     if (m > len) {
       return m;
     } else {
       return len;
     }
-  }));
+  });
 }
 
 function getBucketHistogram(h) {
   let mbl = getMaxBucketLength(h);
-  let histo = Belt_Array.makeBy(mbl + 1 | 0, (function (param) {
-    return 0;
-  }));
-  Belt_Array.forEach(h.buckets, (function (b) {
+  let histo = Belt_Array.makeBy(mbl + 1 | 0, param => 0);
+  Belt_Array.forEach(h.buckets, b => {
     let l = bucketLength(0, b);
     histo[l] = histo[l] + 1 | 0;
-  }));
+  });
   return histo;
 }
 
@@ -140,7 +138,7 @@ function logStats(h) {
 }
 
 function filterMapInplaceBucket(f, h, i, _prec, _cell) {
-  while(true) {
+  while (true) {
     let cell = _cell;
     let prec = _prec;
     let n = cell.next;
@@ -176,7 +174,7 @@ function filterMapInplaceBucket(f, h, i, _prec, _cell) {
 
 function keepMapInPlace(h, f) {
   let h_buckets = h.buckets;
-  for(let i = 0 ,i_finish = h_buckets.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = h_buckets.length; i < i_finish; ++i) {
     let v = h_buckets[i];
     if (v !== undefined) {
       filterMapInplaceBucket(f, h, i, undefined, v);
@@ -186,7 +184,7 @@ function keepMapInPlace(h, f) {
 }
 
 function fillArray(_i, arr, _cell) {
-  while(true) {
+  while (true) {
     let cell = _cell;
     let i = _i;
     arr[i] = [
@@ -204,7 +202,7 @@ function fillArray(_i, arr, _cell) {
 }
 
 function fillArrayMap(_i, arr, _cell, f) {
-  while(true) {
+  while (true) {
     let cell = _cell;
     let i = _i;
     arr[i] = f(cell);
@@ -222,7 +220,7 @@ function linear(h, f) {
   let d = h.buckets;
   let current = 0;
   let arr = new Array(h.size);
-  for(let i = 0 ,i_finish = d.length; i < i_finish; ++i){
+  for (let i = 0, i_finish = d.length; i < i_finish; ++i) {
     let cell = d[i];
     if (cell !== undefined) {
       current = fillArrayMap(current, arr, cell, f);
@@ -233,24 +231,18 @@ function linear(h, f) {
 }
 
 function keysToArray(h) {
-  return linear(h, (function (x) {
-    return x.key;
-  }));
+  return linear(h, x => x.key);
 }
 
 function valuesToArray(h) {
-  return linear(h, (function (x) {
-    return x.value;
-  }));
+  return linear(h, x => x.value);
 }
 
 function toArray(h) {
-  return linear(h, (function (x) {
-    return [
-      x.key,
-      x.value
-    ];
-  }));
+  return linear(h, x => [
+    x.key,
+    x.value
+  ]);
 }
 
 let C;

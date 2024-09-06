@@ -127,7 +127,7 @@ function remove(n, x, cmp) {
 function mergeMany(h, arr, cmp) {
   let len = arr.length;
   let v = h;
-  for(let i = 0; i < len; ++i){
+  for (let i = 0; i < len; ++i) {
     let match = arr[i];
     v = set(v, match[0], match[1], cmp);
   }
@@ -196,17 +196,13 @@ function split(n, x, cmp) {
 function merge(s1, s2, f, cmp) {
   if (s1 === undefined) {
     if (s2 !== undefined) {
-      return Belt_internalAVLtree.keepMap(s2, (function (k, v) {
-        return f(k, undefined, Caml_option.some(v));
-      }));
+      return Belt_internalAVLtree.keepMap(s2, (k, v) => f(k, undefined, Caml_option.some(v)));
     } else {
       return;
     }
   }
   if (s2 === undefined) {
-    return Belt_internalAVLtree.keepMap(s1, (function (k, v) {
-      return f(k, Caml_option.some(v), undefined);
-    }));
+    return Belt_internalAVLtree.keepMap(s1, (k, v) => f(k, Caml_option.some(v), undefined));
   }
   if (s1.h >= s2.h) {
     let v1 = s1.k;
@@ -243,7 +239,7 @@ function removeMany(t, keys, cmp) {
   if (t !== undefined) {
     let _t = t;
     let _i = 0;
-    while(true) {
+    while (true) {
       let i = _i;
       let t$1 = _t;
       if (i >= len) {

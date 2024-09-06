@@ -214,7 +214,7 @@ function update(t, x, f) {
 }
 
 function removeArrayMutateAux(_t, xs, _i, len) {
-  while(true) {
+  while (true) {
     let i = _i;
     let t = _t;
     if (i >= len) {

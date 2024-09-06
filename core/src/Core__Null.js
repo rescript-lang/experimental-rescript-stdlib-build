@@ -32,11 +32,11 @@ function getExn(value) {
     return value;
   }
   throw new Error("Invalid_argument", {
-        cause: {
-          RE_EXN_ID: "Invalid_argument",
-          _1: "Null.getExn: value is null"
-        }
-      });
+    cause: {
+      RE_EXN_ID: "Invalid_argument",
+      _1: "Null.getExn: value is null"
+    }
+  });
 }
 
 function forEach(value, f) {
